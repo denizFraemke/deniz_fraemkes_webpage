@@ -1,0 +1,216 @@
+/*
+Design reminder for this stylesheet:
+Editorial modernism with warm parchment backgrounds, deep ink typography, brass accents, asymmetric composition, and restrained motion.
+Does this choice reinforce or dilute our design philosophy?
+*/
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Fraunces", serif;
+  --font-sans: "Manrope", sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --primary: oklch(0.31 0.048 214);
+  --primary-foreground: oklch(0.97 0.014 83);
+  --sidebar-primary: oklch(0.31 0.048 214);
+  --sidebar-primary-foreground: oklch(0.97 0.014 83);
+  --chart-1: oklch(0.72 0.11 68);
+  --chart-2: oklch(0.58 0.075 195);
+  --chart-3: oklch(0.42 0.05 214);
+  --chart-4: oklch(0.84 0.03 86);
+  --chart-5: oklch(0.68 0.09 35);
+  --radius: 1.1rem;
+  --background: oklch(0.97 0.014 83);
+  --foreground: oklch(0.23 0.025 207);
+  --card: oklch(0.99 0.008 84);
+  --card-foreground: oklch(0.23 0.025 207);
+  --popover: oklch(0.99 0.008 84);
+  --popover-foreground: oklch(0.23 0.025 207);
+  --secondary: oklch(0.94 0.012 84);
+  --secondary-foreground: oklch(0.31 0.048 214);
+  --muted: oklch(0.94 0.012 84);
+  --muted-foreground: oklch(0.45 0.02 190);
+  --accent: oklch(0.92 0.03 70);
+  --accent-foreground: oklch(0.23 0.025 207);
+  --destructive: oklch(0.58 0.22 28);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.88 0.01 82);
+  --input: oklch(0.88 0.01 82);
+  --ring: oklch(0.62 0.08 72);
+  --sidebar: oklch(0.985 0.01 84);
+  --sidebar-foreground: oklch(0.23 0.025 207);
+  --sidebar-accent: oklch(0.92 0.03 70);
+  --sidebar-accent-foreground: oklch(0.23 0.025 207);
+  --sidebar-border: oklch(0.88 0.01 82);
+  --sidebar-ring: oklch(0.62 0.08 72);
+}
+
+.dark {
+  --primary: oklch(0.66 0.08 71);
+  --primary-foreground: oklch(0.19 0.02 210);
+  --sidebar-primary: oklch(0.66 0.08 71);
+  --sidebar-primary-foreground: oklch(0.19 0.02 210);
+  --background: oklch(0.18 0.02 207);
+  --foreground: oklch(0.94 0.012 84);
+  --card: oklch(0.22 0.018 210);
+  --card-foreground: oklch(0.94 0.012 84);
+  --popover: oklch(0.22 0.018 210);
+  --popover-foreground: oklch(0.94 0.012 84);
+  --secondary: oklch(0.26 0.02 210);
+  --secondary-foreground: oklch(0.94 0.012 84);
+  --muted: oklch(0.26 0.02 210);
+  --muted-foreground: oklch(0.76 0.018 83);
+  --accent: oklch(0.31 0.05 71);
+  --accent-foreground: oklch(0.95 0.012 84);
+  --destructive: oklch(0.66 0.19 28);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.66 0.08 71);
+  --chart-1: oklch(0.72 0.11 68);
+  --chart-2: oklch(0.58 0.075 195);
+  --chart-3: oklch(0.8 0.03 86);
+  --chart-4: oklch(0.68 0.09 35);
+  --chart-5: oklch(0.5 0.05 214);
+  --sidebar: oklch(0.22 0.018 210);
+  --sidebar-foreground: oklch(0.94 0.012 84);
+  --sidebar-accent: oklch(0.31 0.05 71);
+  --sidebar-accent-foreground: oklch(0.95 0.012 84);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.66 0.08 71);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(200, 138, 74, 0.08), transparent 30%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(247, 243, 236, 0.98));
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.08;
+    background-image:
+      linear-gradient(rgba(16, 41, 47, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(16, 41, 47, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 90%);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+  }
+
+  a {
+    @apply transition-colors duration-300;
+  }
+
+  img {
+    display: block;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+
+  ::selection {
+    background: rgba(200, 138, 74, 0.22);
+    color: rgb(20, 41, 46);
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+}
