@@ -4,7 +4,6 @@ export type Publication = {
   title: string;
   authors: string;
   venue: string;
-  citations: string;
   summary: string;
   theme: string;
   accent: string;
@@ -25,12 +24,45 @@ export const profile = {
     "Social Inequality",
     "Educational Attainment",
     "Cognitive Development",
-    "Epigenetics",
+    "Developmental Epigenetics",
   ],
   intro:
-    "Deniz Fraemke's research sits at the intersection of biosocial development, educational inequality, and cognitive trajectories across the life course. This website draft presents a personal academic identity that feels contemporary and authored, while remaining grounded in rigorous scholarly communication.",
+    "I study how genetic and epigenetic variation relates to cognitive development and educational attainment — and how these processes unfold across unequal social and institutional contexts. My work sits at the intersection of behavioral genetics, epigenetics, and the social sciences, exploring what genomic data can and cannot tell us about human development.",
   bio:
-    "Based at the Max Planck Institute for Human Development, Deniz Fraemke works on questions connecting biology, development, and socio-economic environments. The draft site emphasizes a modern research profile with strong visual identity, clear thematic framing, and publication discovery designed for collaborators, institutions, and broader academic audiences.",
+    "I am a predoctoral researcher at the Max Planck Institute for Human Development in Berlin, working within the Biosocial — Biology, Social Disparities, and Development research group led by Dr. Laurel Raffington. My research draws on genetic, epigenetic, and social data from multiple German and international cohorts to examine how educational and cognitive trajectories unfold across development — and how social stratification conditions these processes. Methodologically, I work with polygenic indices, epigenetic clocks, and complex statistical models, applying these tools across large-scale panel and twin studies. I care about methodological rigour, responsible interpretation of genomic findings, and making sociogenomics research accessible beyond the field.",
+  aboutHeadline:
+    "Research at the intersection of genomics, social science, and human development.",
+  publicationsBlurb:
+    "A selection of recent and forthcoming work on gene–environment interplay, cognitive development, and the social dimensions of genomic research.",
+};
+
+export const hero = {
+  pills: ["Gene–environment interplay", "Educational and cognitive inequality"],
+  overlayLabel: "Research focus",
+  overlayHeading: "Biosocial perspectives on cognitive development, inequality, and education.",
+  overlayDescription: "",
+};
+
+export const contact = {
+  heading: "Get in touch.",
+  description:
+    "Whether you are interested in a research collaboration, a consulting inquiry, or have a question about my work — feel free to reach out. Describe your project briefly and I will get back to you.",
+};
+
+export const footer = {
+  label: "Deniz Fraemke",
+  tagline: "Biosocial research on cognitive development, inequality, and education.",
+};
+
+export const publicationsPage = {
+  heading: "Publications",
+  description:
+    "An overview of published and forthcoming work, spanning biosocial science, educational inequality, developmental epigenetics, and gene–environment interplay.",
+  bannerThemes: ["Biosocial development", "Polygenic and epigenetic methods", "Inequality and cognition"],
+  galleryDescription:
+    "Select a publication to view authors, venue, and a brief summary. Each card links directly to the full text or publisher's page.",
+  backToHomeText:
+    "Return to the main page for research themes, biography, and consulting.",
 };
 
 export const milestones = [
@@ -61,159 +93,45 @@ export const milestones = [
   },
 ];
 
-export const statistics = [
-  { label: "Scholar citations", value: "55" },
-  { label: "h-index", value: "6" },
-  { label: "Recent publication years", value: "2022–2026" },
-];
-
 export const consulting = {
-  headline: "Statistical consulting for complex problems",
+  headline: "Statistical consulting",
   description:
     "Beyond my academic research, I offer statistical consulting for researchers, institutions, and organizations facing complex analytical challenges. Whether you need guidance on study design, advanced modeling, or help making sense of your data — I'm happy to have a conversation about how I can help.",
   areas: [
     {
-      title: "Multilevel & Longitudinal Modeling",
-      description: "Mixed-effects models, growth curves, and repeated-measures designs for nested or panel data.",
+      title: "Data Analysis & Modeling",
+      description: "From survey data to large-scale behavioral studies — regression, multilevel models, and structural equation models tailored to your question.",
     },
     {
-      title: "Causal Inference & Study Design",
-      description: "Matching, instrumental variables, difference-in-differences, and experimental design strategies.",
+      title: "Study Design & Strategy",
+      description: "Sample size planning, experimental design, and analytical strategies — before you collect a single data point.",
     },
     {
-      title: "Genomic & Epigenetic Data Analysis",
-      description: "Polygenic scores, DNA-methylation analyses, gene-environment interaction models, and GWAS pipelines.",
+      title: "Data Visualization & Reporting",
+      description: "Clear, publication-ready figures and dashboards that make complex results accessible to any audience.",
     },
     {
-      title: "Power Analysis & Statistical Review",
-      description: "Sample size planning, simulation-based power analyses, and pre-registration support for grant applications.",
+      title: "Statistical Review & Second Opinion",
+      description: "Independent review of analyses, methods sections, or results — for manuscripts, reports, or internal decision-making.",
     },
   ],
   disclaimer: "Independent scientific consulting (freiberufliche wissenschaftliche Beratung)",
 };
 
 export const publications: Publication[] = [
-  {
-    slug: "self-control-biological-aging",
-    year: "2024",
-    title:
-      "Self-control is associated with health-relevant disparities in buccal DNA-methylation measures of biological aging in older adults",
-    authors:
-      "YE Willems, A deSteiguer, PT Tanksley, L Vinnik, D Fraemke, A Okbay, and colleagues",
-    venue: "Clinical Epigenetics 16 (1), 22",
-    citations: "12 citations",
-    summary:
-      "A study connecting self-control with disparities in DNA-methylation indicators of biological aging, illustrating how behavioral and health processes intersect in later life.",
-    theme: "Aging, epigenetics, health disparities",
-    accent: "from-[#0f3f46] via-[#1f5c63] to-[#c88a4a]",
-    imageUrl:
-      "/images/card-texture.webp",
-    externalUrl:
-      "https://scholar.google.com/citations?user=M_n5idUAAAAJ&hl=en&inst=1704897519255937060",
-  },
-  {
-    slug: "biosocial-perspective-racism-germany",
-    year: "2024",
-    title:
-      "Beyond a shared history: A biosocial perspective on sociogenomics and racism in Germany",
-    authors: "MAN Aikins, YE Willems, D Fraemke, L Raffington",
-    venue: "KZfSS Kölner Zeitschrift für Soziologie und Sozialpsychologie 76 (3), 573–602",
-    citations: "9 citations",
-    summary:
-      "An intervention into sociogenomics and racism in Germany from a biosocial perspective, emphasizing historical context and social inequality.",
-    theme: "Racism, sociogenomics, biosocial theory",
-    accent: "from-[#182631] via-[#34495e] to-[#bd6b4d]",
-    imageUrl:
-      "/images/publications-banner.webp",
-    externalUrl:
-      "https://scholar.google.com/citations?user=M_n5idUAAAAJ&hl=en&inst=1704897519255937060",
-  },
-  {
-    slug: "acute-stress-safety-goals",
-    year: "2024",
-    title: "Acute stress promotes effort mobilization for safety-related goals",
-    authors:
-      "K Pavlíčková, J Gärtner, SD Voulgaropoulou, D Fraemke, E Adams, and colleagues",
-    venue: "Communications Psychology 2 (1), 50",
-    citations: "9 citations",
-    summary:
-      "A psychological study on stress and goal-directed effort, showing how acute stress can intensify mobilization under safety-relevant conditions.",
-    theme: "Stress, motivation, psychological processes",
-    accent: "from-[#20303c] via-[#41606d] to-[#d29d63]",
-    imageUrl:
-      "/images/hero-editorial.webp",
-    externalUrl:
-      "https://scholar.google.com/citations?user=M_n5idUAAAAJ&hl=en&inst=1704897519255937060",
-  },
-  {
-    slug: "visual-cortex-deaf-hearing-signers",
-    year: "2022",
-    title:
-      "Developmental experiences alter the temporal processing characteristics of the visual cortex: Evidence from deaf and hearing native signers",
-    authors:
-      "AL Stroh, K Grin, F Rösler, D Bottari, J Ossandon, B Rossion, B Röder",
-    venue: "European Journal of Neuroscience 55 (6), 1629–1644",
-    citations: "9 citations",
-    summary:
-      "A neuroscience contribution examining how developmental experience shapes temporal processing in the visual cortex.",
-    theme: "Development, sensory processing, neuroscience",
-    accent: "from-[#214142] via-[#578080] to-[#c9a257]",
-    imageUrl:
-      "/images/research-themes.webp",
-    externalUrl:
-      "https://scholar.google.com/citations?user=M_n5idUAAAAJ&hl=en&inst=1704897519255937060",
-  },
-  {
-    slug: "racial-disparities-mental-health-aging",
-    year: "2025",
-    title:
-      "Linked emergence of racial disparities in mental health and epigenetic biological aging across childhood and adolescence",
-    authors:
-      "M Aikins, Y Willems, D Fraemke, C Mitchell, B Goosby, L Raffington",
-    venue: "Molecular Psychiatry 30 (9), 4296–4306",
-    citations: "8 citations",
-    summary:
-      "Research on the linked development of racial disparities in mental health and epigenetic biological aging during childhood and adolescence.",
-    theme: "Mental health, inequality, biological aging",
-    accent: "from-[#15333b] via-[#2e6a73] to-[#cc7f5f]",
-    imageUrl:
-      "/images/card-texture.webp",
-    externalUrl:
-      "https://scholar.google.com/citations?user=M_n5idUAAAAJ&hl=en&inst=1704897519255937060",
-  },
-  {
-    slug: "polygenic-educational-attainment-east-west-germany",
-    year: "2025",
-    title:
-      "Polygenic Associations With Educational Attainment in East Versus West Germany: Differences Emerge After Reunification",
-    authors:
-      "D Fraemke, YE Willems, A Okbay, U Lindenberger, S Zinn, G Wagner, and colleagues",
-    venue: "Psychological Science 36 (7), 559–573",
-    citations: "8 citations",
-    summary:
-      "A study of how polygenic associations with educational attainment differ across East and West Germany in the post-reunification context.",
-    theme: "Educational attainment, reunification, sociogenomics",
-    accent: "from-[#21303d] via-[#4f6f82] to-[#ba7850]",
-    imageUrl:
-      "/images/publications-banner.webp",
-    externalUrl:
-      "https://scholar.google.com/citations?user=M_n5idUAAAAJ&hl=en&inst=1704897519255937060",
-  },
+  // --- 2026 — first author ---
   {
     slug: "end-of-cognitive-meritocracy",
     year: "2026",
     title: "The end of cognitive meritocracy",
     authors: "D Fraemke",
     venue: "AI & SOCIETY, 1–2",
-    citations: "Recent work",
     summary:
       "A recent single-author contribution positioning cognitive meritocracy as a critical concept for contemporary debate.",
     theme: "Meritocracy, social critique, cognition",
     accent: "from-[#352723] via-[#7d503c] to-[#d8b47c]",
-    imageUrl:
-      "/images/hero-editorial.webp",
-    externalUrl:
-      "https://scholar.google.com/citations?user=M_n5idUAAAAJ&hl=en&inst=1704897519255937060",
+    imageUrl: "/images/publications-banner.webp",
+    externalUrl: "https://doi.org/10.1007/s00146-026-02856-7",
   },
   {
     slug: "developmental-correlates-epigenetic-polygenic-indices",
@@ -223,16 +141,46 @@ export const publications: Publication[] = [
     authors:
       "D Fraemke, L Paulus, I Schuurmans, JH Walter, D Czamara, AM Schowe, and colleagues",
     venue: "bioRxiv, 2026.04.01.715866",
-    citations: "Preprint",
     summary:
       "A developmental preprint connecting epigenetic and polygenic indices with cognition and educational attainment from birth into young adulthood.",
     theme: "Development, genetics, cognition, education",
     accent: "from-[#24353f] via-[#3b6770] to-[#dd9b67]",
-    imageUrl:
-      "/images/research-themes.webp",
-    externalUrl:
-      "https://scholar.google.com/citations?user=M_n5idUAAAAJ&hl=en&inst=1704897519255937060",
+    imageUrl: "/images/research-themes.webp",
+    externalUrl: "https://doi.org/10.64898/2026.04.01.715866",
   },
+  // --- 2025 — first author ---
+  {
+    slug: "polygenic-educational-attainment-east-west-germany",
+    year: "2025",
+    title:
+      "Polygenic Associations With Educational Attainment in East Versus West Germany: Differences Emerge After Reunification",
+    authors:
+      "D Fraemke, YE Willems, A Okbay, U Lindenberger, S Zinn, G Wagner, and colleagues",
+    venue: "Psychological Science 36 (7), 559–573",
+    summary:
+      "A study of how polygenic associations with educational attainment differ across East and West Germany in the post-reunification context.",
+    theme: "Educational attainment, reunification, sociogenomics",
+    accent: "from-[#21303d] via-[#4f6f82] to-[#ba7850]",
+    imageUrl: "/images/hero-editorial.webp",
+    externalUrl: "https://doi.org/10.1177/09567976251350965",
+  },
+  // --- 2025 — co-authored ---
+  {
+    slug: "racial-disparities-mental-health-aging",
+    year: "2025",
+    title:
+      "Linked emergence of racial disparities in mental health and epigenetic biological aging across childhood and adolescence",
+    authors:
+      "M Aikins, Y Willems, D Fraemke, C Mitchell, B Goosby, L Raffington",
+    venue: "Molecular Psychiatry 30 (9), 4296–4306",
+    summary:
+      "Research on the linked development of racial disparities in mental health and epigenetic biological aging during childhood and adolescence.",
+    theme: "Mental health, inequality, biological aging",
+    accent: "from-[#15333b] via-[#2e6a73] to-[#cc7f5f]",
+    imageUrl: "/images/card-texture.webp",
+    externalUrl: "https://doi.org/10.1038/s41380-025-03010-3",
+  },
+  // --- 2024 — first author ---
   {
     slug: "dna-methylation-cognition-scores",
     year: "2024",
@@ -241,14 +189,71 @@ export const publications: Publication[] = [
     authors:
       "D Fraemke, JH Walter, KP Harden, M Malanchini, EM Tucker-Drob, and colleagues",
     venue: "Behavior Genetics 54 (6), 500–500",
-    citations: "Conference abstract",
     summary:
       "A contribution on DNA-methylation profile scores of cognition and their associations with developmental and academic outcomes.",
     theme: "DNA methylation, cognition, socioeconomic outcomes",
     accent: "from-[#16313a] via-[#36656d] to-[#c98e54]",
-    imageUrl:
-      "/images/card-texture.webp",
-    externalUrl:
-      "https://scholar.google.com/citations?user=M_n5idUAAAAJ&hl=en&inst=1704897519255937060",
+    imageUrl: "/images/card-texture.webp",
+    externalUrl: "https://doi.org/10.1007/s10519-024-10197-8",
+  },
+  // --- 2024 — co-authored ---
+  {
+    slug: "biosocial-perspective-racism-germany",
+    year: "2024",
+    title:
+      "Beyond a shared history: A biosocial perspective on sociogenomics and racism in Germany",
+    authors: "MAN Aikins, YE Willems, D Fraemke, L Raffington",
+    venue: "KZfSS Kölner Zeitschrift für Soziologie und Sozialpsychologie 76 (3), 573–602",
+    summary:
+      "An intervention into sociogenomics and racism in Germany from a biosocial perspective, emphasizing historical context and social inequality.",
+    theme: "Racism, sociogenomics, biosocial theory",
+    accent: "from-[#182631] via-[#34495e] to-[#bd6b4d]",
+    imageUrl: "/images/publications-banner.webp",
+    externalUrl: "https://doi.org/10.1007/s11577-024-00934-6",
+  },
+  {
+    slug: "self-control-biological-aging",
+    year: "2024",
+    title:
+      "Self-control is associated with health-relevant disparities in buccal DNA-methylation measures of biological aging in older adults",
+    authors:
+      "YE Willems, A deSteiguer, PT Tanksley, L Vinnik, D Fraemke, A Okbay, and colleagues",
+    venue: "Clinical Epigenetics 16 (1), 22",
+    summary:
+      "A study connecting self-control with disparities in DNA-methylation indicators of biological aging, illustrating how behavioral and health processes intersect in later life.",
+    theme: "Aging, epigenetics, health disparities",
+    accent: "from-[#0f3f46] via-[#1f5c63] to-[#c88a4a]",
+    imageUrl: "/images/card-texture.webp",
+    externalUrl: "https://doi.org/10.1186/s13148-024-01637-7",
+  },
+  {
+    slug: "acute-stress-safety-goals",
+    year: "2024",
+    title: "Acute stress promotes effort mobilization for safety-related goals",
+    authors:
+      "K Pavlíčková, J Gärtner, SD Voulgaropoulou, D Fraemke, E Adams, and colleagues",
+    venue: "Communications Psychology 2 (1), 50",
+    summary:
+      "A psychological study on stress and goal-directed effort, showing how acute stress can intensify mobilization under safety-relevant conditions.",
+    theme: "Stress, motivation, psychological processes",
+    accent: "from-[#20303c] via-[#41606d] to-[#d29d63]",
+    imageUrl: "/images/hero-editorial.webp",
+    externalUrl: "https://doi.org/10.1038/s44271-024-00103-7",
+  },
+  // --- 2022 — co-authored (published under previous name) ---
+  {
+    slug: "visual-cortex-deaf-hearing-signers",
+    year: "2022",
+    title:
+      "Developmental experiences alter the temporal processing characteristics of the visual cortex: Evidence from deaf and hearing native signers",
+    authors:
+      "AL Stroh, K Grin, F Rösler, D Bottari, J Ossandon, B Rossion, B Röder",
+    venue: "European Journal of Neuroscience 55 (6), 1629–1644",
+    summary:
+      "A neuroscience contribution examining how developmental experience shapes temporal processing in the visual cortex.",
+    theme: "Development, sensory processing, neuroscience",
+    accent: "from-[#214142] via-[#578080] to-[#c9a257]",
+    imageUrl: "/images/research-themes.webp",
+    externalUrl: "https://doi.org/10.1111/ejn.15629",
   },
 ];

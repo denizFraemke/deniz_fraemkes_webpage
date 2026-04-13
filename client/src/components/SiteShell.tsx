@@ -4,7 +4,7 @@ Editorial modernism with warm academic tones, serif-led identity, asymmetric spa
 Does this choice reinforce or dilute our design philosophy?
 */
 
-import { profile } from "@/lib/siteData";
+import { footer, profile } from "@/lib/siteData";
 import { ArrowRight } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import type { ReactNode } from "react";
@@ -17,8 +17,8 @@ type SiteShellProps = {
 const navigation = [
   { label: "Home", href: "/" },
   { label: "Publications", href: "/publications" },
-  { label: "Consulting", href: "/#consulting" },
-  { label: "Scholar", href: profile.scholar, external: true },
+  { label: "Statistical Consulting", href: "/#consulting" },
+  { label: "Google Scholar", href: profile.scholar, external: true },
   { label: "Institutional profile", href: profile.homepage, external: true },
 ];
 
@@ -87,13 +87,21 @@ export default function SiteShell({ children, pageLabel }: SiteShellProps) {
       <main className="relative z-10">{children}</main>
 
       <footer className="relative z-10 border-t border-black/5 bg-[#10292f] text-[#f7f2ea]">
-        <div className="container grid gap-10 py-14 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="container grid gap-10 py-14 lg:grid-cols-[auto_1fr_0.8fr] lg:items-start">
+          <div className="flex justify-center lg:justify-start">
+            <img
+              src="/images/portrait.jpg"
+              alt="Deniz Fraemke"
+              className="h-28 w-28 rounded-full border-2 border-white/10 object-cover shadow-[0_12px_40px_rgba(0,0,0,0.3)] lg:h-32 lg:w-32"
+            />
+          </div>
+
           <div className="space-y-4">
             <p className="text-[0.72rem] uppercase tracking-[0.3em] text-[#c9b39a]">
-              Research profile draft
+              {footer.label}
             </p>
             <h2 className="max-w-xl font-[Fraunces] text-3xl leading-tight text-white md:text-4xl">
-              A personal academic website shaped to communicate scholarship with clarity and presence.
+              {footer.tagline}
             </h2>
           </div>
 
