@@ -45,15 +45,6 @@ export default function Publications() {
 
       <section className="relative py-16 md:py-20">
         <div className="container space-y-10">
-          <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-            <div>
-              <p className="text-[0.72rem] uppercase tracking-[0.3em] text-[#7a695b]">All publications</p>
-            </div>
-            <p className="max-w-2xl text-base leading-8 text-[#4f5b59]">
-              {publicationsPage.galleryDescription}
-            </p>
-          </div>
-
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {publications.map((publication) => (
               <a
