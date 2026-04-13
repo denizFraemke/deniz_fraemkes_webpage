@@ -95,6 +95,7 @@ export const milestones = [
 
 export const consulting = {
   headline: "Statistical consulting",
+  subtitle: "Statistische Beratung und Datenanalyse für Forschung, Unternehmen und Organisationen.",
   description:
     "Beyond my academic research, I offer statistical consulting for researchers, institutions, and organizations facing complex analytical challenges. Whether you need guidance on study design, advanced modeling, or help making sense of your data — I'm happy to have a conversation about how I can help.",
   areas: [
@@ -104,7 +105,7 @@ export const consulting = {
     },
     {
       title: "Study Design & Strategy",
-      description: "Sample size planning, experimental design, and analytical strategies — before you collect a single data point.",
+      description: "Sample size planning, experimental design, and analytical strategies — for dissertations, master's theses, or applied research projects.",
     },
     {
       title: "Data Visualization & Reporting",

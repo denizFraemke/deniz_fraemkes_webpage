@@ -253,6 +253,7 @@ export default function Home() {
               </h2>
             </div>
             <p className="text-base leading-8 text-[#4f5b59] md:text-lg">{consulting.description}</p>
+            <p className="text-sm leading-7 text-[#7a695b] italic">{consulting.subtitle}</p>
             <a href="#contact">
               <Button className="rounded-full bg-[#17353b] px-7 py-6 text-sm uppercase tracking-[0.2em] text-white hover:bg-[#10292f]">
                 <Mail className="mr-2 h-4 w-4" />
