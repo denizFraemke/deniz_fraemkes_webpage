@@ -42,12 +42,11 @@ ACCENT_PALETTE = [
   "from-[#16313a] via-[#36656d] to-[#c98e54]",
 ]
 
-# Default images to rotate through for new publications
+# Default placeholder for new publications — an atlas-styled "pending plate" SVG.
+# The user replaces this with a real atlas plate generated via Claude Design.
+# See the PR body instructions emitted by build_pr_body() below.
 DEFAULT_IMAGES = [
-  "/images/card-texture.webp",
-  "/images/publications-banner.webp",
-  "/images/hero-editorial.webp",
-  "/images/research-themes.webp",
+  "/images/publications/_pending.svg",
 ]
 
 # Publication object fields, in the order they appear in siteData.ts.
@@ -73,21 +72,34 @@ LONG_FIELDS = {"title", "authors", "summary"}
 # Where the Python script writes the ready-made PR body for the workflow.
 PR_BODY_PATH = Path(__file__).parent / "pr_body.md"
 
-# Shared style preamble used for every image-prompt suggestion, tuned to match
-# the editorial aesthetic of the existing site images (hero-editorial.webp etc).
-IMAGE_STYLE_PREAMBLE = (
-  "Editorial magazine photograph, 4:3 landscape. Warm muted academic tones: "
-  "deep teal, terracotta, cream, olive. Abstract and textural, painterly, "
-  "soft natural light. No text, no logos, no faces, no clinical or stock-photo "
-  "feel. Should visually pair with a serif-led research publication card."
-)
+# Claude Design prompt used to generate a new atlas plate for a publication,
+# in the locked-in visual language of the other 8 plates on the site.
+CLAUDE_DESIGN_PROMPT_TEMPLATE = """\
+New atlas plate, same locked-in visual language as the existing 8 plates.
 
-# Three stylistic angles to give visual variety across the 3 suggestions.
-IMAGE_PROMPT_ANGLES = [
-  ("Close-up texture", "Extreme close-up of a material or surface that metaphorically represents the paper's theme. Shallow depth of field, painterly grain, muted palette."),
-  ("Aerial / geometric", "Bird's-eye or flat-lay composition with clear geometric structure, negative space, and restrained palette. Minimal, editorial."),
-  ("Still life / composed objects", "Composed still life of symbolic objects representing the paper's theme, on a warm neutral backdrop. Slightly shadowed, tactile."),
-]
+Format: SVG, 2400 × 1800 (4:3 landscape), cream background (#f7f3ec),
+teal ink (#17353b), one terracotta locus (#c88a4a), hairline plate frame.
+JetBrains Mono for the metadata, Fraunces italic for the caption.
+
+Chrome (same for every plate):
+  - Upper-left:  PLATE {roman} · {roman_year}
+  - Upper-right: {keywords_upper}         (short uppercase topic keywords)
+  - Bottom-center italic caption: {caption_phrase}
+
+Composition: translate the paper's theme into a recognisable cartographic
+or diagrammatic form (contours, strata, isobars, fault lines, rings,
+interference, etc.) — NOT decorative linework.
+
+Paper details:
+  Title:   {title}
+  Venue:   {venue}
+  Year:    {year}
+  Theme:   {theme}
+  Summary: {summary}
+
+Produce ONE plate. When I approve, export the SVG at its canonical
+2400 × 1800 resolution.
+"""
 
 
 def slugify(text: str) -> str:
@@ -335,27 +347,52 @@ def write_publications(publications: list[dict]) -> None:
   SITE_DATA_PATH.write_text(content)
 
 
-def build_image_prompts(pub: dict) -> list[tuple[str, str]]:
-  """Return 3 ready-to-paste image prompts for a publication.
+def _year_to_roman(year: str) -> str:
+  """Arabic year → Roman numerals (e.g. '2026' → 'MMXXVI'). Fallback: input."""
+  try:
+    n = int(year)
+  except (TypeError, ValueError):
+    return year or "——"
+  table = [
+    (1000, "M"), (900, "CM"), (500, "D"), (400, "CD"),
+    (100, "C"), (90, "XC"), (50, "L"), (40, "XL"),
+    (10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I"),
+  ]
+  out = ""
+  rest = n
+  for v, s in table:
+    while rest >= v:
+      out += s
+      rest -= v
+  return out
 
-  Each tuple is (angle_label, full_prompt). The prompts are tuned to match the
-  existing editorial aesthetic (see IMAGE_STYLE_PREAMBLE).
-  """
-  title = pub.get("title", "").strip()
-  prompts: list[tuple[str, str]] = []
-  for label, angle in IMAGE_PROMPT_ANGLES:
-    prompt = (
-      f"{IMAGE_STYLE_PREAMBLE} {angle} The underlying subject of the paper "
-      f"is: \"{title}\". Translate the theme into imagery — do NOT depict the "
-      f"paper itself."
-    )
-    prompts.append((label, prompt))
-  return prompts
+
+def _next_plate_roman(existing: list[dict]) -> str:
+  """Hero is PLATE I; publications are II–IX (and counting). Roman numeral
+  for the next plate = (count of existing publications) + 2."""
+  n = len(existing) + 2
+  return _year_to_roman(str(n))  # reuses the same roman-numeral converter
+
+
+def build_claude_design_prompt(pub: dict, existing: list[dict]) -> str:
+  """A ready-to-paste Claude Design prompt for a new atlas plate."""
+  return CLAUDE_DESIGN_PROMPT_TEMPLATE.format(
+    roman=_next_plate_roman(existing),
+    roman_year=_year_to_roman(pub.get("year", "")),
+    keywords_upper="[TOPIC · KEYWORDS]",
+    caption_phrase="[evocative lowercase phrase — e.g. 'two densities meeting at a fault']",
+    title=pub.get("title") or "",
+    venue=pub.get("venue") or "tbd",
+    year=pub.get("year") or "tbd",
+    theme=pub.get("theme") or "[theme keywords to be filled in]",
+    summary=pub.get("summary") or "[1–2 sentence summary of the paper]",
+  )
 
 
 def build_pr_body(
   new_pubs: list[dict],
   updated_titles: list[str],
+  existing_count_at_start: int = 0,
 ) -> str:
   """Compose the PR body shown on GitHub. Saved for the workflow to use."""
   lines: list[str] = []
@@ -369,29 +406,56 @@ def build_pr_body(
   if new_pubs:
     lines.append(f"### {len(new_pubs)} new publication(s)")
     lines.append("")
-    for pub in new_pubs:
+    # Fake a stable list for roman-numeral allocation: every new pub gets the
+    # next roman after the existing ones.
+    for idx, pub in enumerate(new_pubs):
+      # The "existing" at the time of THIS pub is existing_count_at_start + idx.
+      existing_stub = [None] * (existing_count_at_start + idx)
+      roman = _next_plate_roman(existing_stub)
+      roman_year = _year_to_roman(pub.get("year", ""))
+
       lines.append(f"**{pub['title']}**  ")
       lines.append(f"_{pub.get('venue') or 'venue tbd'}_ · {pub.get('year') or 'year tbd'}")
+      lines.append(f"_Plate slot:_ **PLATE {roman} · {roman_year}**")
       lines.append("")
       lines.append(
-        f"_Default image:_ `{pub['imageUrl']}` — the site will use this if you "
-        f"do not provide your own. If you want a custom image, generate one "
-        f"using any of the three prompts below (Gemini, ChatGPT, Midjourney, "
-        f"etc.), save it as  "
-        f"`client/public/images/publications/{pub['slug']}.png`  "
-        f"and change the `imageUrl` field in `client/src/lib/siteData.ts` to "
-        f"`/images/publications/{pub['slug']}.png`."
+        f"_Default image:_ `{pub['imageUrl']}` — the site will show an "
+        f"atlas-styled \"plate pending\" placeholder until you drop in a real plate."
       )
       lines.append("")
-      for i, (label, prompt) in enumerate(build_image_prompts(pub), start=1):
-        lines.append(f"<details><summary><strong>Prompt {i}: {label}</strong></summary>")
-        lines.append("")
-        lines.append("```")
-        lines.append(prompt)
-        lines.append("```")
-        lines.append("")
-        lines.append("</details>")
-        lines.append("")
+      lines.append("#### How to generate the real plate")
+      lines.append("")
+      lines.append(
+        "1. Open [claude.ai/design](https://claude.ai/design). If your "
+        "existing atlas chat is still available, continue there so the "
+        "locked-in visual language is preserved. Otherwise start a new "
+        "chat and re-upload one of the existing plates (e.g. "
+        "`client/public/images/publications/polygenic-educational-"
+        "attainment-east-west-germany.svg`) as a style reference."
+      )
+      lines.append(
+        "2. Paste the prompt below. Fill in the TOPIC · KEYWORDS and the "
+        "evocative caption phrase to taste."
+      )
+      lines.append(
+        f"3. Export the SVG at its canonical 2400 × 1800 resolution and save "
+        f"it as `client/public/images/publications/{pub['slug']}.svg`."
+      )
+      lines.append(
+        f"4. In `client/src/lib/siteData.ts`, change the `imageUrl` for this "
+        f"publication from `{pub['imageUrl']}` to "
+        f"`/images/publications/{pub['slug']}.svg`."
+      )
+      lines.append("5. Merge this PR — the site will rebuild and deploy automatically.")
+      lines.append("")
+      lines.append("<details><summary><strong>Claude Design prompt (copy-paste)</strong></summary>")
+      lines.append("")
+      lines.append("```")
+      lines.append(build_claude_design_prompt(pub, existing_stub))
+      lines.append("```")
+      lines.append("")
+      lines.append("</details>")
+      lines.append("")
       lines.append("---")
       lines.append("")
 
@@ -408,10 +472,8 @@ def build_pr_body(
 
   lines.append("### Review checklist")
   lines.append("- [ ] Titles and venues look correct")
-  lines.append("- [ ] For new publications: add or edit the summary and theme in `siteData.ts`")
-  lines.append(
-    "- [ ] (Optional) Replace the default image with your own — see instructions above"
-  )
+  lines.append("- [ ] For new publications: add or edit the summary, theme, and authors in `siteData.ts`")
+  lines.append("- [ ] Generate a real atlas plate via Claude Design (steps above) and replace `_pending.svg` in `imageUrl`")
   lines.append("")
   lines.append(
     "_If a listed entry is a duplicate or something you do not want tracked, "
@@ -473,7 +535,7 @@ def main():
 
   # Build the PR body (prompts + instructions) for the workflow to pick up
   new_pub_objects = [p for p in merged if p["title"] in new_titles]
-  pr_body = build_pr_body(new_pub_objects, updated_titles)
+  pr_body = build_pr_body(new_pub_objects, updated_titles, existing_count_at_start=len(existing))
   PR_BODY_PATH.write_text(pr_body)
   print(f"PR body written to {PR_BODY_PATH}")
 
