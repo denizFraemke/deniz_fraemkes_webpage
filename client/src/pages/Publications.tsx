@@ -1,99 +1,122 @@
-/*
-Design reminder for this page:
-Editorial modernism with warm academic tones, serif-led hierarchy, image-forward publication cards, and asymmetric composition.
-Does this choice reinforce or dilute our design philosophy?
-*/
-
 import SiteShell from "@/components/SiteShell";
-import { Button } from "@/components/ui/button";
-import { publications, publicationsPage } from "@/lib/siteData";
-import { ArrowUpRight } from "lucide-react";
+import { publications } from "@/lib/siteData";
 import { Link } from "wouter";
+
+const TEAL = "#17353b";
+const TERRA = "#c88a4a";
+const ITALIC_BODY = "#3a4a4d";
 
 export default function Publications() {
   return (
-    <SiteShell pageLabel="Publications archive">
-      <section className="relative overflow-hidden border-b border-black/5 bg-[#f5efe7]">
-        <div className="container grid items-end gap-12 py-16 md:py-24 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
-          <div className="space-y-8">
-            <div className="space-y-5">
-              <h1 className="max-w-2xl font-[Fraunces] text-5xl leading-[0.94] tracking-[-0.04em] text-[#163239] md:text-7xl">
-                {publicationsPage.heading}
-              </h1>
-              <p className="max-w-xl text-base leading-8 text-[#4d5c5b] md:text-lg">
-                {publicationsPage.description}
-              </p>
-            </div>
-          </div>
-
-          <div className="relative min-h-[360px] overflow-hidden rounded-[2rem] border border-[#183840]/10 bg-[#163239] p-6 shadow-[0_30px_80px_rgba(22,50,57,0.18)] md:p-8">
-            <img
-              src="/images/publications-banner.webp"
-              alt="Editorial visual banner for the publications archive"
-              className="absolute inset-0 h-full w-full object-cover opacity-80"
-            />
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(16,41,47,0.92),rgba(16,41,47,0.55),rgba(200,138,74,0.15))]" />
-            <div className="relative z-10 grid h-full content-between gap-8">
-              <div className="flex justify-between gap-4 text-white/80">
-                <span className="text-[0.7rem] uppercase tracking-[0.28em]">Curated archive</span>
-                <span className="text-[0.7rem] uppercase tracking-[0.28em]">{publications.length} entries</span>
-              </div>
-            </div>
-          </div>
+    <SiteShell>
+      <section className="mx-auto max-w-[1440px] px-[22px] pt-8 pb-14 md:px-[64px] md:pt-14 md:pb-20">
+        {/* Page kicker */}
+        <div
+          className="flex items-baseline justify-between border-t border-[rgba(23,53,59,0.32)] font-mono text-[9.5px] tracking-[2.5px] md:text-[11px] md:tracking-[3px] pt-3.5 pb-10 md:pt-5 md:pb-14"
+          style={{ color: TEAL }}
+        >
+          <span>§ PUBLICATIONS · COMPLETE ATLAS</span>
+          <span className="opacity-65">PLATES I–VIII</span>
         </div>
-      </section>
 
-      <section className="relative py-16 md:py-20">
-        <div className="container space-y-10">
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {publications.map((publication) => (
+        {/* Page heading */}
+        <div className="grid gap-6 md:grid-cols-[1fr_1fr] md:gap-16 md:items-end mb-10 md:mb-16">
+          <h1
+            className="font-serif font-light leading-[0.98] tracking-[-0.025em] text-[52px] md:text-[88px]"
+            style={{ color: TEAL }}
+          >
+            Publications.
+          </h1>
+          <p
+            className="max-w-[520px] font-serif text-[16px] leading-[1.55] md:text-[18px]"
+            style={{ color: TEAL }}
+          >
+            Published and forthcoming work, spanning biosocial science,
+            educational inequality, developmental epigenetics, and
+            gene–environment interplay.
+          </p>
+        </div>
+
+        {/* Publication grid */}
+        <div className="grid gap-10 md:grid-cols-2 md:gap-12 xl:grid-cols-3">
+          {publications.map((p, i) => {
+            const isFirstAuthor = /^\s*D\.?\s*Fra[eä]mke/i.test(p.authors);
+            return (
               <a
-                key={publication.slug}
-                href={publication.externalUrl}
+                key={p.slug}
+                href={p.externalUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="group relative overflow-hidden rounded-[2rem] border border-black/5 bg-white text-left shadow-[0_24px_70px_rgba(18,39,45,0.08)] transition-transform duration-500 hover:-translate-y-1"
+                className="group flex flex-col gap-4"
               >
-                <div className="relative h-64 overflow-hidden bg-[#f7f3ec] flex items-center justify-center p-3">
+                <div
+                  className="overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]"
+                  style={{ aspectRatio: "4 / 3" }}
+                >
                   <img
-                    src={publication.imageUrl}
-                    alt={publication.title}
+                    src={p.imageUrl}
+                    alt={p.title}
                     className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                 </div>
-
-                <div className="space-y-4 p-6">
-                  <div className="flex items-center justify-between gap-3 text-[0.72rem] uppercase tracking-[0.22em] text-[#6f6e66]">
-                    <span>{publication.year}</span>
-                    <span className="truncate">{publication.venue.split(",")[0]}</span>
-                  </div>
-                  <p className="font-[Fraunces] text-xl leading-tight tracking-[-0.03em] text-[#18353b]">
-                    {publication.title}
-                  </p>
-                  <p className="line-clamp-3 text-sm leading-7 text-[#455655]">{publication.summary}</p>
-                  <div className="flex items-center justify-between gap-4 border-t border-black/5 pt-4">
-                    <p className="text-sm font-medium text-[#17353b]">{publication.theme}</p>
-                    <span className="inline-flex items-center gap-2 text-sm text-[#17353b]">
-                      Read publication
-                      <ArrowUpRight className="h-4 w-4" />
-                    </span>
-                  </div>
+                <div
+                  className="flex justify-between gap-3 font-mono text-[10px] tracking-[2.5px] opacity-70"
+                  style={{ color: TEAL }}
+                >
+                  <span>PLATE {toRoman(i + 1)} · {p.year}</span>
+                  <span className="truncate" style={isFirstAuthor ? { color: TERRA, opacity: 1 } : undefined}>
+                    {isFirstAuthor ? "FIRST AUTHOR" : p.venue.split(",")[0]}
+                  </span>
+                </div>
+                <h3
+                  className="m-0 font-serif text-[22px] font-normal leading-[1.22] tracking-[-0.01em]"
+                  style={{ color: TEAL }}
+                >
+                  {p.title}
+                </h3>
+                <p
+                  className="m-0 font-serif text-[14px] italic leading-[1.5] opacity-85"
+                  style={{ color: ITALIC_BODY }}
+                >
+                  {p.venue}
+                </p>
+                <p
+                  className="m-0 font-serif text-[15px] leading-[1.55]"
+                  style={{ color: TEAL }}
+                >
+                  {p.summary}
+                </p>
+                <div
+                  className="mt-1 font-mono text-[10px] tracking-[2px] group-hover:underline"
+                  style={{ color: TERRA }}
+                >
+                  ↳ READ PUBLICATION
                 </div>
               </a>
-            ))}
-          </div>
+            );
+          })}
         </div>
-      </section>
 
-      <section className="border-t border-black/5 bg-[#10292f] py-12 text-[#f6f1e8]">
-        <div className="container flex justify-center">
+        {/* Back to home */}
+        <div className="mt-16 md:mt-24 border-t border-[rgba(23,53,59,0.32)] pt-6">
           <Link href="/">
-            <Button className="rounded-full bg-[#d5a46d] px-8 py-6 text-sm uppercase tracking-[0.2em] text-[#10292f] hover:bg-[#e3b07a]">
-              Back to home
-            </Button>
+            <a className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[3px] hover:text-[#c88a4a]" style={{ color: TEAL }}>
+              ← BACK TO HOME
+            </a>
           </Link>
         </div>
       </section>
     </SiteShell>
   );
+}
+
+function toRoman(n: number): string {
+  const map: [number, string][] = [
+    [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"],
+  ];
+  let out = "";
+  for (const [v, s] of map) {
+    while (n >= v) { out += s; n -= v; }
+  }
+  return out;
 }

@@ -11,7 +11,17 @@ Does this choice reinforce or dilute our design philosophy?
 
 @theme inline {
   --font-display: "Fraunces", serif;
-  --font-sans: "Manrope", sans-serif;
+  --font-sans: "Fraunces", serif;
+  --font-serif: "Fraunces", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-atlas-page: #f0eee9;
+  --color-atlas-cream: #f7f3ec;
+  --color-atlas-teal: #17353b;
+  --color-atlas-terra: #c88a4a;
+  --color-atlas-italic: #3a4a4d;
+  --color-atlas-consulting-bg: #ecebe3;
+  --color-atlas-rule: rgba(23, 53, 59, 0.18);
+  --color-atlas-rule2: rgba(23, 53, 59, 0.32);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -131,23 +141,11 @@ Does this choice reinforce or dilute our design philosophy?
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    background-image:
-      radial-gradient(circle at top left, rgba(200, 138, 74, 0.08), transparent 30%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(247, 243, 236, 0.98));
-  }
-
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.08;
-    background-image:
-      linear-gradient(rgba(16, 41, 47, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(16, 41, 47, 0.05) 1px, transparent 1px);
-    background-size: 30px 30px;
-    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 90%);
+    background: #f0eee9;
+    color: #17353b;
+    font-family: "Fraunces", serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1,
