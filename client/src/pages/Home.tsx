@@ -94,13 +94,11 @@ function Hero() {
             </a>
           </Link>
           <a
-            href={profile.homepage}
-            target="_blank"
-            rel="noreferrer"
+            href="#vita"
             className="flex items-center justify-between border-t border-b border-[rgba(23,53,59,0.18)] py-3.5"
           >
-            <span>↳ CV</span>
-            <span style={{ color: TERRA }}>PDF</span>
+            <span>↳ VITA</span>
+            <span style={{ color: TERRA }}>§ 04</span>
           </a>
         </div>
       </div>
@@ -135,13 +133,8 @@ function Hero() {
             <Link href="/publications">
               <a className="no-underline hover:text-[#c88a4a]">↳ PUBLICATIONS</a>
             </Link>
-            <a
-              href={profile.homepage}
-              target="_blank"
-              rel="noreferrer"
-              className="no-underline hover:text-[#c88a4a]"
-            >
-              ↳ CV
+            <a href="#vita" className="no-underline hover:text-[#c88a4a]">
+              ↳ VITA
             </a>
           </div>
         </div>
@@ -534,7 +527,7 @@ function Motif({ kind }: { kind: MotifKind }) {
 
 function Trajectory() {
   return (
-    <section className="mx-auto max-w-[1440px] px-[22px] pb-14 md:px-[64px] md:pb-24">
+    <section id="vita" className="mx-auto max-w-[1440px] px-[22px] pb-14 md:px-[64px] md:pb-24">
       <Kicker num="04" label="ACADEMIC TRAJECTORY" right={`${milestones[milestones.length - 1].period.split("–")[0]} → PRESENT`} />
       <div>
         {milestones.map((t) => (
