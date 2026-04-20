@@ -42,11 +42,11 @@ ACCENT_PALETTE = [
   "from-[#16313a] via-[#36656d] to-[#c98e54]",
 ]
 
-# Default placeholder for new publications — an atlas-styled "pending plate" SVG.
-# The user replaces this with a real atlas plate generated via Claude Design.
-# See the PR body instructions emitted by build_pr_body() below.
+# Default placeholder for new publications — the hero plate (PLATE I).
+# Visually consistent with the rest of the site while the user generates
+# a real plate via Claude Design (see PR body instructions in build_pr_body()).
 DEFAULT_IMAGES = [
-  "/images/publications/_pending.svg",
+  "/images/hero-editorial.svg",
 ]
 
 # Publication object fields, in the order they appear in siteData.ts.
@@ -419,8 +419,8 @@ def build_pr_body(
       lines.append(f"_Plate slot:_ **PLATE {roman} · {roman_year}**")
       lines.append("")
       lines.append(
-        f"_Default image:_ `{pub['imageUrl']}` — the site will show an "
-        f"atlas-styled \"plate pending\" placeholder until you drop in a real plate."
+        f"_Default image:_ `{pub['imageUrl']}` — Plate I (the hero plate) is "
+        f"used as a placeholder until you drop in a real plate for this paper."
       )
       lines.append("")
       lines.append("#### How to generate the real plate")
@@ -476,7 +476,7 @@ def build_pr_body(
   lines.append("### Review checklist")
   lines.append("- [ ] Titles and venues look correct")
   lines.append("- [ ] For new publications: add or edit the summary, theme, and authors in `siteData.ts`")
-  lines.append("- [ ] Generate a real atlas plate via Claude Design (steps above) and replace `_pending.svg` in `imageUrl`")
+  lines.append("- [ ] Generate a real atlas plate via Claude Design (steps above) and replace the hero placeholder in `imageUrl`")
   lines.append("")
   lines.append(
     "_If a listed entry is a duplicate or something you do not want tracked, "
