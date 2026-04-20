@@ -48,19 +48,24 @@ jobs:
           git commit -m "chore: auto-update publications from ORCID"
           git push origin "$BRANCH"
           gh pr create \
-            --title "New publications from ORCID" \
+            --title "Publication update from ORCID — please review" \
             --body "$(cat <<'EOF'
-          ## Auto-detected publication updates
+          ## Auto-detected publication changes
 
-          This PR was created automatically by the weekly publication check.
+          ORCID reports new or updated entries. This PR was opened automatically — nothing is live until you merge.
+
+          Possible changes include:
+          - **New publications** — ORCID has entries not yet on the site
+          - **Preprint → journal** — a paper previously tracked as a preprint (bioRxiv/medRxiv/etc.) now has a journal venue and DOI
 
           **Please review before merging:**
           - [ ] Check that titles and venues are correct
-          - [ ] Add or edit summaries for new publications
-          - [ ] Choose theme labels and accent colors
-          - [ ] Upload custom images if desired (replace defaults in siteData.ts)
+          - [ ] For new publications: add summary, theme, accent colour, and optionally a custom image
+          - [ ] For preprint→journal updates: verify the new venue and DOI are correct
 
           Once you merge this PR, the site will rebuild and deploy automatically.
+
+          _If this is a duplicate or you do not want it tracked, add the title to ``scripts/publication_overrides.json`` under ``ignored_titles`` and close this PR._
           EOF
           )" \
             --base main \

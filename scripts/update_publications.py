@@ -167,27 +167,63 @@ def load_overrides() -> tuple[dict, set[str]]:
   return {k: v for k, v in data.items() if not k.startswith("_")}, set()
 
 
+def _is_preprint_venue(pub: dict) -> bool:
+  """Heuristic: does this publication look like a preprint?"""
+  venue = (pub.get("venue") or "").lower()
+  url = (pub.get("externalUrl") or pub.get("external_url") or "").lower()
+  preprint_markers = ("biorxiv", "medrxiv", "arxiv", "preprint", "ssrn", "psyarxiv", "osf.io")
+  if any(m in venue for m in preprint_markers):
+    return True
+  if any(m in url for m in preprint_markers):
+    return True
+  # bioRxiv/medRxiv DOIs are under 10.1101; preprint DOIs are commonly bespoke
+  if "10.1101/" in url:
+    return True
+  return False
+
+
 def merge_publications(
   existing: list[dict],
   orcid_pubs: list[dict],
   overrides: dict,
   ignored: set[str],
-) -> tuple[list[dict], list[str]]:
+) -> tuple[list[dict], list[str], list[str]]:
   """
   Merge ORCID publications with existing data.
-  Returns (merged_list, list_of_new_titles).
-  Only appends NEW publications; existing entries are preserved unchanged.
+  Returns (merged_list, list_of_new_titles, list_of_updated_titles).
+
+  A publication is an UPDATE (not new) if ORCID reports a non-preprint venue
+  for a paper that is currently tracked as a preprint on the site. In that
+  case, the venue and external URL are refreshed while preserving custom
+  fields (summary, theme, accent, imageUrl).
+
   Titles whose normalised key is in ``ignored`` are skipped entirely.
   """
-  existing_titles = {title_key(p["title"]) for p in existing}
+  existing_by_key = {title_key(p["title"]): p for p in existing}
   merged = list(existing)
   new_titles = []
+  updated_titles = []
 
   for pub in orcid_pubs:
     tkey = title_key(pub["title"])
-    if tkey in existing_titles or tkey in ignored:
+    if tkey in ignored:
       continue
 
+    # --- Existing entry: check whether ORCID has a newer venue ---
+    if tkey in existing_by_key:
+      existing_pub = existing_by_key[tkey]
+      # Only consider it an update if the site currently shows a preprint
+      # AND ORCID now has a non-preprint venue.
+      if _is_preprint_venue(existing_pub) and not _is_preprint_venue(pub):
+        existing_pub["venue"] = pub["venue"] or existing_pub.get("venue", "")
+        if pub.get("external_url"):
+          existing_pub["externalUrl"] = pub["external_url"]
+        if pub.get("year"):
+          existing_pub["year"] = pub["year"]
+        updated_titles.append(pub["title"])
+      continue
+
+    # --- New publication ---
     slug = slugify(pub["title"])
     override = overrides.get(slug, {})
 
@@ -207,7 +243,7 @@ def merge_publications(
     merged.append(new_pub)
     new_titles.append(pub["title"])
 
-  return merged, new_titles
+  return merged, new_titles, updated_titles
 
 
 def write_publications(publications: list[dict]) -> None:
@@ -266,15 +302,23 @@ def main():
 
   overrides, ignored = load_overrides()
 
-  merged, new_titles = merge_publications(existing, orcid_pubs, overrides, ignored)
+  merged, new_titles, updated_titles = merge_publications(
+    existing, orcid_pubs, overrides, ignored
+  )
 
-  if not new_titles:
-    print("\nNo new publications found. Site is up to date — no file changes written.")
+  if not new_titles and not updated_titles:
+    print("\nNo new or updated publications. Site is up to date — no file changes written.")
     return
 
-  print(f"\n{len(new_titles)} new publication(s) found:")
-  for title in new_titles:
-    print(f"  + {title}")
+  if new_titles:
+    print(f"\n{len(new_titles)} new publication(s) found:")
+    for title in new_titles:
+      print(f"  + {title}")
+
+  if updated_titles:
+    print(f"\n{len(updated_titles)} publication(s) moved preprint → journal:")
+    for title in updated_titles:
+      print(f"  ~ {title}")
 
   if args.dry_run:
     print("\n[Dry run] No changes written.")
