@@ -1,290 +1,667 @@
-/*
-Design reminder for this page:
-Editorial modernism with warm academic tones, serif-led hierarchy, asymmetric section rhythm, and publication previews treated as curated artifacts.
-Does this choice reinforce or dilute our design philosophy?
-*/
-
 import { useState } from "react";
 import SiteShell from "@/components/SiteShell";
-import { Button } from "@/components/ui/button";
-import { consulting, contact, hero, milestones, profile, publications } from "@/lib/siteData";
 import {
-  ArrowRight,
-  Atom,
-  BarChart3,
-  Brain,
-  Dna,
-  FlaskConical,
-  GraduationCap,
-  Mail,
-  Microscope,
-  Scale,
-  Target,
-} from "lucide-react";
+  consulting,
+  contact,
+  milestones,
+  profile,
+  publications,
+} from "@/lib/siteData";
 import { Link } from "wouter";
 
-const themeIcons = [Dna, Scale, GraduationCap, Brain, Atom];
-const consultingIcons = [BarChart3, Target, Microscope, FlaskConical];
+// --- Atlas design constants ---
+const TEAL = "#17353b";
+const TERRA = "#c88a4a";
+const ITALIC_BODY = "#3a4a4d";
 
-const featuredSlugs = [
+// --- Which 3 publications to feature on the homepage ---
+const FEATURED_SLUGS = [
   "polygenic-educational-attainment-east-west-germany",
   "biosocial-perspective-racism-germany",
   "developmental-correlates-epigenetic-polygenic-indices",
 ];
 
 export default function Home() {
-  const featuredPublications = featuredSlugs
-    .map((slug) => publications.find((p) => p.slug === slug))
-    .filter(Boolean);
+  const featured = FEATURED_SLUGS.map((slug) =>
+    publications.find((p) => p.slug === slug),
+  ).filter(Boolean) as typeof publications;
 
   return (
-    <SiteShell pageLabel="Research profile">
-      <section className="relative overflow-hidden border-b border-black/5 bg-[#f7f3ec]">
-        <div className="container grid gap-12 py-14 md:py-20 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:py-24">
-          <div className="relative z-10 space-y-10 lg:py-8">
-            <div className="space-y-6">
-              <div className="flex items-center gap-6">
-                <img
-                  src="/images/portrait.jpg"
-                  alt="Deniz Fraemke"
-                  className="h-20 w-20 rounded-full border-2 border-[#17353b]/10 object-cover shadow-[0_8px_30px_rgba(20,41,46,0.12)] md:h-24 md:w-24"
-                />
-                <h1 className="max-w-3xl font-[Fraunces] text-5xl leading-[0.92] tracking-[-0.05em] text-[#153239] md:text-7xl xl:text-[5.75rem]">
-                  Deniz Fraemke
-                </h1>
-              </div>
-              <div className="grid max-w-2xl gap-3 text-[#405553] md:grid-cols-[auto_1fr] md:items-center">
-                <p className="text-[0.72rem] uppercase tracking-[0.28em] text-[#7a695b]">Current role</p>
-                <p className="text-lg leading-8 text-[#324644]">
-                  {profile.role}, {profile.affiliation}
-                </p>
-              </div>
-              <p className="max-w-2xl text-base leading-8 text-[#4d5c5b] md:text-lg">
-                {profile.intro}
-              </p>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-4">
-              <Link href="/publications">
-                <Button className="rounded-full bg-[#17353b] px-7 py-6 text-sm uppercase tracking-[0.2em] text-white hover:bg-[#10292f]">
-                  Explore publications
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <a href={`mailto:${profile.email}`}>
-                <Button variant="outline" className="rounded-full border-[#17353b]/20 bg-white/60 px-7 py-6 text-sm uppercase tracking-[0.2em] text-[#17353b] hover:bg-[#17353b] hover:text-white">
-                  <Mail className="mr-2 h-4 w-4" />
-                  Contact
-                </Button>
-              </a>
-            </div>
-
-          </div>
-
-          <div className="relative min-h-[560px] overflow-hidden rounded-[2.2rem] border border-[#17353b]/10 bg-[#f7f3ec] shadow-[0_30px_90px_rgba(20,41,46,0.10)] flex items-center justify-center p-4 md:p-6">
-            <img
-              src="/images/hero-editorial.svg"
-              alt="Plate I — a cognitive trajectory crossing a biosocial terrain. Gaussian topography with AGCT loci and a terracotta marker."
-              className="h-full w-full object-contain"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Selected publications */}
-      <section className="py-16 md:py-20">
-        <div className="container space-y-10">
-          <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-            <div className="space-y-4">
-              <p className="text-[0.72rem] uppercase tracking-[0.28em] text-[#7a695b]">Recent work</p>
-              <h2 className="font-[Fraunces] text-4xl leading-tight tracking-[-0.04em] text-[#18353b] md:text-5xl">
-                Selected publications
-              </h2>
-            </div>
-            <p className="max-w-2xl text-base leading-8 text-[#4f5b59]">
-              {profile.publicationsBlurb}
-            </p>
-          </div>
-
-          <div className="grid gap-6 lg:grid-cols-3">
-            {featuredPublications.map((publication) => (
-              <a
-                key={publication!.slug}
-                href={publication!.externalUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="group overflow-hidden rounded-[2rem] border border-black/5 bg-white shadow-[0_24px_70px_rgba(18,39,45,0.08)] transition-transform duration-500 hover:-translate-y-1"
-              >
-                <div className="relative h-60 overflow-hidden bg-[#f7f3ec] flex items-center justify-center p-3">
-                  <img
-                    src={publication!.imageUrl}
-                    alt={publication!.title}
-                    className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
-                  />
-                </div>
-                <div className="space-y-3 p-6">
-                  <div className="flex items-center justify-between gap-3 text-[0.72rem] uppercase tracking-[0.22em] text-[#7a695b]">
-                    <span>{publication!.year}</span>
-                    <span className="truncate">{publication!.theme}</span>
-                  </div>
-                  <h3 className="font-[Fraunces] text-2xl leading-tight tracking-[-0.03em] text-[#18353b]">
-                    {publication!.title}
-                  </h3>
-                  <p className="text-sm leading-7 text-[#4f5b59]">{publication!.venue}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-
-          <Link href="/publications">
-            <Button className="rounded-full bg-[#17353b] px-7 py-6 text-sm uppercase tracking-[0.2em] text-white hover:bg-[#10292f]">
-              View all publications
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
-        </div>
-      </section>
-
-      {/* About */}
-      <section className="relative border-y border-black/5 bg-[#f7f3ec] py-16 md:py-20">
-        <div className="container grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <p className="text-[0.72rem] uppercase tracking-[0.28em] text-[#7a695b]">About</p>
-              <h2 className="font-[Fraunces] text-4xl leading-tight tracking-[-0.04em] text-[#18353b] md:text-5xl">
-                {profile.aboutHeadline}
-              </h2>
-            </div>
-            <p className="text-base leading-8 text-[#4f5b59] md:text-lg">{profile.bio}</p>
-            <div className="rounded-[2rem] border border-black/5 bg-white/80 p-6 shadow-[0_20px_60px_rgba(22,50,57,0.08)]">
-              <p className="text-[0.72rem] uppercase tracking-[0.24em] text-[#7a695b]">Institutional context</p>
-              <p className="mt-4 text-base leading-8 text-[#324644]">{profile.group}</p>
-            </div>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {profile.focus.map((theme, index) => {
-              const Icon = themeIcons[index % themeIcons.length];
-
-              return (
-                <div
-                  key={theme}
-                  className="group rounded-[2rem] border border-black/5 bg-white/80 p-6 shadow-[0_20px_60px_rgba(22,50,57,0.08)] transition-transform duration-500 hover:-translate-y-1"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#17353b]/8 text-[#17353b]">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-6 font-[Fraunces] text-2xl leading-tight tracking-[-0.03em] text-[#18353b]">
-                    {theme}
-                  </h3>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Academic trajectory */}
-      <section className="border-b border-black/5 bg-[#efe8dd] py-16 md:py-20">
-        <div className="container grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div className="relative min-h-[440px] overflow-hidden rounded-[2rem] border border-black/5 bg-[#17353b] shadow-[0_25px_70px_rgba(22,50,57,0.14)]">
-            <img
-              src="/images/research-themes.webp"
-              alt="Abstract atlas-like image representing connected research themes"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-[linear-gradient(160deg,rgba(247,243,236,0.08),rgba(16,41,47,0.35),rgba(16,41,47,0.78))]" />
-            <div className="absolute inset-x-0 bottom-0 p-8 text-white md:p-10">
-              <p className="text-[0.72rem] uppercase tracking-[0.26em] text-[#d7c7b7]">Background</p>
-              <h2 className="mt-4 max-w-lg font-[Fraunces] text-4xl leading-tight tracking-[-0.035em] text-white md:text-5xl">
-                Academic trajectory
-              </h2>
-            </div>
-          </div>
-
-          <div className="space-y-8">
-            {milestones.map((milestone) => (
-              <div key={milestone.period} className="grid gap-2 border-b border-[#17353b]/8 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[140px_1fr]">
-                <p className="text-[0.72rem] uppercase tracking-[0.22em] text-[#7a695b]">{milestone.period}</p>
-                <div>
-                  <h3 className="font-[Fraunces] text-2xl leading-tight tracking-[-0.03em] text-[#18353b]">
-                    {milestone.title}
-                  </h3>
-                  <p className="mt-3 text-base leading-8 text-[#4f5b59]">{milestone.detail}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Statistical consulting */}
-      <section id="consulting" className="relative py-16 md:py-20">
-        <div className="container grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <p className="text-[0.72rem] uppercase tracking-[0.28em] text-[#7a695b]">Applied expertise</p>
-              <h2 className="font-[Fraunces] text-4xl leading-tight tracking-[-0.04em] text-[#18353b] md:text-5xl">
-                {consulting.headline}
-              </h2>
-            </div>
-            <p className="text-base leading-8 text-[#4f5b59] md:text-lg">{consulting.description}</p>
-            <p className="text-sm leading-7 text-[#7a695b] italic">{consulting.subtitle}</p>
-            <Button
-              className="rounded-full bg-[#17353b] px-7 py-6 text-sm uppercase tracking-[0.2em] text-white hover:bg-[#10292f]"
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              <Mail className="mr-2 h-4 w-4" />
-              Get in touch
-            </Button>
-            <p className="text-xs leading-6 text-[#7a695b]/70">{consulting.disclaimer}</p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {consulting.areas.map((area, index) => {
-              const Icon = consultingIcons[index % consultingIcons.length];
-
-              return (
-                <div
-                  key={area.title}
-                  className="group rounded-[2rem] border border-black/5 bg-white/80 p-6 shadow-[0_20px_60px_rgba(22,50,57,0.08)] transition-transform duration-500 hover:-translate-y-1"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#17353b]/8 text-[#17353b]">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-6 font-[Fraunces] text-2xl leading-tight tracking-[-0.03em] text-[#18353b]">
-                    {area.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-[#4f5b59]">{area.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <ContactForm />
+    <SiteShell>
+      <Hero />
+      <FeaturedPublications featured={featured} />
+      <About />
+      <Research />
+      <Trajectory />
+      <Consulting />
+      <Contact />
     </SiteShell>
   );
 }
 
-function ContactForm() {
+// ───────────────────────────────────────────────────────────────────────────
+// HERO
+// ───────────────────────────────────────────────────────────────────────────
+
+function Hero() {
+  return (
+    <section className="mx-auto max-w-[1440px] px-[22px] pt-6 pb-10 md:px-[64px] md:pt-9 md:pb-16">
+      {/* Mobile: plate on top, then title, role, intro, links */}
+      <div className="md:hidden">
+        <div className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
+          <img
+            src="/images/hero-editorial.svg"
+            alt="Plate I — a cognitive trajectory crossing a biosocial terrain."
+            className="block h-auto w-full"
+          />
+        </div>
+        <h1
+          className="mt-7 font-serif text-[56px] font-light leading-[0.95] tracking-[-0.025em]"
+          style={{ color: TEAL }}
+        >
+          Deniz
+          <br />
+          <span className="italic" style={{ color: TERRA }}>
+            Fraemke.
+          </span>
+        </h1>
+        <div
+          className="mt-3.5 font-mono text-[10px] tracking-[2px]"
+          style={{ color: TEAL }}
+        >
+          PREDOCTORAL FELLOW
+          <br />
+          MPIB · BERLIN
+        </div>
+        <p
+          className="mt-5 font-serif text-[16.5px] leading-[1.5]"
+          style={{ color: TEAL }}
+        >
+          {profile.intro}
+        </p>
+        <div className="mt-6 flex flex-col font-mono text-[10.5px] tracking-[2px]" style={{ color: TEAL }}>
+          <a
+            href="#research"
+            className="flex items-center justify-between border-t border-[rgba(23,53,59,0.18)] py-3.5"
+          >
+            <span>↳ RESEARCH</span>
+            <span style={{ color: TERRA }}>§ 03</span>
+          </a>
+          <Link href="/publications">
+            <a className="flex items-center justify-between border-t border-[rgba(23,53,59,0.18)] py-3.5">
+              <span>↳ PUBLICATIONS</span>
+              <span style={{ color: TERRA }}>§ 01</span>
+            </a>
+          </Link>
+          <a
+            href={profile.homepage}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-between border-t border-b border-[rgba(23,53,59,0.18)] py-3.5"
+          >
+            <span>↳ CV</span>
+            <span style={{ color: TERRA }}>PDF</span>
+          </a>
+        </div>
+      </div>
+
+      {/* Desktop: two-column folio — title/intro/links on left, plate on right */}
+      <div className="hidden md:grid md:grid-cols-[0.75fr_1.25fr] md:gap-12 md:items-stretch">
+        <div className="flex flex-col md:justify-end">
+          <h1
+            className="font-serif font-light leading-[0.95] tracking-[-0.025em] text-[60px] xl:text-[80px]"
+            style={{ color: TEAL }}
+          >
+            Deniz
+            <br />
+            <span className="italic" style={{ color: TERRA }}>
+              Fraemke.
+            </span>
+          </h1>
+          <div
+            className="mt-5 font-mono text-[11px] tracking-[2px]"
+            style={{ color: TEAL }}
+          >
+            PREDOCTORAL FELLOW · MPIB · BERLIN
+          </div>
+          <p
+            className="mt-7 max-w-[480px] font-serif text-[16.5px] leading-[1.55]"
+            style={{ color: TEAL }}
+          >
+            {profile.intro}
+          </p>
+          <div className="mt-8 flex gap-5 font-mono text-[10.5px] tracking-[2px]" style={{ color: TEAL }}>
+            <a href="#research" className="no-underline hover:text-[#c88a4a]">↳ RESEARCH</a>
+            <Link href="/publications">
+              <a className="no-underline hover:text-[#c88a4a]">↳ PUBLICATIONS</a>
+            </Link>
+            <a
+              href={profile.homepage}
+              target="_blank"
+              rel="noreferrer"
+              className="no-underline hover:text-[#c88a4a]"
+            >
+              ↳ CV
+            </a>
+          </div>
+        </div>
+
+        <div className="flex flex-col">
+          <div className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
+            <img
+              src="/images/hero-editorial.svg"
+              alt="Plate I — a cognitive trajectory crossing a biosocial terrain."
+              className="block h-auto w-full"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// SECTION KICKER
+// ───────────────────────────────────────────────────────────────────────────
+
+function Kicker({
+  num,
+  label,
+  right,
+}: {
+  num: string;
+  label: string;
+  right?: React.ReactNode;
+}) {
+  return (
+    <div
+      className="flex items-baseline justify-between border-t border-[rgba(23,53,59,0.32)] font-mono tracking-[2.5px] md:tracking-[3px] text-[9.5px] md:text-[11px] pt-3.5 pb-4 md:pt-5 md:pb-8"
+      style={{ color: TEAL }}
+    >
+      <span>§ {num} · {label}</span>
+      {right && <span className="opacity-65">{right}</span>}
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// §01 — SELECTED PUBLICATIONS
+// ───────────────────────────────────────────────────────────────────────────
+
+function FeaturedPublications({ featured }: { featured: typeof publications }) {
+  return (
+    <section id="publications" className="mx-auto max-w-[1440px] px-[22px] pb-14 md:px-[64px] md:pb-20">
+      <Kicker
+        num="01"
+        label="SELECTED PUBLICATIONS"
+        right={
+          <Link href="/publications">
+            <a className="no-underline hover:text-[#c88a4a]">3 OF 8 · SEE ALL →</a>
+          </Link>
+        }
+      />
+      <div className="grid gap-9 md:grid-cols-3">
+        {featured.map((p) => (
+          <a
+            key={p.slug}
+            href={p.externalUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="group flex flex-col gap-4"
+          >
+            <div className="overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
+              <img
+                src={p.imageUrl}
+                alt={p.title}
+                className="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.02]"
+              />
+            </div>
+            <h3
+              className="m-0 font-serif text-[22px] font-normal leading-[1.22] tracking-[-0.01em]"
+              style={{ color: TEAL }}
+            >
+              {p.title}
+            </h3>
+            <p
+              className="m-0 font-serif text-[14px] italic leading-[1.5] opacity-85"
+              style={{ color: ITALIC_BODY }}
+            >
+              <span className="font-mono not-italic tracking-[1.5px]">
+                {p.year}
+              </span>
+              {" · "}
+              {p.venue.split(",")[0]}
+            </p>
+            <p
+              className="m-0 font-serif text-[15px] italic leading-[1.5]"
+              style={{ color: ITALIC_BODY }}
+            >
+              {p.summary}
+            </p>
+            <div className="font-mono text-[10px] tracking-[2px] group-hover:underline" style={{ color: TERRA }}>
+              ↳ READ
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// §02 — ABOUT
+// ───────────────────────────────────────────────────────────────────────────
+
+function About() {
+  return (
+    <section id="about" className="mx-auto max-w-[1440px] px-[22px] pb-14 md:px-[64px] md:pb-24">
+      <Kicker num="02" label="ABOUT" right="BIO · CONTEXT" />
+      <div className="grid gap-7 md:grid-cols-[0.8fr_1.2fr] md:gap-[72px]">
+        <div>
+          <div
+            className="overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]"
+            style={{ aspectRatio: "4 / 5" }}
+          >
+            <img
+              src="/images/portrait.jpg"
+              alt="Deniz Fraemke"
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div
+            className="mt-3.5 font-mono text-[10px] tracking-[2px] opacity-70 md:mt-4"
+            style={{ color: TEAL }}
+          >
+            FIG. II · {profile.affiliation.toUpperCase()}
+          </div>
+        </div>
+        <div className="font-serif text-[16.5px] leading-[1.55] md:text-[20px]" style={{ color: TEAL }}>
+          {profile.bioParagraphs.map((p, i) => (
+            <p key={i} className={i === 0 ? "mt-0 mb-5" : "mb-5"}>
+              {p}
+            </p>
+          ))}
+          <div
+            className="mt-8 grid grid-cols-2 gap-5 font-mono text-[10px] tracking-[1.8px] md:text-[11px] md:tracking-[2px] md:gap-6"
+            style={{ color: TEAL }}
+          >
+            <Meta k="AFFILIATION" v="MPIB · BIOSOCIAL GROUP" />
+            <Meta k="LOCATION" v="BERLIN, DE" />
+            <Meta
+              k="EMAIL"
+              v={
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="hover:text-[#c88a4a]"
+                >
+                  {profile.email.toUpperCase()}
+                </a>
+              }
+            />
+            <Meta
+              k="ORCID"
+              v={
+                <a
+                  href={profile.orcidUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-[#c88a4a]"
+                >
+                  {profile.orcid}
+                </a>
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Meta({
+  k,
+  v,
+  span2 = false,
+}: {
+  k: string;
+  v: React.ReactNode;
+  span2?: boolean;
+}) {
+  return (
+    <div className={span2 ? "col-span-2" : undefined}>
+      <div className="mb-1 opacity-60">{k}</div>
+      {v}
+    </div>
+  );
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// §03 — RESEARCH FOCUS
+// ───────────────────────────────────────────────────────────────────────────
+
+type MotifKind = "fault" | "strata" | "timeline" | "bands" | "isobars";
+
+const FOCUS: { num: string; title: string; blurb: string; motif: MotifKind }[] = [
+  {
+    num: "i",
+    title: "Gene–Environment Interplay",
+    blurb:
+      "How genetic effects are amplified, muted, or re-routed by social context.",
+    motif: "fault",
+  },
+  {
+    num: "ii",
+    title: "Social Inequality",
+    blurb:
+      "Structural stratification as the medium through which biology acts.",
+    motif: "strata",
+  },
+  {
+    num: "iii",
+    title: "Educational Attainment",
+    blurb:
+      "Schools as sorting machines — who passes, who doesn\u2019t, and why.",
+    motif: "timeline",
+  },
+  {
+    num: "iv",
+    title: "Cognitive Development",
+    blurb:
+      "Trajectories from birth to young adulthood and their biosocial correlates.",
+    motif: "bands",
+  },
+  {
+    num: "v",
+    title: "Developmental Epigenetics",
+    blurb:
+      "DNA methylation as a witness mark of environments past.",
+    motif: "isobars",
+  },
+];
+
+function Research() {
+  return (
+    <section id="research" className="mx-auto max-w-[1440px] px-[22px] pb-14 md:px-[64px] md:pb-24">
+      <Kicker num="03" label="RESEARCH FOCUS" right="5 AREAS" />
+      <div className="grid gap-7 md:grid-cols-5 md:gap-6">
+        {FOCUS.map((f) => (
+          <article
+            key={f.num}
+            className="flex flex-col gap-3 border-t border-[rgba(23,53,59,0.18)] pt-[18px]"
+          >
+            <div className="font-mono text-[10px] tracking-[2.5px]" style={{ color: TERRA }}>
+              {f.num.toUpperCase()}
+            </div>
+            <div
+              className="overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]"
+              style={{ aspectRatio: "16 / 10" }}
+            >
+              <Motif kind={f.motif} />
+            </div>
+            <h4
+              className="m-0 font-serif text-[17px] font-normal leading-[1.25] tracking-[-0.005em]"
+              style={{ color: TEAL }}
+            >
+              {f.title}
+            </h4>
+            <p
+              className="m-0 font-serif text-[13.5px] italic leading-[1.5]"
+              style={{ color: ITALIC_BODY }}
+            >
+              {f.blurb}
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Motif({ kind }: { kind: MotifKind }) {
+  const W = 220, H = 140;
+  if (kind === "fault") {
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%">
+        {[0, 1, 2, 3].map((i) => (
+          <ellipse key={`l${i}`} cx="70" cy="70" rx={30 + i * 14} ry={18 + i * 9} fill="none" stroke={TEAL} strokeWidth="0.5" opacity={0.8 - i * 0.15} />
+        ))}
+        {[0, 1, 2, 3].map((i) => (
+          <ellipse key={`r${i}`} cx="160" cy="70" rx={28 + i * 13} ry={17 + i * 8} fill="none" stroke={TEAL} strokeWidth="0.5" opacity={0.8 - i * 0.15} />
+        ))}
+        <line x1="115" y1="10" x2="115" y2="130" stroke={TEAL} strokeWidth="1" opacity="0.7" />
+        <circle cx="115" cy="70" r="3" fill={TERRA} />
+      </svg>
+    );
+  }
+  if (kind === "strata") {
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%">
+        {[25, 45, 65, 85, 105].map((y, i) => {
+          const pts: string[] = [];
+          for (let x = 0; x <= W; x += 4) pts.push(`${x},${y + Math.sin(x * 0.02 + i) * 2}`);
+          return (
+            <polyline
+              key={i}
+              points={pts.join(" ")}
+              fill="none"
+              stroke={i === 2 ? TERRA : TEAL}
+              strokeWidth={i === 2 ? 1 : 0.5}
+              opacity={i === 2 ? 0.95 : 0.55}
+            />
+          );
+        })}
+      </svg>
+    );
+  }
+  if (kind === "timeline") {
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%">
+        <line x1="10" y1="70" x2="210" y2="70" stroke={TEAL} strokeWidth="0.5" opacity="0.5" />
+        {[0, 0.25, 0.5, 0.75, 1].map((t, i) => (
+          <line key={i} x1={10 + t * 200} y1="65" x2={10 + t * 200} y2="75" stroke={TEAL} strokeWidth="0.6" opacity="0.6" />
+        ))}
+        {[0.1, 0.25, 0.4].map((s, i) => {
+          const up: string[] = [], dn: string[] = [];
+          for (let x = 0; x <= 200; x += 4) {
+            const k = x / 200;
+            const sp = Math.pow(k, 1.2) * 30 * (s + 0.1);
+            up.push(`${10 + x},${70 - sp}`);
+            dn.push(`${10 + x},${70 + sp}`);
+          }
+          return (
+            <g key={i}>
+              <polyline
+                points={up.join(" ")}
+                fill="none"
+                stroke={i === 1 ? TERRA : TEAL}
+                strokeWidth={i === 1 ? 0.9 : 0.5}
+                opacity="0.8"
+              />
+              <polyline points={dn.join(" ")} fill="none" stroke={TEAL} strokeWidth="0.5" opacity="0.5" />
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
+  if (kind === "bands") {
+    return (
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%">
+        {[0, 1, 2, 3, 4, 5].map((i) => {
+          const pts: string[] = [];
+          for (let x = 0; x <= W; x += 3) {
+            const amp = 10 - i * 1.4;
+            pts.push(`${x},${70 + Math.sin(x * 0.03 + i * 0.6) * amp}`);
+          }
+          return (
+            <polyline
+              key={i}
+              points={pts.join(" ")}
+              fill="none"
+              stroke={i === 0 ? TERRA : TEAL}
+              strokeWidth={i === 0 ? 1.1 : 0.5}
+              opacity={0.75 - i * 0.1}
+            />
+          );
+        })}
+        <circle cx="130" cy="70" r="3" fill={TERRA} />
+      </svg>
+    );
+  }
+  // isobars
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%">
+      {[1, 2, 3, 4, 5, 6, 7].map((k) => {
+        const r = 10 + k * 8;
+        const pts: string[] = [];
+        const n = 60;
+        for (let i = 0; i < n; i++) {
+          const a = (i / n) * Math.PI * 2;
+          pts.push(`${110 + Math.cos(a) * r * 1.2},${70 + Math.sin(a) * r * 0.85}`);
+        }
+        return <polygon key={k} points={pts.join(" ")} fill="none" stroke={TEAL} strokeWidth="0.5" opacity={0.8 - k * 0.08} />;
+      })}
+      <text x="110" y="73" textAnchor="middle" fontFamily="Fraunces, serif" fontStyle="italic" fontSize="14" fill={TEAL} opacity="0.75">
+        L
+      </text>
+    </svg>
+  );
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// §04 — ACADEMIC TRAJECTORY
+// ───────────────────────────────────────────────────────────────────────────
+
+function Trajectory() {
+  return (
+    <section className="mx-auto max-w-[1440px] px-[22px] pb-14 md:px-[64px] md:pb-24">
+      <Kicker num="04" label="ACADEMIC TRAJECTORY" right={`${milestones[milestones.length - 1].period.split("–")[0]} → PRESENT`} />
+      <div>
+        {milestones.map((t) => (
+          <div
+            key={t.period}
+            className="grid gap-2 border-b border-[rgba(23,53,59,0.18)] py-5 md:grid-cols-[140px_1fr] md:gap-10 md:py-[26px] md:items-baseline"
+          >
+            <div className="font-mono text-[11px] tracking-[2px] md:text-[12px]" style={{ color: TERRA }}>
+              {t.period}
+            </div>
+            <div>
+              <div className="font-serif text-[18px] tracking-[-0.005em] md:text-[19px]" style={{ color: TEAL }}>
+                {t.title}
+              </div>
+              <div
+                className="mt-1 font-mono text-[10px] uppercase tracking-[1.8px] opacity-70 md:text-[10.5px]"
+                style={{ color: TEAL }}
+              >
+                {t.detail}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// §05 — STATISTICAL CONSULTING
+// ───────────────────────────────────────────────────────────────────────────
+
+function Consulting() {
+  return (
+    <section
+      id="consulting"
+      className="border-t border-b border-[rgba(23,53,59,0.18)] bg-[#ecebe3] px-[22px] py-14 md:px-[64px] md:py-28"
+    >
+      <div className="mx-auto max-w-[1440px]">
+        <div
+          className="flex items-baseline justify-between border-t border-[rgba(23,53,59,0.32)] pt-4 mb-8 font-mono text-[9.5px] tracking-[2.5px] md:text-[11px] md:tracking-[3px] md:pt-5 md:mb-9"
+          style={{ color: TEAL }}
+        >
+          <span>§ 05 · STATISTICAL CONSULTING</span>
+          <span className="opacity-65">FOR RESEARCHERS &amp; ORGANISATIONS</span>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-2 md:gap-[72px] md:items-start md:mb-14">
+          <div>
+            <h2
+              className="font-serif font-light leading-[1.02] tracking-[-0.02em] text-[44px] md:text-[68px]"
+              style={{ color: TEAL }}
+            >
+              {consulting.headline}
+            </h2>
+            <p
+              className="mt-4 font-serif italic opacity-75 text-[15px] md:text-[20px]"
+              style={{ color: TEAL }}
+            >
+              {consulting.subtitle}
+            </p>
+          </div>
+          <p
+            className="max-w-[540px] font-serif text-[16px] leading-[1.55] md:text-[17px]"
+            style={{ color: TEAL }}
+          >
+            {consulting.description}
+          </p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-4 md:gap-7 md:mb-10">
+          {consulting.areas.map((s, i) => (
+            <div
+              key={s.title}
+              className="border-t border-[rgba(23,53,59,0.32)] pt-[18px]"
+            >
+              <div className="mb-2 font-mono text-[10px] tracking-[2.5px]" style={{ color: TERRA }}>
+                {["i", "ii", "iii", "iv"][i].toUpperCase()}
+              </div>
+              <h5
+                className="m-0 mb-2.5 font-serif text-[19px] font-normal tracking-[-0.005em] md:text-[20px]"
+                style={{ color: TEAL }}
+              >
+                {s.title}
+              </h5>
+              <p
+                className="m-0 font-serif italic text-[14px] leading-[1.5] md:text-[14.5px]"
+                style={{ color: ITALIC_BODY }}
+              >
+                {s.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div
+          className="mt-8 flex flex-col gap-2 border-t border-[rgba(23,53,59,0.18)] pt-4 font-mono text-[10px] tracking-[2px] opacity-65 md:flex-row md:items-baseline md:justify-between md:mt-0 md:pt-[18px] md:text-[10.5px]"
+          style={{ color: TEAL }}
+        >
+          <span className="uppercase">{consulting.disclaimer}</span>
+          <a href="#contact" className="hover:underline" style={{ color: TERRA }}>
+            ↳ ENQUIRE
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ───────────────────────────────────────────────────────────────────────────
+// §06 — CONTACT
+// ───────────────────────────────────────────────────────────────────────────
+
+function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
-
     const form = e.currentTarget;
     const data = new FormData(form);
-
     try {
       const response = await fetch("https://formspree.io/f/mqewkedl", {
         method: "POST",
         body: data,
         headers: { Accept: "application/json" },
       });
-
       if (response.ok) {
         setStatus("sent");
         form.reset();
@@ -297,81 +674,122 @@ function ContactForm() {
   }
 
   return (
-    <section id="contact" className="border-t border-black/5 bg-[#f7f3ec] py-16 md:py-20">
-      <div className="container grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-        <div className="space-y-6">
-          <p className="text-[0.72rem] uppercase tracking-[0.28em] text-[#7a695b]">Get in touch</p>
-          <h2 className="font-[Fraunces] text-4xl leading-tight tracking-[-0.04em] text-[#18353b] md:text-5xl">
+    <section id="contact" className="mx-auto max-w-[1440px] px-[22px] pt-14 pb-16 md:px-[64px] md:pt-24 md:pb-20">
+      <Kicker num="06" label="CONTACT" right="CORRESPONDENCE" />
+      <div className="grid gap-10 md:grid-cols-2 md:gap-[72px]">
+        <div>
+          <h2
+            className="font-serif font-light leading-[1.02] tracking-[-0.02em] text-[44px] md:text-[60px]"
+            style={{ color: TEAL }}
+          >
             {contact.heading}
           </h2>
-          <p className="text-base leading-8 text-[#4f5b59] md:text-lg">
+          <p
+            className="mt-5 max-w-[480px] font-serif text-[16px] leading-[1.55] md:text-[17px]"
+            style={{ color: TEAL }}
+          >
             {contact.description}
           </p>
-          <p className="text-sm leading-7 text-[#7a695b]">
-            Or reach me directly at{" "}
-            <a href={`mailto:${profile.email}`} className="text-[#17353b] underline underline-offset-4 hover:text-[#10292f]">
-              {profile.email}
+          <div
+            className="mt-9 grid gap-4 font-mono text-[11.5px] tracking-[2px] md:grid-cols-[auto_1fr] md:gap-x-7 md:gap-y-4"
+            style={{ color: TEAL }}
+          >
+            <span className="opacity-60">EMAIL</span>
+            <a href={`mailto:${profile.email}`} className="hover:text-[#c88a4a]">
+              {profile.email.toUpperCase()}
             </a>
-          </p>
+            <span className="opacity-60">POST</span>
+            <span>MAX-PLANCK-INSTITUT FÜR BILDUNGSFORSCHUNG · LENTZEALLEE 94 · 14195 BERLIN</span>
+            <span className="opacity-60">OFFICE</span>
+            <span>{profile.office}</span>
+            <span className="opacity-60">SCHOLAR</span>
+            <a
+              href={profile.scholar}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[#c88a4a]"
+            >
+              GOOGLE SCHOLAR PROFILE
+            </a>
+            <span className="opacity-60">GITHUB</span>
+            <a
+              href={profile.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[#c88a4a]"
+            >
+              {profile.github.toUpperCase()}
+            </a>
+            <span className="opacity-60">BLUESKY</span>
+            <a
+              href={profile.blueskyUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[#c88a4a]"
+            >
+              {profile.bluesky.toUpperCase()}
+            </a>
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="space-y-2">
-              <label htmlFor="name" className="text-[0.72rem] uppercase tracking-[0.24em] text-[#7a695b]">
-                Name
-              </label>
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-6 border-t border-[rgba(23,53,59,0.32)] pt-7"
+        >
+          {[
+            { k: "NAME", name: "name", type: "text", required: true },
+            { k: "EMAIL", name: "email", type: "email", required: true },
+            { k: "AFFILIATION", name: "affiliation", type: "text", required: false },
+          ].map((f) => (
+            <label key={f.k} className="flex flex-col gap-1.5">
+              <span
+                className="font-mono text-[10px] tracking-[2.5px] opacity-70"
+                style={{ color: TEAL }}
+              >
+                {f.k}
+              </span>
               <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                className="w-full rounded-2xl border border-black/8 bg-white/80 px-5 py-4 text-base text-[#18353b] shadow-sm outline-none transition-shadow placeholder:text-[#7a695b]/50 focus:border-[#17353b]/20 focus:ring-2 focus:ring-[#17353b]/10"
-                placeholder="Your name"
+                type={f.type}
+                name={f.name}
+                required={f.required}
+                className="border-0 border-b border-[rgba(23,53,59,0.32)] bg-transparent py-2 font-serif text-[18px] outline-none focus:border-[#c88a4a]"
+                style={{ color: TEAL }}
               />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-[0.72rem] uppercase tracking-[0.24em] text-[#7a695b]">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                className="w-full rounded-2xl border border-black/8 bg-white/80 px-5 py-4 text-base text-[#18353b] shadow-sm outline-none transition-shadow placeholder:text-[#7a695b]/50 focus:border-[#17353b]/20 focus:ring-2 focus:ring-[#17353b]/10"
-                placeholder="your@email.com"
-              />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="message" className="text-[0.72rem] uppercase tracking-[0.24em] text-[#7a695b]">
-              Message
             </label>
+          ))}
+          <label className="flex flex-col gap-1.5">
+            <span
+              className="font-mono text-[10px] tracking-[2.5px] opacity-70"
+              style={{ color: TEAL }}
+            >
+              MESSAGE
+            </span>
             <textarea
-              id="message"
               name="message"
-              required
               rows={5}
-              className="w-full rounded-2xl border border-black/8 bg-white/80 px-5 py-4 text-base text-[#18353b] shadow-sm outline-none transition-shadow placeholder:text-[#7a695b]/50 focus:border-[#17353b]/20 focus:ring-2 focus:ring-[#17353b]/10"
-              placeholder="Briefly describe your project or question..."
+              required
+              className="resize-y border border-[rgba(23,53,59,0.32)] bg-transparent p-3.5 font-serif text-[17px] leading-[1.5] outline-none focus:border-[#c88a4a]"
+              style={{ color: TEAL }}
             />
+          </label>
+          <div className="flex items-center justify-end mt-2.5">
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className="border-0 bg-[#17353b] px-7 py-3.5 font-mono text-[11px] tracking-[3px] text-[#f7f3ec] disabled:opacity-60 hover:bg-[#0f2428]"
+            >
+              {status === "sending" ? "SENDING…" : "SEND ↳"}
+            </button>
           </div>
-
-          <Button
-            type="submit"
-            disabled={status === "sending"}
-            className="rounded-full bg-[#17353b] px-7 py-6 text-sm uppercase tracking-[0.2em] text-white hover:bg-[#10292f] disabled:opacity-60"
-          >
-            {status === "sending" ? "Sending..." : "Send message"}
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-
           {status === "sent" && (
-            <p className="text-sm text-[#2e6a4a]">Thank you! I'll get back to you soon.</p>
+            <p className="font-mono text-[11px] tracking-[1.5px]" style={{ color: TERRA }}>
+              ✓ THANK YOU — I WILL BE IN TOUCH.
+            </p>
           )}
           {status === "error" && (
-            <p className="text-sm text-[#a04040]">Something went wrong. Please try emailing me directly.</p>
+            <p className="font-mono text-[11px] tracking-[1.5px]" style={{ color: TERRA }}>
+              SOMETHING WENT WRONG. PLEASE EMAIL DIRECTLY.
+            </p>
           )}
         </form>
       </div>
