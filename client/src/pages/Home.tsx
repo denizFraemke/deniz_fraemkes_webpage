@@ -772,13 +772,7 @@ function Contact() {
               style={{ color: TEAL }}
             />
           </label>
-          <div className="flex items-center justify-between mt-2.5">
-            <span
-              className="font-mono text-[10px] tracking-[2px] opacity-60"
-              style={{ color: TEAL }}
-            >
-              REPLIES WITHIN 3–5 DAYS
-            </span>
+          <div className="flex items-center justify-end mt-2.5">
             <button
               type="submit"
               disabled={status === "sending"}
