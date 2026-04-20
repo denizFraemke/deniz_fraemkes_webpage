@@ -466,7 +466,10 @@ def build_pr_body(
       lines.append(f"- {title}")
     lines.append("")
     lines.append(
-      "_Please verify the new venue and DOI look correct._"
+      "_Venue, DOI, and year have been updated automatically. "
+      "The existing atlas plate is preserved — **no new plate is needed** "
+      "for this kind of update. Just verify the new venue and DOI look "
+      "correct and merge._"
     )
     lines.append("")
 
