@@ -120,15 +120,14 @@ export const consulting = {
 };
 
 export const publications: Publication[] = [
-  // --- 2026 — first author ---
   {
     slug: "end-of-cognitive-meritocracy",
     year: "2026",
     title: "The end of cognitive meritocracy",
     authors: "D Fraemke",
     venue: "AI & SOCIETY, 1–2",
-    summary:
-      "A recent single-author contribution positioning cognitive meritocracy as a critical concept for contemporary debate.",
+    citations: "",
+    summary: "A recent single-author contribution positioning cognitive meritocracy as a critical concept for contemporary debate.",
     theme: "Meritocracy, social critique, cognition",
     accent: "from-[#352723] via-[#7d503c] to-[#d8b47c]",
     imageUrl: "/images/publications-banner.webp",
@@ -137,76 +136,63 @@ export const publications: Publication[] = [
   {
     slug: "developmental-correlates-epigenetic-polygenic-indices",
     year: "2026",
-    title:
-      "Developmental Correlates of Epigenetic and Polygenic Indices of Cognition and Educational Attainment from Birth to Young Adulthood",
-    authors:
-      "D Fraemke, L Paulus, I Schuurmans, JH Walter, D Czamara, AM Schowe, and colleagues",
+    title: "Developmental Correlates of Epigenetic and Polygenic Indices of Cognition and Educational Attainment from Birth to Young Adulthood",
+    authors: "D Fraemke, L Paulus, I Schuurmans, JH Walter, D Czamara, AM Schowe, and colleagues",
     venue: "bioRxiv, 2026.04.01.715866",
-    summary:
-      "A developmental preprint connecting epigenetic and polygenic indices with cognition and educational attainment from birth into young adulthood.",
+    citations: "",
+    summary: "A developmental preprint connecting epigenetic and polygenic indices with cognition and educational attainment from birth into young adulthood.",
     theme: "Development, genetics, cognition, education",
     accent: "from-[#24353f] via-[#3b6770] to-[#dd9b67]",
     imageUrl: "/images/research-themes.webp",
     externalUrl: "https://doi.org/10.64898/2026.04.01.715866",
   },
-  // --- 2025 — first author ---
   {
     slug: "polygenic-educational-attainment-east-west-germany",
     year: "2025",
-    title:
-      "Polygenic Associations With Educational Attainment in East Versus West Germany: Differences Emerge After Reunification",
-    authors:
-      "D Fraemke, YE Willems, A Okbay, U Lindenberger, S Zinn, G Wagner, and colleagues",
+    title: "Polygenic Associations With Educational Attainment in East Versus West Germany: Differences Emerge After Reunification",
+    authors: "D Fraemke, YE Willems, A Okbay, U Lindenberger, S Zinn, G Wagner, and colleagues",
     venue: "Psychological Science 36 (7), 559–573",
-    summary:
-      "A study of how polygenic associations with educational attainment differ across East and West Germany in the post-reunification context.",
+    citations: "",
+    summary: "A study of how polygenic associations with educational attainment differ across East and West Germany in the post-reunification context.",
     theme: "Educational attainment, reunification, sociogenomics",
     accent: "from-[#21303d] via-[#4f6f82] to-[#ba7850]",
     imageUrl: "/images/hero-editorial.webp",
     externalUrl: "https://doi.org/10.1177/09567976251350965",
   },
-  // --- 2025 — co-authored ---
   {
     slug: "racial-disparities-mental-health-aging",
     year: "2025",
-    title:
-      "Linked emergence of racial disparities in mental health and epigenetic biological aging across childhood and adolescence",
-    authors:
-      "M Aikins, Y Willems, D Fraemke, C Mitchell, B Goosby, L Raffington",
+    title: "Linked emergence of racial disparities in mental health and epigenetic biological aging across childhood and adolescence",
+    authors: "M Aikins, Y Willems, D Fraemke, C Mitchell, B Goosby, L Raffington",
     venue: "Molecular Psychiatry 30 (9), 4296–4306",
-    summary:
-      "Research on the linked development of racial disparities in mental health and epigenetic biological aging during childhood and adolescence.",
+    citations: "",
+    summary: "Research on the linked development of racial disparities in mental health and epigenetic biological aging during childhood and adolescence.",
     theme: "Mental health, inequality, biological aging",
     accent: "from-[#15333b] via-[#2e6a73] to-[#cc7f5f]",
     imageUrl: "/images/card-texture.webp",
     externalUrl: "https://doi.org/10.1038/s41380-025-03010-3",
   },
-  // --- 2024 — first author ---
   {
     slug: "dna-methylation-cognition-scores",
     year: "2024",
-    title:
-      "Associations of DNA-Methylation Profile Scores of Cognition with Cognitive Development, Academic Performance, and Socioeconomic Attainments",
-    authors:
-      "D Fraemke, JH Walter, KP Harden, M Malanchini, EM Tucker-Drob, and colleagues",
+    title: "Associations of DNA-Methylation Profile Scores of Cognition with Cognitive Development, Academic Performance, and Socioeconomic Attainments",
+    authors: "D Fraemke, JH Walter, KP Harden, M Malanchini, EM Tucker-Drob, and colleagues",
     venue: "Behavior Genetics 54 (6), 500–500",
-    summary:
-      "A contribution on DNA-methylation profile scores of cognition and their associations with developmental and academic outcomes.",
+    citations: "",
+    summary: "A contribution on DNA-methylation profile scores of cognition and their associations with developmental and academic outcomes.",
     theme: "DNA methylation, cognition, socioeconomic outcomes",
     accent: "from-[#16313a] via-[#36656d] to-[#c98e54]",
     imageUrl: "/images/card-texture.webp",
     externalUrl: "https://doi.org/10.1007/s10519-024-10197-8",
   },
-  // --- 2024 — co-authored ---
   {
     slug: "biosocial-perspective-racism-germany",
     year: "2024",
-    title:
-      "Beyond a shared history: A biosocial perspective on sociogenomics and racism in Germany",
+    title: "Beyond a shared history: A biosocial perspective on sociogenomics and racism in Germany",
     authors: "MAN Aikins, YE Willems, D Fraemke, L Raffington",
     venue: "KZfSS Kölner Zeitschrift für Soziologie und Sozialpsychologie 76 (3), 573–602",
-    summary:
-      "An intervention into sociogenomics and racism in Germany from a biosocial perspective, emphasizing historical context and social inequality.",
+    citations: "",
+    summary: "An intervention into sociogenomics and racism in Germany from a biosocial perspective, emphasizing historical context and social inequality.",
     theme: "Racism, sociogenomics, biosocial theory",
     accent: "from-[#182631] via-[#34495e] to-[#bd6b4d]",
     imageUrl: "/images/publications-banner.webp",
@@ -215,13 +201,11 @@ export const publications: Publication[] = [
   {
     slug: "self-control-biological-aging",
     year: "2024",
-    title:
-      "Self-control is associated with health-relevant disparities in buccal DNA-methylation measures of biological aging in older adults",
-    authors:
-      "YE Willems, A deSteiguer, PT Tanksley, L Vinnik, D Fraemke, A Okbay, and colleagues",
+    title: "Self-control is associated with health-relevant disparities in buccal DNA-methylation measures of biological aging in older adults",
+    authors: "YE Willems, A deSteiguer, PT Tanksley, L Vinnik, D Fraemke, A Okbay, and colleagues",
     venue: "Clinical Epigenetics 16 (1), 22",
-    summary:
-      "A study connecting self-control with disparities in DNA-methylation indicators of biological aging, illustrating how behavioral and health processes intersect in later life.",
+    citations: "",
+    summary: "A study connecting self-control with disparities in DNA-methylation indicators of biological aging, illustrating how behavioral and health processes intersect in later life.",
     theme: "Aging, epigenetics, health disparities",
     accent: "from-[#0f3f46] via-[#1f5c63] to-[#c88a4a]",
     imageUrl: "/images/card-texture.webp",
@@ -231,27 +215,49 @@ export const publications: Publication[] = [
     slug: "acute-stress-safety-goals",
     year: "2024",
     title: "Acute stress promotes effort mobilization for safety-related goals",
-    authors:
-      "K Pavlíčková, J Gärtner, SD Voulgaropoulou, D Fraemke, E Adams, and colleagues",
+    authors: "K Pavlíčková, J Gärtner, SD Voulgaropoulou, D Fraemke, E Adams, and colleagues",
     venue: "Communications Psychology 2 (1), 50",
-    summary:
-      "A psychological study on stress and goal-directed effort, showing how acute stress can intensify mobilization under safety-relevant conditions.",
+    citations: "",
+    summary: "A psychological study on stress and goal-directed effort, showing how acute stress can intensify mobilization under safety-relevant conditions.",
     theme: "Stress, motivation, psychological processes",
     accent: "from-[#20303c] via-[#41606d] to-[#d29d63]",
     imageUrl: "/images/hero-editorial.webp",
     externalUrl: "https://doi.org/10.1038/s44271-024-00103-7",
   },
-  // --- 2022 — co-authored (published under previous name) ---
+  {
+    slug: "beyond-a-shared-history-a-biosocial-perspective-on-sociogeno",
+    year: "2024",
+    title: "Beyond a Shared History: A Biosocial Perspective on Sociogenomics and Racism in Germany",
+    authors: "",
+    venue: "KZfSS Kölner Zeitschrift für Soziologie und Sozialpsychologie",
+    citations: "New",
+    summary: "",
+    theme: "",
+    accent: "from-[#0f3f46] via-[#1f5c63] to-[#c88a4a]",
+    imageUrl: "/images/publications-banner.webp",
+    externalUrl: "https://doi.org/10.1007/s11577-024-00934-6",
+  },
+  {
+    slug: "differences-in-polygenic-associations-with-educational-attai",
+    year: "2024",
+    title: "Differences in polygenic associations with educational attainment between West and East Germany before and after reunification",
+    authors: "",
+    venue: "",
+    citations: "New",
+    summary: "",
+    theme: "",
+    accent: "from-[#182631] via-[#34495e] to-[#bd6b4d]",
+    imageUrl: "/images/hero-editorial.webp",
+    externalUrl: "https://doi.org/10.1101/2024.03.21.585839",
+  },
   {
     slug: "visual-cortex-deaf-hearing-signers",
     year: "2022",
-    title:
-      "Developmental experiences alter the temporal processing characteristics of the visual cortex: Evidence from deaf and hearing native signers",
-    authors:
-      "AL Stroh, K Grin, F Rösler, D Bottari, J Ossandon, B Rossion, B Röder",
+    title: "Developmental experiences alter the temporal processing characteristics of the visual cortex: Evidence from deaf and hearing native signers",
+    authors: "AL Stroh, K Grin, F Rösler, D Bottari, J Ossandon, B Rossion, B Röder",
     venue: "European Journal of Neuroscience 55 (6), 1629–1644",
-    summary:
-      "A neuroscience contribution examining how developmental experience shapes temporal processing in the visual cortex.",
+    citations: "",
+    summary: "A neuroscience contribution examining how developmental experience shapes temporal processing in the visual cortex.",
     theme: "Development, sensory processing, neuroscience",
     accent: "from-[#214142] via-[#578080] to-[#c9a257]",
     imageUrl: "/images/research-themes.webp",
