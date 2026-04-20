@@ -525,7 +525,7 @@ function Trajectory() {
         {milestones.map((t) => (
           <div
             key={t.period}
-            className="grid gap-2 border-b border-[rgba(23,53,59,0.18)] py-5 md:grid-cols-[140px_320px_1fr] md:gap-10 md:py-[26px] md:items-baseline"
+            className="grid gap-2 border-b border-[rgba(23,53,59,0.18)] py-5 md:grid-cols-[140px_1fr] md:gap-10 md:py-[26px] md:items-baseline"
           >
             <div className="font-mono text-[11px] tracking-[2px] md:text-[12px]" style={{ color: TERRA }}>
               {t.period}
@@ -540,12 +540,6 @@ function Trajectory() {
               >
                 {t.detail}
               </div>
-            </div>
-            <div
-              className="mt-1 font-serif italic text-[15px] leading-[1.5] md:mt-0 md:text-[15.5px]"
-              style={{ color: ITALIC_BODY }}
-            >
-              {t.note}
             </div>
           </div>
         ))}
