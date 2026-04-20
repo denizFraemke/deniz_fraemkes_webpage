@@ -38,7 +38,7 @@ export const profile = {
   scholar: "https://scholar.google.com/citations?user=M_n5idUAAAAJ&hl=en&inst=1704897519255937060",
   orcid: "0009-0007-3446-9367",
   orcidUrl: "https://orcid.org/0009-0007-3446-9367",
-  office: "BY APPOINTMENT · TUE/THU",
+  office: "BY APPOINTMENT",
   github: "@denizFraemke",
   githubUrl: "https://github.com/denizFraemke",
   bluesky: "@denizfraemke.bsky.social",
