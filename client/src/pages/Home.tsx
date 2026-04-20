@@ -48,7 +48,19 @@ function Hero() {
     <section className="mx-auto max-w-[1440px] px-[22px] pt-6 pb-10 md:px-[64px] md:pt-9 md:pb-16">
       {/* Mobile: plate on top, then title, role, intro, links */}
       <div className="md:hidden">
-        <div className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
+        {/* VOL. I · MMXXVI  ——  PLATE I  strip above the plate */}
+        <div
+          className="mb-3 flex items-baseline justify-between font-mono text-[9.5px] tracking-[2.5px]"
+          style={{ color: TEAL }}
+        >
+          <span>VOL. I · MMXXVI</span>
+          <span className="opacity-70">PLATE I</span>
+        </div>
+        {/* Portrait-framed hero plate: landscape SVG centered with cream above/below */}
+        <div
+          className="flex w-full items-center overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]"
+          style={{ aspectRatio: "4 / 5" }}
+        >
           <img
             src="/images/hero-editorial.svg?v=2"
             alt="Plate I — a cognitive trajectory crossing a biosocial terrain."
@@ -56,7 +68,7 @@ function Hero() {
           />
         </div>
         <h1
-          className="mt-7 font-serif text-[56px] font-light leading-[0.95] tracking-[-0.025em]"
+          className="mt-7 font-serif text-[60px] font-light leading-[0.95] tracking-[-0.025em]"
           style={{ color: TEAL }}
         >
           Deniz
