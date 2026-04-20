@@ -12,6 +12,8 @@ Environment variables (optional):
   GITHUB_TOKEN  — needed for creating PRs via gh CLI
 """
 
+from __future__ import annotations
+
 import argparse
 import json
 import re
@@ -67,6 +69,25 @@ PUBLICATION_FIELDS = [
 # Fields whose values are typically long — written on their own indented line
 # to match the multi-line style in siteData.ts.
 LONG_FIELDS = {"title", "authors", "summary"}
+
+# Where the Python script writes the ready-made PR body for the workflow.
+PR_BODY_PATH = Path(__file__).parent / "pr_body.md"
+
+# Shared style preamble used for every image-prompt suggestion, tuned to match
+# the editorial aesthetic of the existing site images (hero-editorial.webp etc).
+IMAGE_STYLE_PREAMBLE = (
+  "Editorial magazine photograph, 4:3 landscape. Warm muted academic tones: "
+  "deep teal, terracotta, cream, olive. Abstract and textural, painterly, "
+  "soft natural light. No text, no logos, no faces, no clinical or stock-photo "
+  "feel. Should visually pair with a serif-led research publication card."
+)
+
+# Three stylistic angles to give visual variety across the 3 suggestions.
+IMAGE_PROMPT_ANGLES = [
+  ("Close-up texture", "Extreme close-up of a material or surface that metaphorically represents the paper's theme. Shallow depth of field, painterly grain, muted palette."),
+  ("Aerial / geometric", "Bird's-eye or flat-lay composition with clear geometric structure, negative space, and restrained palette. Minimal, editorial."),
+  ("Still life / composed objects", "Composed still life of symbolic objects representing the paper's theme, on a warm neutral backdrop. Slightly shadowed, tactile."),
+]
 
 
 def slugify(text: str) -> str:
@@ -213,9 +234,14 @@ def merge_publications(
     if tkey in existing_by_key:
       existing_pub = existing_by_key[tkey]
       # Only consider it an update if the site currently shows a preprint
-      # AND ORCID now has a non-preprint venue.
-      if _is_preprint_venue(existing_pub) and not _is_preprint_venue(pub):
-        existing_pub["venue"] = pub["venue"] or existing_pub.get("venue", "")
+      # AND ORCID now reports a non-empty, non-preprint journal venue.
+      orcid_venue = (pub.get("venue") or "").strip()
+      if (
+        orcid_venue
+        and _is_preprint_venue(existing_pub)
+        and not _is_preprint_venue(pub)
+      ):
+        existing_pub["venue"] = orcid_venue
         if pub.get("external_url"):
           existing_pub["externalUrl"] = pub["external_url"]
         if pub.get("year"):
@@ -246,12 +272,40 @@ def merge_publications(
   return merged, new_titles, updated_titles
 
 
+def _group_label(pub: dict, prev_label: str | None) -> str | None:
+  """Return a section comment if this pub starts a new group, else None.
+
+  Groups are year + authorship-role (first-author vs co-authored), e.g.
+  ``// --- 2026 — first author ---`` or ``// --- 2024 — co-authored ---``.
+  """
+  year = pub.get("year", "") or "????"
+  authors = pub.get("authors", "") or ""
+  # Treat "D Fraemke" or "Fraemke D" etc. at the start as first authorship.
+  is_first = bool(re.match(r"\s*(D\.?\s*)?Fra[eä]mke\b", authors, re.IGNORECASE))
+  role = "first author" if is_first else "co-authored"
+  label = f"  // --- {year} — {role} ---"
+  return label if label != prev_label else None
+
+
 def write_publications(publications: list[dict]) -> None:
   """Write the updated publications array back to siteData.ts."""
   content = SITE_DATA_PATH.read_text()
 
+  # Sort: newest first; first-author before co-authored within the same year
+  def sort_key(p: dict):
+    year = int(p.get("year") or 0)
+    authors = p.get("authors", "") or ""
+    is_first = bool(re.match(r"\s*(D\.?\s*)?Fra[eä]mke\b", authors, re.IGNORECASE))
+    return (-year, 0 if is_first else 1)
+  sorted_pubs = sorted(publications, key=sort_key)
+
   entries = []
-  for pub in publications:
+  prev_label: str | None = None
+  for pub in sorted_pubs:
+    label = _group_label(pub, prev_label)
+    if label is not None:
+      entries.append(label)
+      prev_label = label
     lines = ["  {"]
     for field in PUBLICATION_FIELDS:
       value = pub.get(field, "").replace('"', '\\"')
@@ -261,13 +315,13 @@ def write_publications(publications: list[dict]) -> None:
         lines.append(f'      "{value}",')
       else:
         lines.append(f'    {field}: "{value}",')
-    lines.append("  }")
+    lines.append("  },")
     entries.append("\n".join(lines))
 
   new_array = (
     "export const publications: Publication[] = [\n"
-    + ",\n".join(entries)
-    + ",\n];"
+    + "\n".join(entries)
+    + "\n];"
   )
 
   # Replace the existing array
@@ -279,6 +333,93 @@ def write_publications(publications: list[dict]) -> None:
   )
 
   SITE_DATA_PATH.write_text(content)
+
+
+def build_image_prompts(pub: dict) -> list[tuple[str, str]]:
+  """Return 3 ready-to-paste image prompts for a publication.
+
+  Each tuple is (angle_label, full_prompt). The prompts are tuned to match the
+  existing editorial aesthetic (see IMAGE_STYLE_PREAMBLE).
+  """
+  title = pub.get("title", "").strip()
+  prompts: list[tuple[str, str]] = []
+  for label, angle in IMAGE_PROMPT_ANGLES:
+    prompt = (
+      f"{IMAGE_STYLE_PREAMBLE} {angle} The underlying subject of the paper "
+      f"is: \"{title}\". Translate the theme into imagery — do NOT depict the "
+      f"paper itself."
+    )
+    prompts.append((label, prompt))
+  return prompts
+
+
+def build_pr_body(
+  new_pubs: list[dict],
+  updated_titles: list[str],
+) -> str:
+  """Compose the PR body shown on GitHub. Saved for the workflow to use."""
+  lines: list[str] = []
+  lines.append("## Auto-detected publication changes")
+  lines.append("")
+  lines.append(
+    "ORCID reports new or updated entries. Nothing is live until you merge."
+  )
+  lines.append("")
+
+  if new_pubs:
+    lines.append(f"### {len(new_pubs)} new publication(s)")
+    lines.append("")
+    for pub in new_pubs:
+      lines.append(f"**{pub['title']}**  ")
+      lines.append(f"_{pub.get('venue') or 'venue tbd'}_ · {pub.get('year') or 'year tbd'}")
+      lines.append("")
+      lines.append(
+        f"_Default image:_ `{pub['imageUrl']}` — the site will use this if you "
+        f"do not provide your own. If you want a custom image, generate one "
+        f"using any of the three prompts below (Gemini, ChatGPT, Midjourney, "
+        f"etc.), save it as  "
+        f"`client/public/images/publications/{pub['slug']}.png`  "
+        f"and change the `imageUrl` field in `client/src/lib/siteData.ts` to "
+        f"`/images/publications/{pub['slug']}.png`."
+      )
+      lines.append("")
+      for i, (label, prompt) in enumerate(build_image_prompts(pub), start=1):
+        lines.append(f"<details><summary><strong>Prompt {i}: {label}</strong></summary>")
+        lines.append("")
+        lines.append("```")
+        lines.append(prompt)
+        lines.append("```")
+        lines.append("")
+        lines.append("</details>")
+        lines.append("")
+      lines.append("---")
+      lines.append("")
+
+  if updated_titles:
+    lines.append(f"### {len(updated_titles)} preprint → journal update(s)")
+    lines.append("")
+    for title in updated_titles:
+      lines.append(f"- {title}")
+    lines.append("")
+    lines.append(
+      "_Please verify the new venue and DOI look correct._"
+    )
+    lines.append("")
+
+  lines.append("### Review checklist")
+  lines.append("- [ ] Titles and venues look correct")
+  lines.append("- [ ] For new publications: add or edit the summary and theme in `siteData.ts`")
+  lines.append(
+    "- [ ] (Optional) Replace the default image with your own — see instructions above"
+  )
+  lines.append("")
+  lines.append(
+    "_If a listed entry is a duplicate or something you do not want tracked, "
+    "add the title to ``scripts/publication_overrides.json`` under "
+    "``ignored_titles`` and close this PR._"
+  )
+
+  return "\n".join(lines) + "\n"
 
 
 def main():
@@ -308,6 +449,9 @@ def main():
 
   if not new_titles and not updated_titles:
     print("\nNo new or updated publications. Site is up to date — no file changes written.")
+    # Clean up any stale PR body from a previous run
+    if PR_BODY_PATH.exists():
+      PR_BODY_PATH.unlink()
     return
 
   if new_titles:
@@ -326,7 +470,12 @@ def main():
 
   write_publications(merged)
   print(f"\nUpdated siteData.ts with {len(merged)} total publications.")
-  print("Review the changes, then commit and push to trigger deployment.")
+
+  # Build the PR body (prompts + instructions) for the workflow to pick up
+  new_pub_objects = [p for p in merged if p["title"] in new_titles]
+  pr_body = build_pr_body(new_pub_objects, updated_titles)
+  PR_BODY_PATH.write_text(pr_body)
+  print(f"PR body written to {PR_BODY_PATH}")
 
 
 if __name__ == "__main__":

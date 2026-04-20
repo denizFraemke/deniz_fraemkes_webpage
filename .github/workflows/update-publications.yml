@@ -47,28 +47,20 @@ jobs:
           git add client/src/lib/siteData.ts
           git commit -m "chore: auto-update publications from ORCID"
           git push origin "$BRANCH"
-          gh pr create \
-            --title "Publication update from ORCID — please review" \
-            --body "$(cat <<'EOF'
-          ## Auto-detected publication changes
 
-          ORCID reports new or updated entries. This PR was opened automatically — nothing is live until you merge.
-
-          Possible changes include:
-          - **New publications** — ORCID has entries not yet on the site
-          - **Preprint → journal** — a paper previously tracked as a preprint (bioRxiv/medRxiv/etc.) now has a journal venue and DOI
-
-          **Please review before merging:**
-          - [ ] Check that titles and venues are correct
-          - [ ] For new publications: add summary, theme, accent colour, and optionally a custom image
-          - [ ] For preprint→journal updates: verify the new venue and DOI are correct
-
-          Once you merge this PR, the site will rebuild and deploy automatically.
-
-          _If this is a duplicate or you do not want it tracked, add the title to ``scripts/publication_overrides.json`` under ``ignored_titles`` and close this PR._
-          EOF
-          )" \
-            --base main \
-            --head "$BRANCH"
+          # Use the script-generated PR body if it exists, otherwise a fallback
+          if [ -s scripts/pr_body.md ]; then
+            gh pr create \
+              --title "Publication update from ORCID — please review" \
+              --body-file scripts/pr_body.md \
+              --base main \
+              --head "$BRANCH"
+          else
+            gh pr create \
+              --title "Publication update from ORCID — please review" \
+              --body "Auto-update from ORCID. Review and merge when ready." \
+              --base main \
+              --head "$BRANCH"
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
