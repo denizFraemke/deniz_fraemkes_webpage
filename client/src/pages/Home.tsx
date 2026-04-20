@@ -106,8 +106,8 @@ function Hero() {
       </div>
 
       {/* Desktop: two-column folio — title/intro/links on left, plate on right */}
-      <div className="hidden md:grid md:grid-cols-[0.75fr_1.25fr] md:gap-12 md:items-start">
-        <div className="flex flex-col">
+      <div className="hidden md:grid md:grid-cols-[0.75fr_1.25fr] md:gap-12 md:items-stretch">
+        <div className="flex flex-col md:justify-end">
           <h1
             className="font-serif font-light leading-[0.95] tracking-[-0.025em] text-[60px] xl:text-[80px]"
             style={{ color: TEAL }}
