@@ -147,12 +147,6 @@ function Hero() {
         </div>
 
         <div className="flex flex-col">
-          <div
-            className="mb-3 text-right font-mono text-[10px] tracking-[2.5px] opacity-70"
-            style={{ color: TEAL }}
-          >
-            FIG. I · HERO PLATE
-          </div>
           <div className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
             <img
               src="/images/hero-editorial.svg"
