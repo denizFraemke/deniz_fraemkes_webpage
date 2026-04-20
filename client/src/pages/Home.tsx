@@ -48,12 +48,15 @@ function Hero() {
     <section className="mx-auto max-w-[1440px] px-[22px] pt-6 pb-10 md:px-[64px] md:pt-9 md:pb-16">
       {/* Mobile: plate on top, then title, role, intro, links */}
       <div className="md:hidden">
-        {/* Hero plate: natural 4:3 landscape, filling the phone width */}
-        <div className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
+        {/* Hero plate: portrait-aspect variant that stretches to fill 4:5 frame */}
+        <div
+          className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]"
+          style={{ aspectRatio: "4 / 5" }}
+        >
           <img
-            src="/images/hero-editorial.svg?v=2"
+            src="/images/hero-editorial-mobile.svg?v=2"
             alt="Plate I — a cognitive trajectory crossing a biosocial terrain."
-            className="block h-auto w-full"
+            className="block h-full w-full"
           />
         </div>
         <h1
