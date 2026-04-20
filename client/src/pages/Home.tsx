@@ -149,7 +149,15 @@ function Hero() {
 // SECTION KICKER
 // ───────────────────────────────────────────────────────────────────────────
 
-function Kicker({ num, label, right }: { num: string; label: string; right?: string }) {
+function Kicker({
+  num,
+  label,
+  right,
+}: {
+  num: string;
+  label: string;
+  right?: React.ReactNode;
+}) {
   return (
     <div
       className="flex items-baseline justify-between border-t border-[rgba(23,53,59,0.32)] font-mono tracking-[2.5px] md:tracking-[3px] text-[9.5px] md:text-[11px] pt-3.5 pb-4 md:pt-5 md:pb-8"
@@ -168,7 +176,15 @@ function Kicker({ num, label, right }: { num: string; label: string; right?: str
 function FeaturedPublications({ featured }: { featured: typeof publications }) {
   return (
     <section id="publications" className="mx-auto max-w-[1440px] px-[22px] pb-14 md:px-[64px] md:pb-20">
-      <Kicker num="01" label="SELECTED PUBLICATIONS" right="3 OF 8 · SEE ALL →" />
+      <Kicker
+        num="01"
+        label="SELECTED PUBLICATIONS"
+        right={
+          <Link href="/publications">
+            <a className="no-underline hover:text-[#c88a4a]">3 OF 8 · SEE ALL →</a>
+          </Link>
+        }
+      />
       <div className="grid gap-9 md:grid-cols-3">
         {featured.map((p) => (
           <a
