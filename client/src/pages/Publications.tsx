@@ -54,29 +54,22 @@ export default function Publications() {
                 rel="noreferrer"
                 className="group relative overflow-hidden rounded-[2rem] border border-black/5 bg-white text-left shadow-[0_24px_70px_rgba(18,39,45,0.08)] transition-transform duration-500 hover:-translate-y-1"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-64 overflow-hidden bg-[#f7f3ec] flex items-center justify-center p-3">
                   <img
                     src={publication.imageUrl}
                     alt={publication.title}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${publication.accent} opacity-55 mix-blend-multiply`} />
-                  <div className="absolute inset-x-4 top-4">
-                    <span className="rounded-full border border-white/25 bg-black/20 px-3 py-1 text-[0.68rem] uppercase tracking-[0.24em] text-white backdrop-blur-sm">
-                      {publication.year}
-                    </span>
-                  </div>
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[rgba(10,23,27,0.88)] via-[rgba(10,23,27,0.5)] to-transparent p-6 text-white">
-                    <p className="max-w-[90%] font-[Fraunces] text-2xl leading-tight tracking-[-0.03em]">
-                      {publication.title}
-                    </p>
-                  </div>
                 </div>
 
                 <div className="space-y-4 p-6">
-                  <div className="text-[0.72rem] uppercase tracking-[0.22em] text-[#6f6e66]">
-                    <span>{publication.venue.split(",")[0]}</span>
+                  <div className="flex items-center justify-between gap-3 text-[0.72rem] uppercase tracking-[0.22em] text-[#6f6e66]">
+                    <span>{publication.year}</span>
+                    <span className="truncate">{publication.venue.split(",")[0]}</span>
                   </div>
+                  <p className="font-[Fraunces] text-xl leading-tight tracking-[-0.03em] text-[#18353b]">
+                    {publication.title}
+                  </p>
                   <p className="line-clamp-3 text-sm leading-7 text-[#455655]">{publication.summary}</p>
                   <div className="flex items-center justify-between gap-4 border-t border-black/5 pt-4">
                     <p className="text-sm font-medium text-[#17353b]">{publication.theme}</p>

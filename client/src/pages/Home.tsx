@@ -81,27 +81,12 @@ export default function Home() {
 
           </div>
 
-          <div className="relative min-h-[560px] overflow-hidden rounded-[2.2rem] border border-[#17353b]/8 bg-[#18353b] shadow-[0_30px_90px_rgba(20,41,46,0.18)]">
+          <div className="relative min-h-[560px] overflow-hidden rounded-[2.2rem] border border-[#17353b]/10 bg-[#f7f3ec] shadow-[0_30px_90px_rgba(20,41,46,0.10)] flex items-center justify-center p-4 md:p-6">
             <img
-              src="/images/hero-editorial.webp"
-              alt="Abstract editorial hero visual inspired by biosocial and developmental research"
-              className="absolute inset-0 h-full w-full object-cover"
+              src="/images/hero-editorial.svg"
+              alt="Plate I — a cognitive trajectory crossing a biosocial terrain. Gaussian topography with AGCT loci and a terracotta marker."
+              className="h-full w-full object-contain"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(140deg,rgba(14,36,41,0.18),rgba(14,36,41,0.72),rgba(14,36,41,0.15))]" />
-
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10">
-              <div className="max-w-sm rounded-[1.5rem] border border-white/15 bg-[rgba(15,40,45,0.76)] p-5 text-white shadow-[0_16px_40px_rgba(0,0,0,0.18)] backdrop-blur-sm">
-                <p className="text-[0.68rem] uppercase tracking-[0.26em] text-[#d7c7b7]">{hero.overlayLabel}</p>
-                <p className="mt-3 font-[Fraunces] text-2xl leading-tight tracking-[-0.03em] text-white">
-                  {hero.overlayHeading}
-                </p>
-                {hero.overlayDescription && (
-                  <p className="mt-3 text-sm leading-7 text-[#e8dfd5]">
-                    {hero.overlayDescription}
-                  </p>
-                )}
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -130,19 +115,18 @@ export default function Home() {
                 rel="noreferrer"
                 className="group overflow-hidden rounded-[2rem] border border-black/5 bg-white shadow-[0_24px_70px_rgba(18,39,45,0.08)] transition-transform duration-500 hover:-translate-y-1"
               >
-                <div className="relative h-60 overflow-hidden">
+                <div className="relative h-60 overflow-hidden bg-[#f7f3ec] flex items-center justify-center p-3">
                   <img
                     src={publication!.imageUrl}
                     alt={publication!.title}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${publication!.accent} opacity-55 mix-blend-multiply`} />
-                  <div className="absolute left-5 top-5 rounded-full border border-white/20 bg-black/20 px-3 py-1 text-[0.68rem] uppercase tracking-[0.24em] text-white backdrop-blur-sm">
-                    {publication!.year}
-                  </div>
                 </div>
-                <div className="space-y-4 p-6">
-                  <p className="text-[0.72rem] uppercase tracking-[0.22em] text-[#7a695b]">{publication!.theme}</p>
+                <div className="space-y-3 p-6">
+                  <div className="flex items-center justify-between gap-3 text-[0.72rem] uppercase tracking-[0.22em] text-[#7a695b]">
+                    <span>{publication!.year}</span>
+                    <span className="truncate">{publication!.theme}</span>
+                  </div>
                   <h3 className="font-[Fraunces] text-2xl leading-tight tracking-[-0.03em] text-[#18353b]">
                     {publication!.title}
                   </h3>
