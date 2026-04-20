@@ -125,7 +125,7 @@ function Hero() {
             PREDOCTORAL FELLOW · MPIB · BERLIN
           </div>
           <p
-            className="mt-7 max-w-[480px] font-serif text-[18px] leading-[1.5]"
+            className="mt-7 max-w-[480px] font-serif text-[16.5px] leading-[1.55]"
             style={{ color: TEAL }}
           >
             {profile.intro}
