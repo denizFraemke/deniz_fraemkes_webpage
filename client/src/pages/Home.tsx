@@ -50,7 +50,7 @@ function Hero() {
       <div className="md:hidden">
         <div className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
           <img
-            src="/images/hero-editorial.svg"
+            src="/images/hero-editorial.svg?v=2"
             alt="Plate I — a cognitive trajectory crossing a biosocial terrain."
             className="block h-auto w-full"
           />
@@ -149,7 +149,7 @@ function Hero() {
         <div className="flex flex-col">
           <div className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
             <img
-              src="/images/hero-editorial.svg"
+              src="/images/hero-editorial.svg?v=2"
               alt="Plate I — a cognitive trajectory crossing a biosocial terrain."
               className="block h-auto w-full"
             />
