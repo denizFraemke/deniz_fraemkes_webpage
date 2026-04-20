@@ -89,14 +89,6 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-[linear-gradient(140deg,rgba(14,36,41,0.18),rgba(14,36,41,0.72),rgba(14,36,41,0.15))]" />
 
-            <div className="absolute left-6 right-6 top-6 flex flex-wrap items-center justify-between gap-4 text-white/85 md:left-8 md:right-8 md:top-8">
-              {hero.pills.map((pill, i) => (
-                <div key={pill} className={`rounded-full border border-white/20 ${i === 0 ? "bg-white/10" : "bg-black/10"} px-4 py-2 text-[0.68rem] uppercase tracking-[0.25em] backdrop-blur-sm`}>
-                  {pill}
-                </div>
-              ))}
-            </div>
-
             <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10">
               <div className="max-w-sm rounded-[1.5rem] border border-white/15 bg-[rgba(15,40,45,0.76)] p-5 text-white shadow-[0_16px_40px_rgba(0,0,0,0.18)] backdrop-blur-sm">
                 <p className="text-[0.68rem] uppercase tracking-[0.26em] text-[#d7c7b7]">{hero.overlayLabel}</p>
