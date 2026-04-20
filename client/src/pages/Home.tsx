@@ -48,14 +48,6 @@ function Hero() {
     <section className="mx-auto max-w-[1440px] px-[22px] pt-6 pb-10 md:px-[64px] md:pt-9 md:pb-16">
       {/* Mobile: plate on top, then title, role, intro, links */}
       <div className="md:hidden">
-        {/* VOL. I · MMXXVI  ——  PLATE I  strip above the plate */}
-        <div
-          className="mb-3 flex items-baseline justify-between font-mono text-[9.5px] tracking-[2.5px]"
-          style={{ color: TEAL }}
-        >
-          <span>VOL. I · MMXXVI</span>
-          <span className="opacity-70">PLATE I</span>
-        </div>
         {/* Hero plate: natural 4:3 landscape, filling the phone width */}
         <div className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
           <img
