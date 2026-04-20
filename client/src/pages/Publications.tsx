@@ -37,8 +37,8 @@ export default function Publications() {
           </p>
         </div>
 
-        {/* Publication grid */}
-        <div className="grid gap-10 md:grid-cols-2 md:gap-12 xl:grid-cols-3">
+        {/* Publication grid — 2 columns for bigger plates */}
+        <div className="grid gap-12 md:grid-cols-2 md:gap-16">
           {publications.map((p, i) => {
             const isFirstAuthor = /^\s*D\.?\s*Fra[eä]mke/i.test(p.authors);
             return (
@@ -49,14 +49,11 @@ export default function Publications() {
                 rel="noreferrer"
                 className="group flex flex-col gap-4"
               >
-                <div
-                  className="overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]"
-                  style={{ aspectRatio: "4 / 3" }}
-                >
+                <div className="overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
                   <img
                     src={p.imageUrl}
                     alt={p.title}
-                    className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                    className="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                 </div>
                 <div

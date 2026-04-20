@@ -19,6 +19,8 @@ export const profile = {
   email: "fraemke@mpib-berlin.mpg.de",
   homepage: "https://www.mpib-berlin.mpg.de/staff/deniz-fraemke",
   scholar: "https://scholar.google.com/citations?user=M_n5idUAAAAJ&hl=en&inst=1704897519255937060",
+  orcid: "0009-0007-3446-9367",
+  orcidUrl: "https://orcid.org/0009-0007-3446-9367",
   focus: [
     "Gene–Environment Interplay",
     "Social Inequality",
@@ -28,8 +30,13 @@ export const profile = {
   ],
   intro:
     "I study how genetic and epigenetic variation relates to cognitive development and educational attainment — and how these processes unfold across unequal social and institutional contexts. My work sits at the intersection of behavioral genetics, epigenetics, and the social sciences, exploring what genomic data can and cannot tell us about human development.",
+  bioParagraphs: [
+    "I am a predoctoral fellow at the Max Planck Institute for Human Development in Berlin, within the Biosocial Group. I also hold affiliations with Humboldt-Universität zu Berlin and the German Center for Integrative Biodiversity Research.",
+    "My doctoral work uses molecular-genetic and epigenetic data — polygenic scores, DNA methylation, genome-wide summary statistics — to ask how biological variation becomes consequential inside particular social arrangements: schools, labour markets, regional histories.",
+    "I am especially interested in places where a single number (a score, an estimate, a prediction) cannot do justice to the underlying terrain — where the atlas needs more than one plate.",
+  ],
   bio:
-    "I am a predoctoral researcher at the Max Planck Institute for Human Development in Berlin, working within the Biosocial — Biology, Social Disparities, and Development research group led by Dr. Laurel Raffington. My research draws on genetic, epigenetic, and social data from multiple German and international cohorts to examine how educational and cognitive trajectories unfold across development — and how social stratification conditions these processes. Methodologically, I work with polygenic and epigenetic indices, applying them within complex statistical models across large-scale panel and twin studies. I care about methodological rigour, responsible interpretation of genomic findings, and making sociogenomics research accessible beyond the field.",
+    "I am a predoctoral fellow at the Max Planck Institute for Human Development in Berlin, within the Biosocial Group. I also hold affiliations with Humboldt-Universität zu Berlin and the German Center for Integrative Biodiversity Research. My doctoral work uses molecular-genetic and epigenetic data — polygenic scores, DNA methylation, genome-wide summary statistics — to ask how biological variation becomes consequential inside particular social arrangements: schools, labour markets, regional histories. I am especially interested in places where a single number cannot do justice to the underlying terrain — where the atlas needs more than one plate.",
   aboutHeadline:
     "Research at the intersection of genomics, social science, and human development.",
   publicationsBlurb:
@@ -70,26 +77,31 @@ export const milestones = [
     period: "Since 2023",
     title: "PhD Candidate",
     detail: "MPRG Biosocial, Max Planck Institute for Human Development & IMPRS LIFE",
+    note: "[TOPIC — e.g. DNA methylation, polygenic prediction, life-course inequality]",
   },
   {
     period: "2022–2023",
     title: "Research Assistant",
     detail: "MPRG Biosocial, Max Planck Institute for Human Development",
+    note: "[TOPIC]",
   },
   {
     period: "2021–2022",
     title: "Research Intern",
     detail: "Department of Psychology, Max Planck Institute for Cognitive and Brain Sciences",
+    note: "[TOPIC]",
   },
   {
     period: "2020–2022",
     title: "Research Master (MSc)",
     detail: "Cognitive and Clinical Neuroscience, Maastricht University",
+    note: "[TOPIC]",
   },
   {
     period: "2017–2020",
     title: "Psychology (BSc)",
     detail: "University of Hamburg",
+    note: "[TOPIC]",
   },
 ];
 

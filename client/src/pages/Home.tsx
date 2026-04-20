@@ -46,15 +46,12 @@ export default function Home() {
 function Hero() {
   return (
     <section className="mx-auto max-w-[1440px] px-[22px] pt-6 pb-10 md:px-[64px] md:pt-9 md:pb-0">
-      {/* Hero plate */}
-      <div
-        className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]"
-        style={{ aspectRatio: "16 / 10" }}
-      >
+      {/* Hero plate — 4:3 matching the SVG's native viewBox */}
+      <div className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
         <img
           src="/images/hero-editorial.svg"
           alt="Plate I — a cognitive trajectory crossing a biosocial terrain."
-          className="h-full w-full object-contain"
+          className="block h-auto w-full"
         />
       </div>
 
@@ -181,14 +178,11 @@ function FeaturedPublications({ featured }: { featured: typeof publications }) {
             rel="noreferrer"
             className="group flex flex-col gap-4"
           >
-            <div
-              className="overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]"
-              style={{ aspectRatio: "4 / 3" }}
-            >
+            <div className="overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
               <img
                 src={p.imageUrl}
                 alt={p.title}
-                className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                className="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.02]"
               />
             </div>
             <div
@@ -248,9 +242,11 @@ function About() {
           </div>
         </div>
         <div className="font-serif text-[16.5px] leading-[1.55] md:text-[20px]" style={{ color: TEAL }}>
-          <p className="mt-0 mb-5">
-            {profile.bio}
-          </p>
+          {profile.bioParagraphs.map((p, i) => (
+            <p key={i} className={i === 0 ? "mt-0 mb-5" : "mb-5"}>
+              {p}
+            </p>
+          ))}
           <div
             className="mt-8 grid grid-cols-2 gap-5 font-mono text-[10px] tracking-[1.8px] md:text-[11px] md:tracking-[2px] md:gap-6"
             style={{ color: TEAL }}
@@ -267,7 +263,19 @@ function About() {
                   {profile.email.toUpperCase()}
                 </a>
               }
-              span2
+            />
+            <Meta
+              k="ORCID"
+              v={
+                <a
+                  href={profile.orcidUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-[#c88a4a]"
+                >
+                  {profile.orcid}
+                </a>
+              }
             />
           </div>
         </div>
@@ -318,7 +326,7 @@ const FOCUS: { num: string; title: string; blurb: string; motif: MotifKind }[] =
     num: "iii",
     title: "Educational Attainment",
     blurb:
-      "How schools, institutions, and policy shape who develops which skills.",
+      "Schools as sorting machines — who passes, who doesn\u2019t, and why.",
     motif: "timeline",
   },
   {
@@ -498,7 +506,7 @@ function Trajectory() {
         {milestones.map((t) => (
           <div
             key={t.period}
-            className="grid gap-2 border-b border-[rgba(23,53,59,0.18)] py-5 md:grid-cols-[140px_280px_1fr] md:gap-8 md:py-[26px] md:items-baseline"
+            className="grid gap-2 border-b border-[rgba(23,53,59,0.18)] py-5 md:grid-cols-[140px_320px_1fr] md:gap-10 md:py-[26px] md:items-baseline"
           >
             <div className="font-mono text-[11px] tracking-[2px] md:text-[12px]" style={{ color: TERRA }}>
               {t.period}
@@ -514,8 +522,12 @@ function Trajectory() {
                 {t.detail}
               </div>
             </div>
-            {/* spacer column on desktop */}
-            <div aria-hidden className="hidden md:block" />
+            <div
+              className="mt-1 font-serif italic text-[15px] leading-[1.5] md:mt-0 md:text-[15.5px]"
+              style={{ color: ITALIC_BODY }}
+            >
+              {t.note}
+            </div>
           </div>
         ))}
       </div>
