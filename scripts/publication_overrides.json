@@ -1,7 +1,8 @@
 {
   "_comment": "Customise imported publications. 'ignored_titles' skips ORCID entries entirely (useful for duplicates). 'overrides' by slug lets you pin custom fields (theme, accent, imageUrl, etc.) for new publications.",
   "ignored_titles": [
-    "Differences in polygenic associations with educational attainment between West and East Germany before and after reunification"
+    "Differences in polygenic associations with educational attainment between West and East Germany before and after reunification",
+    "Associations of DNA-Methylation Profile Scores of Cognition with Cognitive Development, Academic Performance, and Socioeconomic Attainments"
   ],
   "overrides": {}
 }

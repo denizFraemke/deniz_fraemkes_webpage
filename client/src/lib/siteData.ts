@@ -181,22 +181,6 @@ export const publications: Publication[] = [
     imageUrl: "/images/card-texture.webp",
     externalUrl: "https://doi.org/10.1038/s41380-025-03010-3",
   },
-  // --- 2024 — first author ---
-  {
-    slug: "dna-methylation-cognition-scores",
-    year: "2024",
-    title:
-      "Associations of DNA-Methylation Profile Scores of Cognition with Cognitive Development, Academic Performance, and Socioeconomic Attainments",
-    authors:
-      "D Fraemke, JH Walter, KP Harden, M Malanchini, EM Tucker-Drob, and colleagues",
-    venue: "Behavior Genetics 54 (6), 500–500",
-    summary:
-      "A contribution on DNA-methylation profile scores of cognition and their associations with developmental and academic outcomes.",
-    theme: "DNA methylation, cognition, socioeconomic outcomes",
-    accent: "from-[#16313a] via-[#36656d] to-[#c98e54]",
-    imageUrl: "/images/card-texture.webp",
-    externalUrl: "https://doi.org/10.1007/s10519-024-10197-8",
-  },
   // --- 2024 — co-authored ---
   {
     slug: "biosocial-perspective-racism-germany",
