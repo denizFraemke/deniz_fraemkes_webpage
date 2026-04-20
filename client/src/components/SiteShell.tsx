@@ -93,7 +93,6 @@ export default function SiteShell({ children }: SiteShellProps) {
             items={[
               { label: "Fraunces · JetBrains Mono", static: true },
               { label: "Cream #F7F3EC · Teal #17353B", static: true },
-              { label: "Hand-drawn plates, 2026", static: true },
               { label: "© MMXXVI D.F.", static: true },
             ]}
           />
