@@ -56,11 +56,8 @@ function Hero() {
           <span>VOL. I · MMXXVI</span>
           <span className="opacity-70">PLATE I</span>
         </div>
-        {/* Portrait-framed hero plate: landscape SVG centered with cream above/below */}
-        <div
-          className="flex w-full items-center overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]"
-          style={{ aspectRatio: "4 / 5" }}
-        >
+        {/* Hero plate: natural 4:3 landscape, filling the phone width */}
+        <div className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
           <img
             src="/images/hero-editorial.svg?v=2"
             alt="Plate I — a cognitive trajectory crossing a biosocial terrain."
