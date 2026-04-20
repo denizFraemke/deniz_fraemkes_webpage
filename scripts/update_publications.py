@@ -48,6 +48,26 @@ DEFAULT_IMAGES = [
   "/images/research-themes.webp",
 ]
 
+# Publication object fields, in the order they appear in siteData.ts.
+# NOTE: "citations" is intentionally NOT in this list — the site no longer
+# displays citation counts. Do not add it back unless the UI uses it.
+PUBLICATION_FIELDS = [
+  "slug",
+  "year",
+  "title",
+  "authors",
+  "venue",
+  "summary",
+  "theme",
+  "accent",
+  "imageUrl",
+  "externalUrl",
+]
+
+# Fields whose values are typically long — written on their own indented line
+# to match the multi-line style in siteData.ts.
+LONG_FIELDS = {"title", "authors", "summary"}
+
 
 def slugify(text: str) -> str:
   """Create a URL-safe slug from text."""
@@ -55,6 +75,11 @@ def slugify(text: str) -> str:
   text = re.sub(r"[^\w\s-]", "", text)
   text = re.sub(r"[\s_]+", "-", text)
   return text[:60].rstrip("-")
+
+
+def title_key(text: str) -> str:
+  """Normalise a title for duplicate detection — ignore case, punctuation, whitespace."""
+  return re.sub(r"[^a-z0-9]+", "", text.lower())
 
 
 def fetch_orcid_works(orcid_id: str) -> list[dict]:
@@ -92,25 +117,6 @@ def fetch_orcid_works(orcid_id: str) -> list[dict]:
   return publications
 
 
-def fetch_scholar_citations(scholar_id: str) -> dict[str, int]:
-  """
-  Optionally fetch citation counts from Google Scholar.
-  Returns {title_lowercase: citation_count}.
-  Falls back gracefully if scholarly is not installed or Scholar blocks.
-  """
-  try:
-    from scholarly import scholarly
-    author = scholarly.search_author_id(scholar_id)
-    author = scholarly.fill(author, sections=["publications"])
-    return {
-      pub["bib"]["title"].lower(): pub.get("num_citations", 0)
-      for pub in author.get("publications", [])
-    }
-  except Exception as e:
-    print(f"  Scholar fetch skipped: {e}")
-    return {}
-
-
 def parse_existing_publications() -> list[dict]:
   """Parse the current publications array from siteData.ts."""
   content = SITE_DATA_PATH.read_text()
@@ -130,8 +136,7 @@ def parse_existing_publications() -> list[dict]:
   for obj_match in re.finditer(r"\{(.*?)\}", match.group(1), re.DOTALL):
     obj_str = obj_match.group(1)
     pub = {}
-    for field in ["slug", "year", "title", "authors", "venue", "citations",
-                   "summary", "theme", "accent", "imageUrl", "externalUrl"]:
+    for field in PUBLICATION_FIELDS:
       field_match = re.search(rf'{field}:\s*"((?:[^"\\]|\\.)*)"', obj_str)
       if field_match:
         pub[field] = field_match.group(1)
@@ -141,40 +146,49 @@ def parse_existing_publications() -> list[dict]:
   return pubs
 
 
-def load_overrides() -> dict:
-  """Load manual overrides for publications."""
-  if OVERRIDES_PATH.exists():
-    return json.loads(OVERRIDES_PATH.read_text())
-  return {}
+def load_overrides() -> tuple[dict, set[str]]:
+  """Load manual overrides and ignored titles.
 
+  Returns (overrides_by_slug, set_of_ignored_title_keys).
+  Supports both the old flat schema (``{ "slug": {...}, ... }``) and the new
+  structured schema (``{ "overrides": {...}, "ignored_titles": [...] }``).
+  """
+  if not OVERRIDES_PATH.exists():
+    return {}, set()
 
-def save_overrides(overrides: dict) -> None:
-  """Save overrides file."""
-  OVERRIDES_PATH.write_text(json.dumps(overrides, indent=2) + "\n")
+  data = json.loads(OVERRIDES_PATH.read_text())
+
+  if "overrides" in data or "ignored_titles" in data:
+    overrides = data.get("overrides", {})
+    ignored = {title_key(t) for t in data.get("ignored_titles", [])}
+    return overrides, ignored
+
+  # Legacy flat form — all keys are slugs
+  return {k: v for k, v in data.items() if not k.startswith("_")}, set()
 
 
 def merge_publications(
   existing: list[dict],
   orcid_pubs: list[dict],
-  citations: dict[str, int],
   overrides: dict,
+  ignored: set[str],
 ) -> tuple[list[dict], list[str]]:
   """
   Merge ORCID publications with existing data.
   Returns (merged_list, list_of_new_titles).
+  Only appends NEW publications; existing entries are preserved unchanged.
+  Titles whose normalised key is in ``ignored`` are skipped entirely.
   """
-  existing_titles = {p["title"].lower() for p in existing}
+  existing_titles = {title_key(p["title"]) for p in existing}
   merged = list(existing)
   new_titles = []
 
-  for i, pub in enumerate(orcid_pubs):
-    if pub["title"].lower() in existing_titles:
+  for pub in orcid_pubs:
+    tkey = title_key(pub["title"])
+    if tkey in existing_titles or tkey in ignored:
       continue
 
     slug = slugify(pub["title"])
-    citation_count = citations.get(pub["title"].lower(), 0)
-
-    # Check for manual overrides
     override = overrides.get(slug, {})
 
     new_pub = {
@@ -183,7 +197,6 @@ def merge_publications(
       "title": pub["title"],
       "authors": override.get("authors", ""),
       "venue": override.get("venue", pub["venue"]),
-      "citations": override.get("citations", f"{citation_count} citations" if citation_count else "New"),
       "summary": override.get("summary", ""),
       "theme": override.get("theme", ""),
       "accent": override.get("accent", ACCENT_PALETTE[len(merged) % len(ACCENT_PALETTE)]),
@@ -194,8 +207,6 @@ def merge_publications(
     merged.append(new_pub)
     new_titles.append(pub["title"])
 
-  # Sort by year descending
-  merged.sort(key=lambda p: p.get("year", "0"), reverse=True)
   return merged, new_titles
 
 
@@ -203,18 +214,25 @@ def write_publications(publications: list[dict]) -> None:
   """Write the updated publications array back to siteData.ts."""
   content = SITE_DATA_PATH.read_text()
 
-  # Build the new publications array string
   entries = []
   for pub in publications:
-    entry = "  {\n"
-    for field in ["slug", "year", "title", "authors", "venue", "citations",
-                   "summary", "theme", "accent", "imageUrl", "externalUrl"]:
+    lines = ["  {"]
+    for field in PUBLICATION_FIELDS:
       value = pub.get(field, "").replace('"', '\\"')
-      entry += f'    {field}: "{value}",\n'
-    entry += "  }"
-    entries.append(entry)
+      if field in LONG_FIELDS and value:
+        # Multi-line form for readability, matching existing style
+        lines.append(f'    {field}:')
+        lines.append(f'      "{value}",')
+      else:
+        lines.append(f'    {field}: "{value}",')
+    lines.append("  }")
+    entries.append("\n".join(lines))
 
-  new_array = "export const publications: Publication[] = [\n" + ",\n".join(entries) + ",\n];"
+  new_array = (
+    "export const publications: Publication[] = [\n"
+    + ",\n".join(entries)
+    + ",\n];"
+  )
 
   # Replace the existing array
   content = re.sub(
@@ -230,30 +248,28 @@ def write_publications(publications: list[dict]) -> None:
 def main():
   parser = argparse.ArgumentParser(description="Update site publications from ORCID")
   parser.add_argument("--orcid", required=True, help="ORCID ID (e.g., 0000-0002-1234-5678)")
-  parser.add_argument("--scholar", default=None, help="Google Scholar ID for citation counts (optional)")
+  parser.add_argument("--scholar", default=None, help="Unused — kept for workflow compatibility")
   parser.add_argument("--dry-run", action="store_true", help="Print changes without writing")
   args = parser.parse_args()
+
+  if not args.orcid or not args.orcid.strip():
+    print("ERROR: --orcid is empty. Set the ORCID_ID repo variable on GitHub.")
+    sys.exit(1)
 
   print(f"Fetching publications from ORCID {args.orcid}...")
   orcid_pubs = fetch_orcid_works(args.orcid)
   print(f"  Found {len(orcid_pubs)} works on ORCID")
 
-  citations = {}
-  if args.scholar:
-    print(f"Fetching citation counts from Google Scholar {args.scholar}...")
-    citations = fetch_scholar_citations(args.scholar)
-    print(f"  Found citation data for {len(citations)} works")
-
   print("Loading existing publications from siteData.ts...")
   existing = parse_existing_publications()
   print(f"  Found {len(existing)} existing publications")
 
-  overrides = load_overrides()
+  overrides, ignored = load_overrides()
 
-  merged, new_titles = merge_publications(existing, orcid_pubs, citations, overrides)
+  merged, new_titles = merge_publications(existing, orcid_pubs, overrides, ignored)
 
   if not new_titles:
-    print("\nNo new publications found. Site is up to date.")
+    print("\nNo new publications found. Site is up to date — no file changes written.")
     return
 
   print(f"\n{len(new_titles)} new publication(s) found:")
