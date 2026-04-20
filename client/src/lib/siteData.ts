@@ -31,7 +31,7 @@ export const profile = {
   intro:
     "I study how genetic and epigenetic variation relates to cognitive development and educational attainment — and how these processes unfold across unequal social and institutional contexts. My work sits at the intersection of behavioral genetics, epigenetics, and the social sciences, exploring what genomic data can and cannot tell us about human development.",
   bioParagraphs: [
-    "I am a predoctoral fellow at the Max Planck Institute for Human Development in Berlin, within the Biosocial Group. I also hold affiliations with Humboldt-Universität zu Berlin and the German Center for Integrative Biodiversity Research.",
+    "I am a predoctoral fellow at the Max Planck Institute for Human Development in Berlin, working within the research group 'Biosocial' — Biology, Social Disparities, and Development led by Dr. Laurel Raffington.",
     "My doctoral work uses molecular-genetic and epigenetic data — polygenic scores, DNA methylation, genome-wide summary statistics — to ask how biological variation becomes consequential inside particular social arrangements: schools, labour markets, regional histories.",
     "I am especially interested in places where a single number (a score, an estimate, a prediction) cannot do justice to the underlying terrain — where the atlas needs more than one plate.",
   ],
