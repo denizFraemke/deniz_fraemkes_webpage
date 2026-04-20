@@ -106,10 +106,10 @@ function Hero() {
       </div>
 
       {/* Desktop: two-column folio — title/intro/links on left, plate on right */}
-      <div className="hidden md:grid md:grid-cols-[0.95fr_1.05fr] md:gap-14 md:items-start">
+      <div className="hidden md:grid md:grid-cols-[0.75fr_1.25fr] md:gap-12 md:items-start">
         <div className="flex flex-col">
           <h1
-            className="font-serif font-light leading-[0.95] tracking-[-0.025em] text-[80px] xl:text-[104px]"
+            className="font-serif font-light leading-[0.95] tracking-[-0.025em] text-[60px] xl:text-[80px]"
             style={{ color: TEAL }}
           >
             Deniz
@@ -119,18 +119,18 @@ function Hero() {
             </span>
           </h1>
           <div
-            className="mt-6 font-mono text-[12px] tracking-[2px]"
+            className="mt-5 font-mono text-[11px] tracking-[2px]"
             style={{ color: TEAL }}
           >
             PREDOCTORAL FELLOW · MPIB · BERLIN
           </div>
           <p
-            className="mt-8 max-w-[560px] font-serif text-[22px] leading-[1.45]"
+            className="mt-7 max-w-[480px] font-serif text-[18px] leading-[1.5]"
             style={{ color: TEAL }}
           >
             {profile.intro}
           </p>
-          <div className="mt-10 flex gap-6 font-mono text-[11px] tracking-[2px]" style={{ color: TEAL }}>
+          <div className="mt-8 flex gap-5 font-mono text-[10.5px] tracking-[2px]" style={{ color: TEAL }}>
             <a href="#research" className="no-underline hover:text-[#c88a4a]">↳ RESEARCH</a>
             <Link href="/publications">
               <a className="no-underline hover:text-[#c88a4a]">↳ PUBLICATIONS</a>
