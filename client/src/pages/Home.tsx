@@ -672,6 +672,8 @@ function Contact() {
             </a>
             <span className="opacity-60">POST</span>
             <span>MAX-PLANCK-INSTITUT FÜR BILDUNGSFORSCHUNG · LENTZEALLEE 94 · 14195 BERLIN</span>
+            <span className="opacity-60">OFFICE</span>
+            <span>{profile.office}</span>
             <span className="opacity-60">SCHOLAR</span>
             <a
               href={profile.scholar}
@@ -680,6 +682,24 @@ function Contact() {
               className="hover:text-[#c88a4a]"
             >
               GOOGLE SCHOLAR PROFILE
+            </a>
+            <span className="opacity-60">GITHUB</span>
+            <a
+              href={profile.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[#c88a4a]"
+            >
+              {profile.github.toUpperCase()}
+            </a>
+            <span className="opacity-60">BLUESKY</span>
+            <a
+              href={profile.blueskyUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[#c88a4a]"
+            >
+              {profile.bluesky.toUpperCase()}
             </a>
           </div>
         </div>

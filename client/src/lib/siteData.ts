@@ -21,6 +21,11 @@ export const profile = {
   scholar: "https://scholar.google.com/citations?user=M_n5idUAAAAJ&hl=en&inst=1704897519255937060",
   orcid: "0009-0007-3446-9367",
   orcidUrl: "https://orcid.org/0009-0007-3446-9367",
+  office: "BY APPOINTMENT · TUE/THU",
+  github: "@denizFraemke",
+  githubUrl: "https://github.com/denizFraemke",
+  bluesky: "@denizfraemke.bsky.social",
+  blueskyUrl: "https://bsky.app/profile/denizfraemke.bsky.social",
   focus: [
     "Gene–Environment Interplay",
     "Social Inequality",
@@ -51,9 +56,9 @@ export const hero = {
 };
 
 export const contact = {
-  heading: "Get in touch.",
+  heading: "Write to me.",
   description:
-    "Whether you are interested in a research collaboration, a consulting inquiry, or have a question about my work — feel free to reach out. Describe your project briefly and I will get back to you.",
+    "For collaborations, consulting enquiries, speaking invitations, or to send me your work to read.",
 };
 
 export const footer = {
@@ -128,7 +133,7 @@ export const consulting = {
       description: "Independent review of analyses, methods sections, or results — for manuscripts, reports, or internal decision-making.",
     },
   ],
-  disclaimer: "Independent scientific consulting (freiberufliche wissenschaftliche Beratung)",
+  disclaimer: "Consulting is offered in a private capacity and is not affiliated with the Max Planck Society.",
 };
 
 export const publications: Publication[] = [

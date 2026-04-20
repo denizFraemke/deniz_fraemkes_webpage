@@ -3,7 +3,6 @@ import { publications } from "@/lib/siteData";
 import { Link } from "wouter";
 
 const TEAL = "#17353b";
-const TERRA = "#c88a4a";
 const ITALIC_BODY = "#3a4a4d";
 
 export default function Publications() {
@@ -39,59 +38,47 @@ export default function Publications() {
 
         {/* Publication grid — 2 columns for bigger plates */}
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
-          {publications.map((p, i) => {
-            const isFirstAuthor = /^\s*D\.?\s*Fra[eä]mke/i.test(p.authors);
-            return (
-              <a
-                key={p.slug}
-                href={p.externalUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex flex-col gap-4"
+          {publications.map((p) => (
+            <a
+              key={p.slug}
+              href={p.externalUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex flex-col gap-4"
+            >
+              <div className="overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
+                <img
+                  src={p.imageUrl}
+                  alt={p.title}
+                  className="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.02]"
+                />
+              </div>
+              <h3
+                className="m-0 font-serif text-[22px] font-normal leading-[1.22] tracking-[-0.01em]"
+                style={{ color: TEAL }}
               >
-                <div className="overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
-                  <img
-                    src={p.imageUrl}
-                    alt={p.title}
-                    className="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.02]"
-                  />
-                </div>
-                <div
-                  className="flex justify-between gap-3 font-mono text-[10px] tracking-[2.5px] opacity-70"
-                  style={{ color: TEAL }}
-                >
-                  <span>PLATE {toRoman(i + 1)} · {p.year}</span>
-                  <span className="truncate" style={isFirstAuthor ? { color: TERRA, opacity: 1 } : undefined}>
-                    {isFirstAuthor ? "FIRST AUTHOR" : p.venue.split(",")[0]}
-                  </span>
-                </div>
-                <h3
-                  className="m-0 font-serif text-[22px] font-normal leading-[1.22] tracking-[-0.01em]"
-                  style={{ color: TEAL }}
-                >
-                  {p.title}
-                </h3>
-                <p
-                  className="m-0 font-serif text-[14px] italic leading-[1.5] opacity-85"
-                  style={{ color: ITALIC_BODY }}
-                >
-                  {p.venue}
-                </p>
-                <p
-                  className="m-0 font-serif text-[15px] leading-[1.55]"
-                  style={{ color: TEAL }}
-                >
-                  {p.summary}
-                </p>
-                <div
-                  className="mt-1 font-mono text-[10px] tracking-[2px] group-hover:underline"
-                  style={{ color: TERRA }}
-                >
-                  ↳ READ PUBLICATION
-                </div>
-              </a>
-            );
-          })}
+                {p.title}
+              </h3>
+              <p
+                className="m-0 font-serif text-[14px] italic leading-[1.5] opacity-85"
+                style={{ color: ITALIC_BODY }}
+              >
+                {p.venue}
+              </p>
+              <p
+                className="m-0 font-serif text-[15px] leading-[1.55]"
+                style={{ color: TEAL }}
+              >
+                {p.summary}
+              </p>
+              <div
+                className="mt-1 font-mono text-[10px] tracking-[2px] group-hover:underline"
+                style={{ color: TERRA }}
+              >
+                ↳ READ PUBLICATION
+              </div>
+            </a>
+          ))}
         </div>
 
         {/* Back to home */}
@@ -107,13 +94,3 @@ export default function Publications() {
   );
 }
 
-function toRoman(n: number): string {
-  const map: [number, string][] = [
-    [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"],
-  ];
-  let out = "";
-  for (const [v, s] of map) {
-    while (n >= v) { out += s; n -= v; }
-  }
-  return out;
-}
