@@ -45,18 +45,16 @@ export default function Home() {
 
 function Hero() {
   return (
-    <section className="mx-auto max-w-[1440px] px-[22px] pt-6 pb-10 md:px-[64px] md:pt-9 md:pb-0">
-      {/* Hero plate — 4:3 matching the SVG's native viewBox */}
-      <div className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
-        <img
-          src="/images/hero-editorial.svg"
-          alt="Plate I — a cognitive trajectory crossing a biosocial terrain."
-          className="block h-auto w-full"
-        />
-      </div>
-
-      {/* Mobile: vertical layout */}
+    <section className="mx-auto max-w-[1440px] px-[22px] pt-6 pb-10 md:px-[64px] md:pt-9 md:pb-16">
+      {/* Mobile: plate on top, then title, role, intro, links */}
       <div className="md:hidden">
+        <div className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
+          <img
+            src="/images/hero-editorial.svg"
+            alt="Plate I — a cognitive trajectory crossing a biosocial terrain."
+            className="block h-auto w-full"
+          />
+        </div>
         <h1
           className="mt-7 font-serif text-[56px] font-light leading-[0.95] tracking-[-0.025em]"
           style={{ color: TEAL }}
@@ -64,7 +62,7 @@ function Hero() {
           Deniz
           <br />
           <span className="italic" style={{ color: TERRA }}>
-            Fraemke
+            Fraemke.
           </span>
         </h1>
         <div
@@ -96,18 +94,20 @@ function Hero() {
             </a>
           </Link>
           <a
-            href="#consulting"
+            href={profile.homepage}
+            target="_blank"
+            rel="noreferrer"
             className="flex items-center justify-between border-t border-b border-[rgba(23,53,59,0.18)] py-3.5"
           >
-            <span>↳ CONSULTING</span>
-            <span style={{ color: TERRA }}>§ 05</span>
+            <span>↳ CV</span>
+            <span style={{ color: TERRA }}>PDF</span>
           </a>
         </div>
       </div>
 
-      {/* Desktop: two-column title block */}
-      <div className="hidden md:grid md:grid-cols-2 md:gap-14 md:pt-14 md:pb-12">
-        <div>
+      {/* Desktop: two-column folio — title/intro/links on left, plate on right */}
+      <div className="hidden md:grid md:grid-cols-[0.95fr_1.05fr] md:gap-14 md:items-start">
+        <div className="flex flex-col">
           <h1
             className="font-serif font-light leading-[0.95] tracking-[-0.025em] text-[80px] xl:text-[104px]"
             style={{ color: TEAL }}
@@ -115,7 +115,7 @@ function Hero() {
             Deniz
             <br />
             <span className="italic" style={{ color: TERRA }}>
-              Fraemke
+              Fraemke.
             </span>
           </h1>
           <div
@@ -124,20 +124,41 @@ function Hero() {
           >
             PREDOCTORAL FELLOW · MPIB · BERLIN
           </div>
-        </div>
-        <div className="flex flex-col justify-end">
           <p
-            className="max-w-[560px] font-serif text-[22px] leading-[1.45]"
+            className="mt-8 max-w-[560px] font-serif text-[22px] leading-[1.45]"
             style={{ color: TEAL }}
           >
             {profile.intro}
           </p>
-          <div className="mt-7 flex gap-6 font-mono text-[11px] tracking-[2px]" style={{ color: TEAL }}>
+          <div className="mt-10 flex gap-6 font-mono text-[11px] tracking-[2px]" style={{ color: TEAL }}>
             <a href="#research" className="no-underline hover:text-[#c88a4a]">↳ RESEARCH</a>
             <Link href="/publications">
               <a className="no-underline hover:text-[#c88a4a]">↳ PUBLICATIONS</a>
             </Link>
-            <a href="#consulting" className="no-underline hover:text-[#c88a4a]">↳ CONSULTING</a>
+            <a
+              href={profile.homepage}
+              target="_blank"
+              rel="noreferrer"
+              className="no-underline hover:text-[#c88a4a]"
+            >
+              ↳ CV
+            </a>
+          </div>
+        </div>
+
+        <div className="flex flex-col">
+          <div
+            className="mb-3 text-right font-mono text-[10px] tracking-[2.5px] opacity-70"
+            style={{ color: TEAL }}
+          >
+            FIG. I · HERO PLATE
+          </div>
+          <div className="w-full overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]">
+            <img
+              src="/images/hero-editorial.svg"
+              alt="Plate I — a cognitive trajectory crossing a biosocial terrain."
+              className="block h-auto w-full"
+            />
           </div>
         </div>
       </div>
