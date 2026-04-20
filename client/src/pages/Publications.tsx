@@ -3,6 +3,7 @@ import { publications } from "@/lib/siteData";
 import { Link } from "wouter";
 
 const TEAL = "#17353b";
+const TERRA = "#c88a4a";
 const ITALIC_BODY = "#3a4a4d";
 
 export default function Publications() {
