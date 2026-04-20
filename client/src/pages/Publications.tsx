@@ -64,6 +64,10 @@ export default function Publications() {
                 className="m-0 font-serif text-[14px] italic leading-[1.5] opacity-85"
                 style={{ color: ITALIC_BODY }}
               >
+                <span className="font-mono not-italic tracking-[1.5px]">
+                  {p.year}
+                </span>
+                {" · "}
                 {p.venue}
               </p>
               <p

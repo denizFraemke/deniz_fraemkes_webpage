@@ -185,19 +185,22 @@ function FeaturedPublications({ featured }: { featured: typeof publications }) {
                 className="block h-auto w-full transition-transform duration-700 group-hover:scale-[1.02]"
               />
             </div>
-            <div
-              className="flex justify-between gap-3 font-mono text-[10px] tracking-[2.5px] opacity-70"
-              style={{ color: TEAL }}
-            >
-              <span>{p.year}</span>
-              <span className="truncate">{p.venue.split(",")[0]}</span>
-            </div>
             <h3
               className="m-0 font-serif text-[22px] font-normal leading-[1.22] tracking-[-0.01em]"
               style={{ color: TEAL }}
             >
               {p.title}
             </h3>
+            <p
+              className="m-0 font-serif text-[14px] italic leading-[1.5] opacity-85"
+              style={{ color: ITALIC_BODY }}
+            >
+              <span className="font-mono not-italic tracking-[1.5px]">
+                {p.year}
+              </span>
+              {" · "}
+              {p.venue.split(",")[0]}
+            </p>
             <p
               className="m-0 font-serif text-[15px] italic leading-[1.5]"
               style={{ color: ITALIC_BODY }}
