@@ -44,7 +44,7 @@ export const profile = {
   bluesky: "@denizfraemke.bsky.social",
   blueskyUrl: "https://bsky.app/profile/denizfraemke.bsky.social",
   linkedin: "Deniz Fraemke",
-  linkedinUrl: "https://www.linkedin.com/in/deniz-fraemke",
+  linkedinUrl: "https://www.linkedin.com/in/deniz-fraemke-33621323b/",
   focus: [
     "Gene–Environment Interplay",
     "Social Inequality",
