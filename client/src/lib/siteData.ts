@@ -124,7 +124,7 @@ export const milestones = [
     // FPN Randwyck campus — Maastricht University
     period: "2020–2022",
     title: "Research Master (MSc)",
-    detail: "Cognitive and Clinical Neuroscience, Maastricht University (FPN, Randwyck)",
+    detail: "Cognitive and Clinical Neuroscience, Maastricht University",
     coords: "50°50′13″N · 5°42′59″E",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=50.836837845844705,5.716470046304792",
   },
@@ -132,7 +132,7 @@ export const milestones = [
     // Universität Hamburg — Von-Melle-Park 5, 20146 Hamburg
     period: "2017–2020",
     title: "Psychology (BSc)",
-    detail: "University of Hamburg, Von-Melle-Park 5",
+    detail: "University of Hamburg",
     coords: "53°33′57″N · 9°59′05″E",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=53.56582149732579,9.984785141125613",
   },
