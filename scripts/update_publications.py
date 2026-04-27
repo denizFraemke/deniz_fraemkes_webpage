@@ -475,7 +475,11 @@ def build_pr_body(
 
   lines.append("### Review checklist")
   lines.append("- [ ] Titles and venues look correct")
-  lines.append("- [ ] For new publications: add or edit the summary, theme, and authors in `siteData.ts`")
+  lines.append(
+    "- [ ] In `siteData.ts`: write a one-sentence FINDINGS summary "
+    "(not a restatement of the title — what the paper actually shows), "
+    "and confirm/edit the author list and theme keywords."
+  )
   lines.append("- [ ] Generate a real atlas plate via Claude Design (steps above) and replace the hero placeholder in `imageUrl`")
   lines.append("")
   lines.append(

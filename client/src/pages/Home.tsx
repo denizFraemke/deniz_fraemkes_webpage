@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SiteShell from "@/components/SiteShell";
 import {
   consulting,
@@ -8,6 +8,23 @@ import {
   publications,
 } from "@/lib/siteData";
 import { Link } from "wouter";
+
+/** Scroll to whatever section the URL hash points at, after the page has
+ *  finished mounting. SPAs don't natively honour hash anchors on route
+ *  change, so this handles cross-page links like /#consulting from
+ *  /publications. */
+function useScrollToHashOnMount() {
+  useEffect(() => {
+    const id = window.location.hash.replace(/^#/, "");
+    if (!id) return;
+    // Wait one frame for layout to settle, then scroll smoothly.
+    const t = setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 60);
+    return () => clearTimeout(t);
+  }, []);
+}
 
 // --- Atlas design constants ---
 const TEAL = "#17353b";
@@ -22,6 +39,7 @@ const FEATURED_SLUGS = [
 ];
 
 export default function Home() {
+  useScrollToHashOnMount();
   const featured = FEATURED_SLUGS.map((slug) =>
     publications.find((p) => p.slug === slug),
   ).filter(Boolean) as typeof publications;
@@ -63,7 +81,7 @@ function Hero() {
           Deniz
           <br />
           <span className="italic" style={{ color: TERRA }}>
-            Fraemke.
+            Fraemke
           </span>
         </h1>
         <div
@@ -82,18 +100,26 @@ function Hero() {
         </p>
         <div className="mt-6 flex flex-col font-mono text-[10.5px] tracking-[2px]" style={{ color: TEAL }}>
           <a
+            href="#publications"
+            className="flex items-center justify-between border-t border-[rgba(23,53,59,0.18)] py-3.5"
+          >
+            <span>↳ PUBLICATIONS</span>
+            <span style={{ color: TERRA }}>§ 01</span>
+          </a>
+          <a
+            href="#about"
+            className="flex items-center justify-between border-t border-[rgba(23,53,59,0.18)] py-3.5"
+          >
+            <span>↳ ABOUT</span>
+            <span style={{ color: TERRA }}>§ 02</span>
+          </a>
+          <a
             href="#research"
             className="flex items-center justify-between border-t border-[rgba(23,53,59,0.18)] py-3.5"
           >
             <span>↳ RESEARCH</span>
             <span style={{ color: TERRA }}>§ 03</span>
           </a>
-          <Link href="/publications">
-            <a className="flex items-center justify-between border-t border-[rgba(23,53,59,0.18)] py-3.5">
-              <span>↳ PUBLICATIONS</span>
-              <span style={{ color: TERRA }}>§ 01</span>
-            </a>
-          </Link>
           <a
             href="#vita"
             className="flex items-center justify-between border-t border-b border-[rgba(23,53,59,0.18)] py-3.5"
@@ -114,7 +140,7 @@ function Hero() {
             Deniz
             <br />
             <span className="italic" style={{ color: TERRA }}>
-              Fraemke.
+              Fraemke
             </span>
           </h1>
           <div
@@ -129,14 +155,11 @@ function Hero() {
           >
             {profile.intro}
           </p>
-          <div className="mt-8 flex gap-5 font-mono text-[10.5px] tracking-[2px]" style={{ color: TEAL }}>
+          <div className="mt-8 flex flex-wrap gap-5 font-mono text-[10.5px] tracking-[2px]" style={{ color: TEAL }}>
+            <a href="#publications" className="no-underline hover:text-[#c88a4a]">↳ PUBLICATIONS</a>
+            <a href="#about" className="no-underline hover:text-[#c88a4a]">↳ ABOUT</a>
             <a href="#research" className="no-underline hover:text-[#c88a4a]">↳ RESEARCH</a>
-            <Link href="/publications">
-              <a className="no-underline hover:text-[#c88a4a]">↳ PUBLICATIONS</a>
-            </Link>
-            <a href="#vita" className="no-underline hover:text-[#c88a4a]">
-              ↳ VITA
-            </a>
+            <a href="#vita" className="no-underline hover:text-[#c88a4a]">↳ VITA</a>
           </div>
         </div>
 
@@ -185,15 +208,7 @@ function Kicker({
 function FeaturedPublications({ featured }: { featured: typeof publications }) {
   return (
     <section id="publications" className="mx-auto max-w-[1440px] px-[22px] pb-14 md:px-[64px] md:pb-20">
-      <Kicker
-        num="01"
-        label="SELECTED PUBLICATIONS"
-        right={
-          <Link href="/publications">
-            <a className="no-underline hover:text-[#c88a4a]">3 OF 8 · SEE ALL →</a>
-          </Link>
-        }
-      />
+      <Kicker num="01" label="SELECTED PUBLICATIONS" />
       <div className="grid gap-9 md:grid-cols-3">
         {featured.map((p) => (
           <a
@@ -227,8 +242,14 @@ function FeaturedPublications({ featured }: { featured: typeof publications }) {
               {p.venue.split(",")[0]}
             </p>
             <p
-              className="m-0 font-serif text-[15px] italic leading-[1.5]"
-              style={{ color: ITALIC_BODY }}
+              className="m-0 font-mono text-[10.5px] tracking-[1.5px] uppercase opacity-75"
+              style={{ color: TEAL }}
+            >
+              {p.authors}
+            </p>
+            <p
+              className="m-0 font-serif text-[15px] leading-[1.55]"
+              style={{ color: TEAL }}
             >
               {p.summary}
             </p>
@@ -237,6 +258,17 @@ function FeaturedPublications({ featured }: { featured: typeof publications }) {
             </div>
           </a>
         ))}
+      </div>
+      <div className="mt-10 md:mt-14 flex justify-center md:justify-start">
+        <Link href="/publications">
+          <a
+            className="inline-flex items-center gap-3 border border-[rgba(23,53,59,0.32)] px-6 py-3.5 font-mono text-[10.5px] tracking-[2.5px] no-underline hover:bg-[#17353b] hover:text-[#f7f3ec]"
+            style={{ color: TEAL }}
+          >
+            <span>SEE ALL PUBLICATIONS</span>
+            <span style={{ color: TERRA }}>→</span>
+          </a>
+        </Link>
       </div>
     </section>
   );
@@ -249,7 +281,7 @@ function FeaturedPublications({ featured }: { featured: typeof publications }) {
 function About() {
   return (
     <section id="about" className="mx-auto max-w-[1440px] px-[22px] pb-14 md:px-[64px] md:pb-24">
-      <Kicker num="02" label="ABOUT" right="BIO · CONTEXT" />
+      <Kicker num="02" label="ABOUT" />
       <div className="grid gap-7 md:grid-cols-[0.8fr_1.2fr] md:gap-[72px]">
         <div>
           <div
@@ -279,7 +311,30 @@ function About() {
             className="mt-8 grid grid-cols-2 gap-5 font-mono text-[10px] tracking-[1.8px] md:text-[11px] md:tracking-[2px] md:gap-6"
             style={{ color: TEAL }}
           >
-            <Meta k="AFFILIATION" v="MPIB · BIOSOCIAL GROUP" />
+            <Meta
+              k="AFFILIATION"
+              v={
+                <span>
+                  <a
+                    href="https://www.mpib-berlin.mpg.de"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-[#c88a4a]"
+                  >
+                    MPIB
+                  </a>
+                  {" · "}
+                  <a
+                    href="https://www.mpib-berlin.mpg.de/research/research-groups/biosocial"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-[#c88a4a]"
+                  >
+                    BIOSOCIAL GROUP
+                  </a>
+                </span>
+              }
+            />
             <Meta k="LOCATION" v="BERLIN, DE" />
             <Meta
               k="EMAIL"
@@ -376,7 +431,7 @@ const FOCUS: { num: string; title: string; blurb: string; motif: MotifKind }[] =
 function Research() {
   return (
     <section id="research" className="mx-auto max-w-[1440px] px-[22px] pb-14 md:px-[64px] md:pb-24">
-      <Kicker num="03" label="RESEARCH FOCUS" right="5 AREAS" />
+      <Kicker num="03" label="RESEARCH FOCUS" />
       <div className="grid gap-7 md:grid-cols-5 md:gap-6">
         {FOCUS.map((f) => (
           <article
@@ -529,12 +584,16 @@ function Motif({ kind }: { kind: MotifKind }) {
 function Trajectory() {
   return (
     <section id="vita" className="mx-auto max-w-[1440px] px-[22px] pb-14 md:px-[64px] md:pb-24">
-      <Kicker num="04" label="ACADEMIC TRAJECTORY" right={`${milestones[milestones.length - 1].period.split("–")[0]} → PRESENT`} />
+      <Kicker num="04" label="ACADEMIC TRAJECTORY" />
       <div>
-        {milestones.map((t) => (
+        {milestones.map((t, i) => (
           <div
             key={t.period}
-            className="grid gap-2 border-b border-[rgba(23,53,59,0.18)] py-5 md:grid-cols-[140px_1fr] md:gap-10 md:py-[26px] md:items-baseline"
+            className={`grid gap-2 py-5 md:grid-cols-[140px_1fr] md:gap-10 md:py-[26px] md:items-baseline ${
+              i === milestones.length - 1
+                ? ""
+                : "border-b border-[rgba(23,53,59,0.18)]"
+            }`}
           >
             <div className="font-mono text-[11px] tracking-[2px] md:text-[12px]" style={{ color: TERRA }}>
               {t.period}
@@ -573,7 +632,6 @@ function Consulting() {
           style={{ color: TEAL }}
         >
           <span>§ 05 · STATISTICAL CONSULTING</span>
-          <span className="opacity-65">FOR RESEARCHERS &amp; ORGANISATIONS</span>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 md:gap-[72px] md:items-start md:mb-14">
@@ -669,7 +727,7 @@ function Contact() {
 
   return (
     <section id="contact" className="mx-auto max-w-[1440px] px-[22px] pt-14 pb-16 md:px-[64px] md:pt-24 md:pb-20">
-      <Kicker num="06" label="CONTACT" right="CORRESPONDENCE" />
+      <Kicker num="06" label="CONTACT" />
       <div className="grid gap-10 md:grid-cols-2 md:gap-[72px]">
         <div>
           <h2
@@ -722,6 +780,15 @@ function Contact() {
               className="hover:text-[#c88a4a]"
             >
               {profile.bluesky.toUpperCase()}
+            </a>
+            <span className="opacity-60">LINKEDIN</span>
+            <a
+              href={profile.linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[#c88a4a]"
+            >
+              {profile.linkedin.toUpperCase()}
             </a>
           </div>
         </div>

@@ -15,8 +15,7 @@ export default function Publications() {
           className="flex items-baseline justify-between border-t border-[rgba(23,53,59,0.32)] font-mono text-[9.5px] tracking-[2.5px] md:text-[11px] md:tracking-[3px] pt-3.5 pb-10 md:pt-5 md:pb-14"
           style={{ color: TEAL }}
         >
-          <span>§ PUBLICATIONS · COMPLETE ATLAS</span>
-          <span className="opacity-65">PLATES I–VIII</span>
+          <span>§ PUBLICATIONS</span>
         </div>
 
         {/* Page heading */}
@@ -25,7 +24,7 @@ export default function Publications() {
             className="font-serif font-light leading-[0.98] tracking-[-0.025em] text-[52px] md:text-[88px]"
             style={{ color: TEAL }}
           >
-            Publications.
+            Publications
           </h1>
           <p
             className="max-w-[520px] font-serif text-[16px] leading-[1.55] md:text-[18px]"

@@ -43,6 +43,8 @@ export const profile = {
   githubUrl: "https://github.com/denizFraemke",
   bluesky: "@denizfraemke.bsky.social",
   blueskyUrl: "https://bsky.app/profile/denizfraemke.bsky.social",
+  linkedin: "Deniz Fraemke",
+  linkedinUrl: "https://www.linkedin.com/in/deniz-fraemke",
   focus: [
     "Gene–Environment Interplay",
     "Social Inequality",
@@ -51,11 +53,11 @@ export const profile = {
     "Developmental Epigenetics",
   ],
   intro:
-    "I study how genetic and epigenetic variation relates to cognitive development and educational attainment — and how these processes unfold across unequal social and institutional contexts. My work sits at the intersection of behavioral genetics, epigenetics, and the social sciences, exploring what genomic data can and cannot tell us about human development.",
+    "I study how genetic and epigenetic variation relates to cognitive development and educational attainment, and how these processes unfold across unequal social and institutional contexts. My work sits at the intersection of behavioral genetics, epigenetics, and the social sciences, exploring what genomic data can and cannot tell us about human development.",
   bioParagraphs: [
     "I am a predoctoral fellow at the Max Planck Institute for Human Development in Berlin, working within the research group 'Biosocial' — Biology, Social Disparities, and Development led by Dr. Laurel Raffington.",
     "My doctoral work uses molecular-genetic and epigenetic data — polygenic scores, DNA methylation, genome-wide summary statistics — to ask how biological variation becomes consequential inside particular social arrangements: schools, labour markets, regional histories.",
-    "I am especially interested in places where a single number (a score, an estimate, a prediction) cannot do justice to the underlying terrain — where the atlas needs more than one plate.",
+    "I am especially interested in places where a single number — a score, an estimate, a prediction — cannot capture what is actually going on, and where good answers require holding biological and social explanations together.",
   ],
   bio:
     "I am a predoctoral fellow at the Max Planck Institute for Human Development in Berlin, within the Biosocial Group. I also hold affiliations with Humboldt-Universität zu Berlin and the German Center for Integrative Biodiversity Research. My doctoral work uses molecular-genetic and epigenetic data — polygenic scores, DNA methylation, genome-wide summary statistics — to ask how biological variation becomes consequential inside particular social arrangements: schools, labour markets, regional histories. I am especially interested in places where a single number cannot do justice to the underlying terrain — where the atlas needs more than one plate.",
@@ -73,7 +75,7 @@ export const hero = {
 };
 
 export const contact = {
-  heading: "Write to me.",
+  heading: "Reach out",
   description:
     "For collaborations, consulting enquiries, speaking invitations, or to send me your work to read.",
 };
@@ -98,17 +100,17 @@ export const milestones = [
   {
     period: "Since 2023",
     title: "PhD Candidate",
-    detail: "MPRG Biosocial, Max Planck Institute for Human Development & IMPRS LIFE",
+    detail: "MPRG Biosocial, Max Planck Institute for Human Development & IMPRS LIFE, Berlin",
   },
   {
     period: "2022–2023",
     title: "Research Assistant",
-    detail: "MPRG Biosocial, Max Planck Institute for Human Development",
+    detail: "MPRG Biosocial, Max Planck Institute for Human Development, Berlin",
   },
   {
     period: "2021–2022",
     title: "Research Intern",
-    detail: "Department of Psychology, Max Planck Institute for Cognitive and Brain Sciences",
+    detail: "Department of Psychology, Max Planck Institute for Cognitive and Brain Sciences, Leipzig",
   },
   {
     period: "2020–2022",
@@ -172,7 +174,7 @@ export const publications: Publication[] = [
       "D Fraemke, L Paulus, I Schuurmans, JH Walter, D Czamara, AM Schowe, and colleagues",
     venue: "bioRxiv, 2026.04.01.715866",
     summary:
-      "A developmental preprint connecting epigenetic and polygenic indices with cognition and educational attainment from birth into young adulthood.",
+      "Tracks how polygenic and epigenetic indices of cognition and educational attainment co-develop from birth to young adulthood, and shows that environmental factors substantially shape the epigenetic component over time.",
     theme: "Development, genetics, cognition, education",
     accent: "from-[#24353f] via-[#3b6770] to-[#dd9b67]",
     imageUrl: "/images/publications/developmental-correlates-epigenetic-polygenic-indices.svg",
@@ -188,7 +190,7 @@ export const publications: Publication[] = [
       "D Fraemke, YE Willems, A Okbay, U Lindenberger, S Zinn, G Wagner, and colleagues",
     venue: "Psychological Science 36 (7), 559–573",
     summary:
-      "A study of how polygenic associations with educational attainment differ across East and West Germany in the post-reunification context.",
+      "Genetic associations with educational attainment grew stronger in West Germany than in East Germany after reunification, suggesting that political and economic transitions can amplify or mute the role of genetic predispositions in shaping educational outcomes.",
     theme: "Educational attainment, reunification, sociogenomics",
     accent: "from-[#21303d] via-[#4f6f82] to-[#ba7850]",
     imageUrl: "/images/publications/polygenic-educational-attainment-east-west-germany.svg",
@@ -219,7 +221,7 @@ export const publications: Publication[] = [
     authors: "MAN Aikins, YE Willems, D Fraemke, L Raffington",
     venue: "KZfSS Kölner Zeitschrift für Soziologie und Sozialpsychologie 76 (3), 573–602",
     summary:
-      "An intervention into sociogenomics and racism in Germany from a biosocial perspective, emphasizing historical context and social inequality.",
+      "Argues that sociogenomic research in Germany must reckon with the country's specific history of racialised science, and proposes a biosocial framework that treats race as a social construct with biological consequences rather than a biological category.",
     theme: "Racism, sociogenomics, biosocial theory",
     accent: "from-[#182631] via-[#34495e] to-[#bd6b4d]",
     imageUrl: "/images/publications/biosocial-perspective-racism-germany.svg",
