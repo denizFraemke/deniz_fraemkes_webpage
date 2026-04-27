@@ -102,39 +102,39 @@ export const milestones = [
     period: "Since 2023",
     title: "PhD Candidate",
     detail: "MPRG Biosocial, Max Planck Institute for Human Development & IMPRS LIFE, Berlin",
-    coords: "52°27′58″N · 13°17′04″E",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=52.466111,13.284444",
+    coords: "52°28′07″N · 13°18′14″E",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=52.46858292069713,13.303869748262867",
   },
   {
     period: "2022–2023",
     title: "Research Assistant",
     detail: "MPRG Biosocial, Max Planck Institute for Human Development, Berlin",
-    coords: "52°27′58″N · 13°17′04″E",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=52.466111,13.284444",
+    coords: "52°28′07″N · 13°18′14″E",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=52.46858292069713,13.303869748262867",
   },
   {
-    // MPI for Human Cognitive and Brain Sciences, Stephanstraße 1A, 04103 Leipzig
+    // MPI for Human Cognitive and Brain Sciences, Leipzig
     period: "2021–2022",
     title: "Research Intern",
     detail: "Department of Psychology, Max Planck Institute for Cognitive and Brain Sciences, Leipzig",
-    coords: "51°20′27″N · 12°23′52″E",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=51.340833,12.397778",
+    coords: "51°20′06″N · 12°23′20″E",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=51.33486741389014,12.388900038509078",
   },
   {
-    // FPN Randwyck campus — Universiteitssingel 40, 6229 ER Maastricht
+    // FPN Randwyck campus — Maastricht University
     period: "2020–2022",
     title: "Research Master (MSc)",
     detail: "Cognitive and Clinical Neuroscience, Maastricht University (FPN, Randwyck)",
-    coords: "50°49′58″N · 5°42′37″E",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=50.832778,5.710278",
+    coords: "50°50′13″N · 5°42′59″E",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=50.836837845844705,5.716470046304792",
   },
   {
-    // Universität Hamburg, Faculty of Psychology — Von-Melle-Park 5, 20146 Hamburg
+    // Universität Hamburg — Von-Melle-Park 5, 20146 Hamburg
     period: "2017–2020",
     title: "Psychology (BSc)",
     detail: "University of Hamburg, Von-Melle-Park 5",
-    coords: "53°34′05″N · 9°59′07″E",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=53.568056,9.985278",
+    coords: "53°33′57″N · 9°59′05″E",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=53.56582149732579,9.984785141125613",
   },
 ];
 
