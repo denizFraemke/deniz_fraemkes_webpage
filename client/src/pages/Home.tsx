@@ -586,12 +586,23 @@ function Trajectory() {
         {milestones.map((t, i) => (
           <div
             key={t.period}
-            className={`grid gap-2 py-5 md:grid-cols-[140px_1fr] md:gap-10 md:py-[26px] md:items-baseline ${
+            className={`grid gap-2 py-5 md:grid-cols-[200px_140px_1fr] md:gap-8 md:py-[26px] md:items-baseline ${
               i === milestones.length - 1
                 ? ""
                 : "border-b border-[rgba(23,53,59,0.18)]"
             }`}
           >
+            {/* Coordinates column (desktop only) — links to Google Maps */}
+            <a
+              href={t.mapsUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hidden md:block font-mono text-[10.5px] tracking-[1.5px] opacity-65 hover:opacity-100 hover:text-[#c88a4a]"
+              style={{ color: TEAL }}
+              aria-label={`Open ${t.detail.split(",")[0]} in Google Maps`}
+            >
+              {t.coords}
+            </a>
             <div className="font-mono text-[11px] tracking-[2px] md:text-[12px]" style={{ color: TERRA }}>
               {t.period}
             </div>

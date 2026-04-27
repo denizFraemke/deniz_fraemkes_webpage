@@ -98,29 +98,43 @@ export const publicationsPage = {
 
 export const milestones = [
   {
+    // Max Planck Institute for Human Development, Lentzeallee 94, 14195 Berlin
     period: "Since 2023",
     title: "PhD Candidate",
     detail: "MPRG Biosocial, Max Planck Institute for Human Development & IMPRS LIFE, Berlin",
+    coords: "52°27′58″N · 13°17′04″E",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=52.466111,13.284444",
   },
   {
     period: "2022–2023",
     title: "Research Assistant",
     detail: "MPRG Biosocial, Max Planck Institute for Human Development, Berlin",
+    coords: "52°27′58″N · 13°17′04″E",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=52.466111,13.284444",
   },
   {
+    // MPI for Human Cognitive and Brain Sciences, Stephanstraße 1A, 04103 Leipzig
     period: "2021–2022",
     title: "Research Intern",
     detail: "Department of Psychology, Max Planck Institute for Cognitive and Brain Sciences, Leipzig",
+    coords: "51°20′27″N · 12°23′52″E",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=51.340833,12.397778",
   },
   {
+    // FPN Randwyck campus — Universiteitssingel 40, 6229 ER Maastricht
     period: "2020–2022",
     title: "Research Master (MSc)",
-    detail: "Cognitive and Clinical Neuroscience, Maastricht University",
+    detail: "Cognitive and Clinical Neuroscience, Maastricht University (FPN, Randwyck)",
+    coords: "50°49′58″N · 5°42′37″E",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=50.832778,5.710278",
   },
   {
+    // Universität Hamburg, Faculty of Psychology — Von-Melle-Park 5, 20146 Hamburg
     period: "2017–2020",
     title: "Psychology (BSc)",
-    detail: "University of Hamburg",
+    detail: "University of Hamburg, Von-Melle-Park 5",
+    coords: "53°34′05″N · 9°59′07″E",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=53.568056,9.985278",
   },
 ];
 
