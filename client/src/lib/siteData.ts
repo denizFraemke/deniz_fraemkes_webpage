@@ -57,7 +57,7 @@ export const profile = {
   bioParagraphs: [
     "I am a predoctoral fellow at the Max Planck Institute for Human Development in Berlin, working within the research group 'Biosocial' — Biology, Social Disparities, and Development led by Dr. Laurel Raffington.",
     "My doctoral work uses molecular-genetic and epigenetic data — polygenic scores, DNA methylation, genome-wide summary statistics — to ask how biological variation becomes consequential inside particular social arrangements: schools, labour markets, regional histories.",
-    "I am especially interested in places where a single number — a score, an estimate, a prediction — reduces a multidimensional landscape to a single coordinate, and where explanation requires locating biological variation within its social context.",
+    "I am especially interested in places where a single number — an estimate, a prediction, a coordinate — reduces the multidimensional landscape, and where explanation requires locating biological variation within its social context.",
   ],
   bio:
     "I am a predoctoral fellow at the Max Planck Institute for Human Development in Berlin, within the Biosocial Group. I also hold affiliations with Humboldt-Universität zu Berlin and the German Center for Integrative Biodiversity Research. My doctoral work uses molecular-genetic and epigenetic data — polygenic scores, DNA methylation, genome-wide summary statistics — to ask how biological variation becomes consequential inside particular social arrangements: schools, labour markets, regional histories. I am especially interested in places where a single number cannot do justice to the underlying terrain — where the atlas needs more than one plate.",
