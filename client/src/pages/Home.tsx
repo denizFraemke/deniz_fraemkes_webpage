@@ -430,16 +430,16 @@ function Research() {
         {FOCUS.map((f) => (
           <article
             key={f.num}
-            className="border-t border-[rgba(23,53,59,0.18)] pt-4 md:pt-[18px] flex gap-4 md:flex-col md:gap-3"
+            className="border-t border-[rgba(23,53,59,0.18)] pt-4 md:pt-[18px] grid grid-cols-2 gap-5 items-start md:flex md:flex-col md:gap-3"
           >
-            {/* Plate — small square on mobile (left), full-width on desktop */}
+            {/* Plate — square taking the left half on mobile, full-width on desktop */}
             <div
-              className="overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec] flex-shrink-0 w-[88px] aspect-square md:w-auto md:aspect-[16/10]"
+              className="overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec] aspect-square md:aspect-[16/10] md:w-full"
             >
               <Motif kind={f.motif} />
             </div>
-            {/* Text — to the right on mobile, below on desktop */}
-            <div className="flex flex-1 flex-col gap-1.5 md:gap-3">
+            {/* Text — right half on mobile, below plate on desktop */}
+            <div className="flex flex-col gap-1.5 md:gap-3">
               <div className="font-mono text-[10px] tracking-[2.5px]" style={{ color: TERRA }}>
                 {f.num.toUpperCase()}
               </div>
