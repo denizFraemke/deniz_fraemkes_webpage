@@ -242,14 +242,8 @@ function FeaturedPublications({ featured }: { featured: typeof publications }) {
               {p.venue.split(",")[0]}
             </p>
             <p
-              className="m-0 font-mono text-[10.5px] tracking-[1.5px] uppercase opacity-75"
-              style={{ color: TEAL }}
-            >
-              {p.authors}
-            </p>
-            <p
-              className="m-0 font-serif text-[15px] leading-[1.55]"
-              style={{ color: TEAL }}
+              className="m-0 font-serif text-[15px] italic leading-[1.5]"
+              style={{ color: ITALIC_BODY }}
             >
               {p.summary}
             </p>
@@ -432,33 +426,36 @@ function Research() {
   return (
     <section id="research" className="mx-auto max-w-[1440px] px-[22px] pb-14 md:px-[64px] md:pb-24">
       <Kicker num="03" label="RESEARCH FOCUS" />
-      <div className="grid gap-7 md:grid-cols-5 md:gap-6">
+      <div className="grid gap-5 md:grid-cols-5 md:gap-6">
         {FOCUS.map((f) => (
           <article
             key={f.num}
-            className="flex flex-col gap-3 border-t border-[rgba(23,53,59,0.18)] pt-[18px]"
+            className="border-t border-[rgba(23,53,59,0.18)] pt-4 md:pt-[18px] flex gap-4 md:flex-col md:gap-3"
           >
-            <div className="font-mono text-[10px] tracking-[2.5px]" style={{ color: TERRA }}>
-              {f.num.toUpperCase()}
-            </div>
+            {/* Plate — small square on mobile (left), full-width on desktop */}
             <div
-              className="overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec]"
-              style={{ aspectRatio: "16 / 10" }}
+              className="overflow-hidden border border-[rgba(23,53,59,0.18)] bg-[#f7f3ec] flex-shrink-0 w-[88px] aspect-square md:w-auto md:aspect-[16/10]"
             >
               <Motif kind={f.motif} />
             </div>
-            <h4
-              className="m-0 font-serif text-[17px] font-normal leading-[1.25] tracking-[-0.005em]"
-              style={{ color: TEAL }}
-            >
-              {f.title}
-            </h4>
-            <p
-              className="m-0 font-serif text-[13.5px] italic leading-[1.5]"
-              style={{ color: ITALIC_BODY }}
-            >
-              {f.blurb}
-            </p>
+            {/* Text — to the right on mobile, below on desktop */}
+            <div className="flex flex-1 flex-col gap-1.5 md:gap-3">
+              <div className="font-mono text-[10px] tracking-[2.5px]" style={{ color: TERRA }}>
+                {f.num.toUpperCase()}
+              </div>
+              <h4
+                className="m-0 font-serif text-[17px] font-normal leading-[1.25] tracking-[-0.005em]"
+                style={{ color: TEAL }}
+              >
+                {f.title}
+              </h4>
+              <p
+                className="m-0 font-serif text-[13.5px] italic leading-[1.5]"
+                style={{ color: ITALIC_BODY }}
+              >
+                {f.blurb}
+              </p>
+            </div>
           </article>
         ))}
       </div>

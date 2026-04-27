@@ -174,7 +174,7 @@ export const publications: Publication[] = [
       "D Fraemke, L Paulus, I Schuurmans, JH Walter, D Czamara, AM Schowe, and colleagues",
     venue: "bioRxiv, 2026.04.01.715866",
     summary:
-      "Tracks how polygenic and epigenetic indices of cognition and educational attainment co-develop from birth to young adulthood, and shows that environmental factors substantially shape the epigenetic component over time.",
+      "A developmental preprint connecting epigenetic and polygenic indices with cognition and educational attainment from birth into young adulthood.",
     theme: "Development, genetics, cognition, education",
     accent: "from-[#24353f] via-[#3b6770] to-[#dd9b67]",
     imageUrl: "/images/publications/developmental-correlates-epigenetic-polygenic-indices.svg",
@@ -190,7 +190,7 @@ export const publications: Publication[] = [
       "D Fraemke, YE Willems, A Okbay, U Lindenberger, S Zinn, G Wagner, and colleagues",
     venue: "Psychological Science 36 (7), 559–573",
     summary:
-      "Genetic associations with educational attainment grew stronger in West Germany than in East Germany after reunification, suggesting that political and economic transitions can amplify or mute the role of genetic predispositions in shaping educational outcomes.",
+      "A study of how polygenic associations with educational attainment differ across East and West Germany in the post-reunification context.",
     theme: "Educational attainment, reunification, sociogenomics",
     accent: "from-[#21303d] via-[#4f6f82] to-[#ba7850]",
     imageUrl: "/images/publications/polygenic-educational-attainment-east-west-germany.svg",
@@ -221,7 +221,7 @@ export const publications: Publication[] = [
     authors: "MAN Aikins, YE Willems, D Fraemke, L Raffington",
     venue: "KZfSS Kölner Zeitschrift für Soziologie und Sozialpsychologie 76 (3), 573–602",
     summary:
-      "Argues that sociogenomic research in Germany must reckon with the country's specific history of racialised science, and proposes a biosocial framework that treats race as a social construct with biological consequences rather than a biological category.",
+      "An intervention into sociogenomics and racism in Germany from a biosocial perspective, emphasizing historical context and social inequality.",
     theme: "Racism, sociogenomics, biosocial theory",
     accent: "from-[#182631] via-[#34495e] to-[#bd6b4d]",
     imageUrl: "/images/publications/biosocial-perspective-racism-germany.svg",

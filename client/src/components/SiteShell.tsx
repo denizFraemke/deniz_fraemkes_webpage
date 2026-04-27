@@ -148,13 +148,15 @@ function FooterCol({ heading, items }: { heading: string; items: FooterItem[] })
 }
 
 function MobileMenu({ onClose }: { onClose: () => void }) {
-  const items = ["Research", "Publications", "Consulting", "Contact"];
-  const hrefs: Record<string, string> = {
-    Research: "/#research",
-    Publications: "/publications",
-    Consulting: "/#consulting",
-    Contact: "/#contact",
-  };
+  // Six sections in §01–§06 order, matching the numbered kickers on the home page.
+  const items: { label: string; section: string; href: string }[] = [
+    { label: "Publications", section: "01", href: "/#publications" },
+    { label: "About",        section: "02", href: "/#about" },
+    { label: "Research",     section: "03", href: "/#research" },
+    { label: "Vita",         section: "04", href: "/#vita" },
+    { label: "Consulting",   section: "05", href: "/#consulting" },
+    { label: "Contact",      section: "06", href: "/#contact" },
+  ];
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-[#f0eee9] px-[22px] py-[18px]">
@@ -170,30 +172,24 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           CLOSE ✕
         </button>
       </div>
-      <div className="mt-10 flex flex-col">
-        {items.map((label, i) => {
-          const href = hrefs[label];
-          const isInternal = !href.startsWith("/#");
+      <div className="mt-8 flex flex-col">
+        {items.map(({ label, section, href }) => {
           const anchorProps = {
             className:
-              "flex items-baseline justify-between border-b border-[rgba(23,53,59,0.18)] py-[22px]",
+              "flex items-baseline justify-between border-b border-[rgba(23,53,59,0.18)] py-[18px]",
             onClick: onClose,
           };
           const content = (
             <>
-              <span className="font-serif text-[42px] font-light tracking-[-0.02em] text-[#17353b]">
+              <span className="font-serif text-[36px] font-light tracking-[-0.02em] text-[#17353b]">
                 {label}
               </span>
               <span className="font-mono text-[10px] tracking-[2px] text-[#c88a4a]">
-                § 0{i + 1}
+                § {section}
               </span>
             </>
           );
-          return isInternal ? (
-            <Link key={label} href={href}>
-              <a {...anchorProps}>{content}</a>
-            </Link>
-          ) : (
+          return (
             <a key={label} href={href} {...anchorProps}>
               {content}
             </a>

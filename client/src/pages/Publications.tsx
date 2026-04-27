@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import SiteShell from "@/components/SiteShell";
 import { publications } from "@/lib/siteData";
 import { Link } from "wouter";
@@ -7,6 +8,12 @@ const TERRA = "#c88a4a";
 const ITALIC_BODY = "#3a4a4d";
 
 export default function Publications() {
+  // Always start at the top of the page on mount — wouter doesn't reset
+  // scroll position when you navigate between routes.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <SiteShell>
       <section className="mx-auto max-w-[1440px] px-[22px] pt-8 pb-14 md:px-[64px] md:pt-14 md:pb-20">
