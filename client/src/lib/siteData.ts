@@ -77,7 +77,7 @@ export const hero = {
 export const contact = {
   heading: "Reach out",
   description:
-    "For collaborations, consulting enquiries, speaking invitations, or to send me your work to read.",
+    "For collaborations, speaking invitations, or to send me your work to read.",
 };
 
 export const footer = {
@@ -93,7 +93,7 @@ export const publicationsPage = {
   galleryDescription:
     "Select a publication to view authors, venue, and a brief summary. Each card links directly to the full text or publisher's page.",
   backToHomeText:
-    "Return to the main page for research themes, biography, and consulting.",
+    "Return to the main page for research themes and biography.",
 };
 
 export const milestones = [
@@ -137,32 +137,6 @@ export const milestones = [
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=53.56582149732579,9.984785141125613",
   },
 ];
-
-export const consulting = {
-  headline: "Statistical consulting",
-  subtitle: "Statistische Beratung und Datenanalyse für Forschung, Unternehmen und Organisationen.",
-  description:
-    "Beyond my academic research, I offer statistical consulting for researchers, institutions, and organizations facing complex analytical challenges. Whether you need guidance on study design, advanced modeling, or help making sense of your data — I'm happy to have a conversation about how I can help.",
-  areas: [
-    {
-      title: "Data Analysis & Modeling",
-      description: "From survey data to large-scale behavioral studies — regression, multilevel models, and structural equation models tailored to your question.",
-    },
-    {
-      title: "Study Design & Strategy",
-      description: "Sample size planning, experimental design, and analytical strategies — for dissertations, master's theses, or applied research projects.",
-    },
-    {
-      title: "Data Visualization & Reporting",
-      description: "Clear, publication-ready figures and dashboards that make complex results accessible to any audience.",
-    },
-    {
-      title: "Statistical Review & Second Opinion",
-      description: "Independent review of analyses, methods sections, or results — for manuscripts, reports, or internal decision-making.",
-    },
-  ],
-  disclaimer: "Consulting is offered in a private capacity and is not affiliated with the Max Planck Society.",
-};
 
 export const publications: Publication[] = [
   // --- 2026 — first author ---

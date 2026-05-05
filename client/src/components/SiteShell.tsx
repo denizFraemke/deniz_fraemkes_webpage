@@ -11,7 +11,6 @@ const NAV = [
   { label: "Publications", href: "/#publications" },
   { label: "About", href: "/#about" },
   { label: "Research", href: "/#research" },
-  { label: "Consulting", href: "/#consulting" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -78,7 +77,7 @@ export default function SiteShell({ children }: SiteShellProps) {
             heading="Site"
             items={[
               { label: "Publications", href: "/publications", internal: true },
-              { label: "Consulting", href: "/#consulting" },
+              { label: "About", href: "/#about" },
               { label: "Contact", href: "/#contact" },
             ]}
           />
@@ -154,8 +153,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
     { label: "About",        section: "02", href: "/#about" },
     { label: "Research",     section: "03", href: "/#research" },
     { label: "Vita",         section: "04", href: "/#vita" },
-    { label: "Consulting",   section: "05", href: "/#consulting" },
-    { label: "Contact",      section: "06", href: "/#contact" },
+    { label: "Contact",      section: "05", href: "/#contact" },
   ];
 
   return (

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import SiteShell from "@/components/SiteShell";
 import {
-  consulting,
   contact,
   milestones,
   profile,
@@ -11,7 +10,7 @@ import { Link } from "wouter";
 
 /** Scroll to whatever section the URL hash points at, after the page has
  *  finished mounting. SPAs don't natively honour hash anchors on route
- *  change, so this handles cross-page links like /#consulting from
+ *  change, so this handles cross-page links like /#about from
  *  /publications. */
 function useScrollToHashOnMount() {
   useEffect(() => {
@@ -51,7 +50,6 @@ export default function Home() {
       <About />
       <Research />
       <Trajectory />
-      <Consulting />
       <Contact />
     </SiteShell>
   );
@@ -627,86 +625,6 @@ function Trajectory() {
 }
 
 // ───────────────────────────────────────────────────────────────────────────
-// §05 — STATISTICAL CONSULTING
-// ───────────────────────────────────────────────────────────────────────────
-
-function Consulting() {
-  return (
-    <section
-      id="consulting"
-      className="border-t border-b border-[rgba(23,53,59,0.18)] bg-[#ecebe3] px-[22px] py-14 md:px-[64px] md:py-28"
-    >
-      <div className="mx-auto max-w-[1440px]">
-        <div
-          className="flex items-baseline justify-between border-t border-[rgba(23,53,59,0.32)] pt-4 mb-8 font-mono text-[9.5px] tracking-[2.5px] md:text-[11px] md:tracking-[3px] md:pt-5 md:mb-9"
-          style={{ color: TEAL }}
-        >
-          <span>§ 05 · STATISTICAL CONSULTING</span>
-        </div>
-
-        <div className="grid gap-8 md:grid-cols-2 md:gap-[72px] md:items-start md:mb-14">
-          <div>
-            <h2
-              className="font-serif font-light leading-[1.02] tracking-[-0.02em] text-[44px] md:text-[68px]"
-              style={{ color: TEAL }}
-            >
-              {consulting.headline}
-            </h2>
-            <p
-              className="mt-4 font-serif italic opacity-75 text-[15px] md:text-[20px]"
-              style={{ color: TEAL }}
-            >
-              {consulting.subtitle}
-            </p>
-          </div>
-          <p
-            className="max-w-[540px] font-serif text-[16px] leading-[1.55] md:text-[17px]"
-            style={{ color: TEAL }}
-          >
-            {consulting.description}
-          </p>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-4 md:gap-7 md:mb-10">
-          {consulting.areas.map((s, i) => (
-            <div
-              key={s.title}
-              className="border-t border-[rgba(23,53,59,0.32)] pt-[18px]"
-            >
-              <div className="mb-2 font-mono text-[10px] tracking-[2.5px]" style={{ color: TERRA }}>
-                {["i", "ii", "iii", "iv"][i].toUpperCase()}
-              </div>
-              <h5
-                className="m-0 mb-2.5 font-serif text-[19px] font-normal tracking-[-0.005em] md:text-[20px]"
-                style={{ color: TEAL }}
-              >
-                {s.title}
-              </h5>
-              <p
-                className="m-0 font-serif italic text-[14px] leading-[1.5] md:text-[14.5px]"
-                style={{ color: ITALIC_BODY }}
-              >
-                {s.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div
-          className="mt-8 flex flex-col gap-2 border-t border-[rgba(23,53,59,0.18)] pt-4 font-mono text-[10px] tracking-[2px] opacity-65 md:flex-row md:items-baseline md:justify-between md:mt-0 md:pt-[18px] md:text-[10.5px]"
-          style={{ color: TEAL }}
-        >
-          <span className="uppercase">{consulting.disclaimer}</span>
-          <a href="#contact" className="hover:underline" style={{ color: TERRA }}>
-            ↳ ENQUIRE
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ───────────────────────────────────────────────────────────────────────────
 // §06 — CONTACT
 // ───────────────────────────────────────────────────────────────────────────
 
@@ -737,7 +655,7 @@ function Contact() {
 
   return (
     <section id="contact" className="mx-auto max-w-[1440px] px-[22px] pt-14 pb-16 md:px-[64px] md:pt-24 md:pb-20">
-      <Kicker num="06" label="CONTACT" />
+      <Kicker num="05" label="CONTACT" />
       <div className="grid gap-10 md:grid-cols-2 md:gap-[72px]">
         <div>
           <h2
