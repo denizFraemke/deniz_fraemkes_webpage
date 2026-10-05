@@ -143,8 +143,10 @@ export const publications: Publication[] = [
   {
     slug: "end-of-cognitive-meritocracy",
     year: "2026",
-    title: "The end of cognitive meritocracy",
-    authors: "D Fraemke",
+    title:
+      "The end of cognitive meritocracy",
+    authors:
+      "D Fraemke",
     venue: "AI & SOCIETY, 1–2",
     summary:
       "A recent single-author contribution positioning cognitive meritocracy as a critical concept for contemporary debate.",
@@ -167,6 +169,20 @@ export const publications: Publication[] = [
     accent: "from-[#24353f] via-[#3b6770] to-[#dd9b67]",
     imageUrl: "/images/publications/developmental-correlates-epigenetic-polygenic-indices.svg",
     externalUrl: "https://doi.org/10.64898/2026.04.01.715866",
+  },
+  // --- 2026 — co-authored ---
+  {
+    slug: "genomics-of-educational-attainment-across-80-years-of-social",
+    year: "2026",
+    title:
+      "Genomics of Educational Attainment Across 80 Years of Social and Political Transformation in Germany",
+    authors: "",
+    venue: "",
+    summary: "",
+    theme: "",
+    accent: "from-[#16313a] via-[#36656d] to-[#c98e54]",
+    imageUrl: "/images/hero-editorial.svg",
+    externalUrl: "https://doi.org/10.64898/2026.09.18.752588",
   },
   // --- 2025 — first author ---
   {
@@ -206,7 +222,8 @@ export const publications: Publication[] = [
     year: "2024",
     title:
       "Beyond a shared history: A biosocial perspective on sociogenomics and racism in Germany",
-    authors: "MAN Aikins, YE Willems, D Fraemke, L Raffington",
+    authors:
+      "MAN Aikins, YE Willems, D Fraemke, L Raffington",
     venue: "KZfSS Kölner Zeitschrift für Soziologie und Sozialpsychologie 76 (3), 573–602",
     summary:
       "An intervention into sociogenomics and racism in Germany from a biosocial perspective, emphasizing historical context and social inequality.",
@@ -233,7 +250,8 @@ export const publications: Publication[] = [
   {
     slug: "acute-stress-safety-goals",
     year: "2024",
-    title: "Acute stress promotes effort mobilization for safety-related goals",
+    title:
+      "Acute stress promotes effort mobilization for safety-related goals",
     authors:
       "K Pavlíčková, J Gärtner, SD Voulgaropoulou, D Fraemke, E Adams, and colleagues",
     venue: "Communications Psychology 2 (1), 50",
@@ -244,7 +262,7 @@ export const publications: Publication[] = [
     imageUrl: "/images/publications/acute-stress-safety-goals.svg",
     externalUrl: "https://doi.org/10.1038/s44271-024-00103-7",
   },
-  // --- 2022 — co-authored (published under previous name) ---
+  // --- 2022 — co-authored ---
   {
     slug: "visual-cortex-deaf-hearing-signers",
     year: "2022",
