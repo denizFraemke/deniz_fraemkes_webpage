@@ -32,7 +32,7 @@ const ITALIC_BODY = "#3a4a4d";
 
 // --- Which 3 publications to feature on the homepage ---
 const FEATURED_SLUGS = [
-  "polygenic-educational-attainment-east-west-germany",
+  "genomics-of-educational-attainment-across-80-years-of-social",
   "biosocial-perspective-racism-germany",
   "developmental-correlates-epigenetic-polygenic-indices",
 ];
