@@ -179,7 +179,7 @@ export const publications: Publication[] = [
       "D Fraemke, L Paulus, I Schuurmans, JH Walter, D Czamara, AM Schowe, and colleagues",
     venue: "bioRxiv, 2026.04.01.715866",
     summary:
-      "A developmental preprint connecting epigenetic and polygenic indices with cognition and educational attainment from birth into young adulthood.",
+      "Across four cohorts, a DNA-methylation index of adult cognitive function (Epigenetic-g) captured variation in children's cognitive and academic performance distinct from polygenic indices; it was plastic in early childhood and reached moderate stability by adolescence.",
     theme: "Development, genetics, cognition, education",
     accent: "from-[#24353f] via-[#3b6770] to-[#dd9b67]",
     imageUrl: "/images/publications/developmental-correlates-epigenetic-polygenic-indices.svg",
@@ -195,7 +195,7 @@ export const publications: Publication[] = [
       "D Fraemke, YE Willems, A Okbay, U Lindenberger, S Zinn, G Wagner, and colleagues",
     venue: "Psychological Science 36 (7), 559–573",
     summary:
-      "A study of how polygenic associations with educational attainment differ across East and West Germany in the post-reunification context.",
+      "In 1,930 adults from the SOEP-G cohort, polygenic associations with educational attainment did not differ between East and West Germany before reunification but increased in the East thereafter.",
     theme: "Educational attainment, reunification, sociogenomics",
     accent: "from-[#21303d] via-[#4f6f82] to-[#ba7850]",
     imageUrl: "/images/publications/polygenic-educational-attainment-east-west-germany.svg",
