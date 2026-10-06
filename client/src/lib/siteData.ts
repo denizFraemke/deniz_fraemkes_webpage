@@ -149,7 +149,7 @@ export const publications: Publication[] = [
       "D Fraemke, A Miller, P Koellinger, R Hertwig, D Richter, S Zinn, and colleagues",
     venue: "bioRxiv, 2026.09.18.752588",
     summary:
-      "Across 13,049 participants of four German studies born 1918–1995, polygenic index associations with educational attainment strengthened modestly in later cohorts and did not differ between East and West; associations with educational mobility were stronger in the East, and both were weaker for women than for men.",
+      "Across 13,049 participants born 1918–1995, polygenic associations with educational attainment strengthened modestly in later cohorts, with no detectable East–West difference; associations with educational mobility were stronger in the East, and both were weaker for women than for men.",
     theme: "Genetics, education, social change, Germany",
     accent: "from-[#16313a] via-[#36656d] to-[#c98e54]",
     imageUrl: "/images/publications/genomics-of-educational-attainment-across-80-years-of-social.svg",
