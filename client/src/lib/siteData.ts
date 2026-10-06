@@ -152,7 +152,7 @@ export const publications: Publication[] = [
       "Across 13,049 participants of four German studies born 1918–1995, polygenic index associations with educational attainment strengthened modestly in later cohorts and did not differ between East and West; associations with educational mobility were stronger in the East, and both were weaker for women than for men.",
     theme: "Genetics, education, social change, Germany",
     accent: "from-[#16313a] via-[#36656d] to-[#c98e54]",
-    imageUrl: "/images/hero-editorial.svg",
+    imageUrl: "/images/publications/genomics-of-educational-attainment-across-80-years-of-social.svg",
     externalUrl: "https://doi.org/10.64898/2026.09.18.752588",
   },
   {
