@@ -141,6 +141,21 @@ export const milestones = [
 export const publications: Publication[] = [
   // --- 2026 — first author ---
   {
+    slug: "genomics-of-educational-attainment-across-80-years-of-social",
+    year: "2026",
+    title:
+      "Genomics of Educational Attainment Across 80 Years of Social and Political Transformation in Germany",
+    authors:
+      "D Fraemke, A Miller, P Koellinger, R Hertwig, D Richter, S Zinn, and colleagues",
+    venue: "bioRxiv, 2026.09.18.752588",
+    summary:
+      "Across 13,049 participants of four German studies born 1918–1995, polygenic index associations with educational attainment strengthened modestly in later cohorts and did not differ between East and West; associations with educational mobility were stronger in the East, and both were weaker for women than for men.",
+    theme: "Genetics, education, social change, Germany",
+    accent: "from-[#16313a] via-[#36656d] to-[#c98e54]",
+    imageUrl: "/images/hero-editorial.svg",
+    externalUrl: "https://doi.org/10.64898/2026.09.18.752588",
+  },
+  {
     slug: "end-of-cognitive-meritocracy",
     year: "2026",
     title:
@@ -169,20 +184,6 @@ export const publications: Publication[] = [
     accent: "from-[#24353f] via-[#3b6770] to-[#dd9b67]",
     imageUrl: "/images/publications/developmental-correlates-epigenetic-polygenic-indices.svg",
     externalUrl: "https://doi.org/10.64898/2026.04.01.715866",
-  },
-  // --- 2026 — co-authored ---
-  {
-    slug: "genomics-of-educational-attainment-across-80-years-of-social",
-    year: "2026",
-    title:
-      "Genomics of Educational Attainment Across 80 Years of Social and Political Transformation in Germany",
-    authors: "",
-    venue: "",
-    summary: "",
-    theme: "",
-    accent: "from-[#16313a] via-[#36656d] to-[#c98e54]",
-    imageUrl: "/images/hero-editorial.svg",
-    externalUrl: "https://doi.org/10.64898/2026.09.18.752588",
   },
   // --- 2025 — first author ---
   {
