@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Space of the Three Papers by Birth Cohort, Age, and Region, and the Discovery Samples of Their Indices</title>
+<style>
+body{font-family:'Times New Roman',Times,serif;color:#222;max-width:1000px;margin:24px auto;padding:0 16px}
+h1{font-size:20px;font-weight:bold;margin:0 0 4px} p.hint{margin:0 0 8px;color:#555;font-size:15px}
+svg#fig{width:100%;height:auto;touch-action:none;cursor:grab;background:#fff;user-select:none;-webkit-user-select:none} svg#fig:active{cursor:grabbing}
+svg text{font-family:'Times New Roman',Times,serif;font-size:15px;fill:#333}
+text.tick{text-anchor:middle} text.end{text-anchor:end} text.start{text-anchor:start} text.title{text-anchor:middle;font-weight:bold;font-size:16px} text.title.start{text-anchor:start} text.title.end{text-anchor:end} text.title tspan.l2{font-weight:normal;font-size:14px}
+text.subtitle{text-anchor:middle;font-size:14.5px} text.subtitle.end{text-anchor:end} text.period{font-size:13px;fill:#888;font-style:italic} text.bub{font-weight:bold;font-size:14.5px} text.badge{font-weight:bold;font-size:13px;text-anchor:middle}
+.legend{display:flex;gap:8px 22px;flex-wrap:wrap;font-size:15px;margin:6px 0 14px;align-items:center}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+table{border-collapse:collapse;width:100%;font-size:15px;background:#f7f7f7} th{text-align:left;font-style:italic;font-weight:normal;border-bottom:1px solid #bbb}
+td,th{padding:6px 8px;vertical-align:middle} caption{text-align:left;font-weight:bold;padding:8px 8px 4px;background:#f7f7f7}
+.chip{display:inline-block;border-radius:7px;padding:2px 7px;font-weight:bold;white-space:nowrap}
+button{font:inherit;font-size:14px;margin-left:8px}
+</style></head><body>
+<h1>Design Space of the Three Papers by Birth Cohort, Age, and Region, and the Discovery Samples of Their Indices</h1>
+<p class="hint">Drag the figure to turn it. <button id="reset">Reset view</button></p>
+<svg id="fig" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="hatchlg" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#666" stroke-width="1.2"/></pattern><pattern id="hatch1" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#365C88" stroke-opacity="0.55" stroke-width="1"/></pattern><pattern id="hatch2" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#699381" stroke-opacity="0.55" stroke-width="1"/></pattern><pattern id="hatch3" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#B38040" stroke-opacity="0.55" stroke-width="1"/></pattern><radialGradient id="gedu" cx="0.5" cy="0.5" r="0.5" fx="0.33" fy="0.33"><stop offset="0" stop-color="#E6E8EB"/><stop offset="1" stop-color="#34445C"/></radialGradient><radialGradient id="gcog" cx="0.5" cy="0.5" r="0.5" fx="0.33" fy="0.33"><stop offset="0" stop-color="#F1F3F7"/><stop offset="1" stop-color="#8FA3BF"/></radialGradient><radialGradient id="gepi" cx="0.5" cy="0.5" r="0.5" fx="0.33" fy="0.33"><stop offset="0" stop-color="#EFECF5"/><stop offset="1" stop-color="#7E62AE"/></radialGradient><marker id="axtip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L10,5 L0,9 Z" fill="#555"/></marker></defs><g id="scene"></g></svg>
+<div class="legend"><span><svg width="26" height="14" style="width:26px"><rect x="1" y="1" width="24" height="12" fill="none" stroke="#666"/></svg>women</span><span><svg width="26" height="14" style="width:26px"><rect x="1" y="1" width="24" height="12" fill="url(#hatchlg)" stroke="#666"/></svg>men (hatched)</span><span><svg width="26" height="14" style="width:26px"><rect x="1" y="1" width="24" height="12" fill="none" stroke="#8C8C8C" stroke-dasharray="3 2"/></svg>not examined</span><span><svg width="40" height="14" style="width:40px"><circle cx="7" cy="7" r="5.5" fill="#34445C" stroke="#fff"/><circle cx="19" cy="7" r="5.5" fill="#8FA3BF" stroke="#fff"/><circle cx="31" cy="7" r="5.5" fill="#7E62AE" stroke="#fff"/></svg>discovery samples (volume: sample size)</span><span><svg width="30" height="14" style="width:30px"><line x1="2" y1="7" x2="20" y2="7" stroke="#2B2B2B" stroke-width="2.4"/><polygon points="28,7 18,2.5 18,11.5" fill="#2B2B2B"/></svg>weights applied in a paper, in the colour of their discovery sample</span><span><svg width="30" height="14" style="width:30px"><line x1="3" y1="11" x2="27" y2="3" stroke="#916834" stroke-width="1.2"/><circle cx="3" cy="11" r="2" fill="#916834"/><circle cx="15" cy="7" r="2" fill="#916834"/><circle cx="27" cy="3" r="2" fill="#916834"/></svg>same people followed over time; each dot one measurement</span></div>
+<table><caption>Characteristics of the three papers</caption><tr><th></th><th>Molecular index</th><th>Phenotype</th><th>Cohorts</th><th>Design</th></tr>
+<tr><td><span class="chip" style="background:#4474AA;color:white">Paper 1</span></td><td>PGI-Education</td><td>Educational attainment</td><td>SOEP-G</td><td>East and West Germany, before and after reunification</td></tr>
+<tr><td><span class="chip" style="background:#84B8A2;color:black">Paper 2</span></td><td>PGI-Education, PGI-Cognition, PGI-Non-Cognitive</td><td>Educational attainment, intergenerational educational mobility</td><td>SOEP-G, TwinLife, BASE-II, SHIP</td><td>Pooled across studies; birth cohort, region, and gender</td></tr>
+<tr><td><span class="chip" style="background:#E0A050;color:black">Paper 3</span></td><td>PGI-Education, PGI-Cognition, Epigenetic-<i>g</i></td><td>Cognitive and academic performance</td><td>TTP, FFCWS, Generation R, TwinLife</td><td>Within cohort in three countries; longitudinal and within-family</td></tr>
+</table>
+<script>
+const OV={az:-44.0000,el:33.0000,dims:[2.9000,2.2800,2.0000],xe:2.5672,op:0.5000,order:["1","2","1f","3"],
+lines:[{k:"edge",a:[0.0000,0.0000,0.0000],b:[2.5672,0.0000,0.0000]},{k:"edge",a:[0.0000,2.2800,0.0000],b:[2.5672,2.2800,0.0000]},{k:"edge",a:[0.0000,0.0000,0.0000],b:[0.0000,2.2800,0.0000]},{k:"edge",a:[2.5672,0.0000,0.0000],b:[2.5672,2.2800,0.0000]},{k:"edge",a:[0.0000,2.2800,0.0000],b:[0.0000,2.2800,2.0000]},{k:"edge",a:[2.5672,2.2800,0.0000],b:[2.5672,2.2800,2.0000]},{k:"edge",a:[0.0000,2.2800,2.0000],b:[2.5672,2.2800,2.0000]},{k:"edge",a:[0.0000,0.0000,0.0000],b:[0.0000,0.0000,2.0000]},{k:"edge",a:[0.0000,0.0000,2.0000],b:[0.0000,2.2800,2.0000]},{k:"grid",a:[0.0475,0.0000,0.0000],b:[0.0475,2.2800,0.0000]},{k:"grid",a:[0.0475,2.2800,0.0000],b:[0.0475,2.2800,2.0000]},{k:"grid",a:[0.5230,0.0000,0.0000],b:[0.5230,2.2800,0.0000]},{k:"grid",a:[0.5230,2.2800,0.0000],b:[0.5230,2.2800,2.0000]},{k:"grid",a:[0.9984,0.0000,0.0000],b:[0.9984,2.2800,0.0000]},{k:"grid",a:[0.9984,2.2800,0.0000],b:[0.9984,2.2800,2.0000]},{k:"grid",a:[1.4738,0.0000,0.0000],b:[1.4738,2.2800,0.0000]},{k:"grid",a:[1.4738,2.2800,0.0000],b:[1.4738,2.2800,2.0000]},{k:"grid",a:[1.9492,0.0000,0.0000],b:[1.9492,2.2800,0.0000]},{k:"grid",a:[1.9492,2.2800,0.0000],b:[1.9492,2.2800,2.0000]},{k:"grid",a:[2.4246,0.0000,0.0000],b:[2.4246,2.2800,0.0000]},{k:"grid",a:[2.4246,2.2800,0.0000],b:[2.4246,2.2800,2.0000]},{k:"grid",a:[0.0000,2.2800,0.0500],b:[2.5672,2.2800,0.0500]},{k:"grid",a:[0.0000,0.0000,0.0500],b:[0.0000,2.2800,0.0500]},{k:"grid",a:[0.0000,2.2800,0.6000],b:[2.5672,2.2800,0.6000]},{k:"grid",a:[0.0000,0.0000,0.6000],b:[0.0000,2.2800,0.6000]},{k:"grid",a:[0.0000,2.2800,0.9000],b:[2.5672,2.2800,0.9000]},{k:"grid",a:[0.0000,0.0000,0.9000],b:[0.0000,2.2800,0.9000]},{k:"grid",a:[0.0000,2.2800,1.2500],b:[2.5672,2.2800,1.2500]},{k:"grid",a:[0.0000,0.0000,1.2500],b:[0.0000,2.2800,1.2500]},{k:"edge",a:[0.0000,2.2800,1.5000],b:[2.5672,2.2800,1.5000]},{k:"edge",a:[0.0000,0.0000,1.5000],b:[0.0000,2.2800,1.5000]},{k:"grid",a:[0.0000,2.2800,1.6250],b:[2.5672,2.2800,1.6250]},{k:"grid",a:[0.0000,0.0000,1.6250],b:[0.0000,2.2800,1.6250]},{k:"grid",a:[0.0000,2.2800,1.7500],b:[2.5672,2.2800,1.7500]},{k:"grid",a:[0.0000,0.0000,1.7500],b:[0.0000,2.2800,1.7500]},{k:"grid",a:[0.0000,2.2800,1.8750],b:[2.5672,2.2800,1.8750]},{k:"grid",a:[0.0000,0.0000,1.8750],b:[0.0000,2.2800,1.8750]},{k:"grid",a:[0.0000,2.2800,2.0000],b:[2.5672,2.2800,2.0000]},{k:"grid",a:[0.0000,0.0000,2.0000],b:[0.0000,2.2800,2.0000]},{k:"grid",a:[0.0000,0.1900,0.0000],b:[2.5672,0.1900,0.0000]},{k:"grid",a:[0.0000,0.1900,0.0000],b:[0.0000,0.1900,2.0000]},{k:"grid",a:[0.0000,0.5700,0.0000],b:[2.5672,0.5700,0.0000]},{k:"grid",a:[0.0000,0.5700,0.0000],b:[0.0000,0.5700,2.0000]},{k:"grid",a:[0.0000,0.9500,0.0000],b:[2.5672,0.9500,0.0000]},{k:"grid",a:[0.0000,0.9500,0.0000],b:[0.0000,0.9500,2.0000]},{k:"grid",a:[0.0000,1.3300,0.0000],b:[2.5672,1.3300,0.0000]},{k:"grid",a:[0.0000,1.3300,0.0000],b:[0.0000,1.3300,2.0000]},{k:"grid",a:[0.0000,1.7100,0.0000],b:[2.5672,1.7100,0.0000]},{k:"grid",a:[0.0000,1.7100,0.0000],b:[0.0000,1.7100,2.0000]},{k:"grid",a:[0.0000,2.0900,0.0000],b:[2.5672,2.0900,0.0000]},{k:"grid",a:[0.0000,2.0900,0.0000],b:[0.0000,2.0900,2.0000]},{k:"axis",a:[0.0000,-0.0800,0.0000],b:[2.6572,-0.0800,0.0000]},{k:"axis",a:[-0.0600,0.0000,0.0000],b:[-0.0600,0.0000,2.1200]},{k:"axis",a:[2.6372,0.0000,0.0000],b:[2.6372,2.3800,0.0000]}],
+texts:[{t:"1920",at:[0.0475,-0.1800,0.0000],c:"tick"},{t:"1940",at:[0.5230,-0.1800,0.0000],c:"tick"},{t:"1960",at:[0.9984,-0.1800,0.0000],c:"tick"},{t:"1980",at:[1.4738,-0.1800,0.0000],c:"tick"},{t:"2000",at:[1.9492,-0.1800,0.0000],c:"tick"},{t:"2020",at:[2.4246,-0.1800,0.0000],c:"tick"},{t:"0",at:[-0.1100,0.0000,0.0000],c:"tick end"},{t:"5",at:[-0.1100,0.0000,0.2500],c:"tick end"},{t:"10",at:[-0.1100,0.0000,0.5000],c:"tick end"},{t:"15",at:[-0.1100,0.0000,0.7500],c:"tick end"},{t:"20",at:[-0.1100,0.0000,1.0000],c:"tick end"},{t:"25",at:[-0.1100,0.0000,1.2500],c:"tick end"},{t:"30",at:[-0.1100,0.0000,1.5000],c:"tick end"},{t:"40",at:[-0.1100,0.0000,1.6250],c:"tick end"},{t:"50",at:[-0.1100,0.0000,1.7500],c:"tick end"},{t:"60",at:[-0.1100,0.0000,1.8750],c:"tick end"},{t:"70",at:[-0.1100,0.0000,2.0000],c:"tick end"},{t:"Birth",at:[-0.3600,0.0000,0.0250],c:"period end"},{t:"Childhood",at:[-0.3600,0.0000,0.3250],c:"period end"},{t:"Adolescence",at:[-0.3600,0.0000,0.7500],c:"period end"},{t:"Young adulthood",at:[-0.3600,0.0000,1.0750],c:"period end"},{t:"Adulthood",at:[-0.3600,0.0000,1.3750],c:"period end"},{t:"East Germany",at:[2.6972,0.1900,0.0000],c:"tick start region"},{t:"West Germany",at:[2.6972,0.5700,0.0000],c:"tick start region"},{t:"Netherlands",at:[2.6972,0.9500,0.0000],c:"tick start region"},{t:"UK",at:[2.6972,1.3300,0.0000],c:"tick start region"},{t:"US",at:[2.6972,1.7100,0.0000],c:"tick start region"},{t:"Other or not stated",at:[2.6972,2.0900,0.0000],c:"tick start region"},{t:"Historical period",at:[0.0475,-0.1800,0.0000],c:"title end below"},{t:"Age in years (above 30 at quarter scale)",at:[-0.0600,0.0000,2.2000],c:"title"},{t:"Region (East to West)",at:[2.6872,2.4800,0.0000],c:"title start"},{t:"(birth cohorts)",at:[0.0475,-0.1800,0.0000],c:"subtitle end below"}],
+boxes:[{id:"paper1",p:"1",y0:0.0000,centre:[1.4025,0.3400,0.6250],faces:[[[0.3803,0.0000,0.0000],[1.8303,0.0000,0.0000],[2.4246,0.0000,1.2500],[0.9746,0.0000,1.2500]],[[1.8303,0.6800,0.0000],[0.3803,0.6800,0.0000],[0.9746,0.6800,1.2500],[2.4246,0.6800,1.2500]],[[0.9746,0.0000,1.2500],[2.4246,0.0000,1.2500],[2.4246,0.6800,1.2500],[0.9746,0.6800,1.2500]],[[0.3803,0.6800,0.0000],[1.8303,0.6800,0.0000],[1.8303,0.0000,0.0000],[0.3803,0.0000,0.0000]],[[0.3803,0.6800,0.0000],[0.3803,0.0000,0.0000],[0.9746,0.0000,1.2500],[0.9746,0.6800,1.2500]],[[1.8303,0.0000,0.0000],[1.8303,0.6800,0.0000],[2.4246,0.6800,1.2500],[2.4246,0.0000,1.2500]]],tk:[1,2,3,4,5,6],men:[[],[],[],[],[],[]]},{id:"paper2",p:"2",y0:0.0000,centre:[1.2242,0.3700,0.6250],faces:[[[0.0000,0.0000,0.0000],[1.8541,0.0000,0.0000],[2.4484,0.0000,1.2500],[0.5943,0.0000,1.2500]],[[1.8541,0.7400,0.0000],[0.0000,0.7400,0.0000],[0.5943,0.7400,1.2500],[2.4484,0.7400,1.2500]],[[0.5943,0.0000,1.2500],[2.4484,0.0000,1.2500],[2.4484,0.7400,1.2500],[0.5943,0.7400,1.2500]],[[0.0000,0.7400,0.0000],[1.8541,0.7400,0.0000],[1.8541,0.0000,0.0000],[0.0000,0.0000,0.0000]],[[0.0000,0.7400,0.0000],[0.0000,0.0000,0.0000],[0.5943,0.0000,1.2500],[0.5943,0.7400,1.2500]],[[1.8541,0.0000,0.0000],[1.8541,0.7400,0.0000],[2.4484,0.7400,1.2500],[2.4484,0.0000,1.2500]]],tk:[1,2,3,4,5,6],men:[[],[[[1.8541,0.7400,0.0000],[0.0000,0.7400,0.0000],[0.5943,0.7400,1.2500],[2.4484,0.7400,1.2500]]],[[[0.5943,0.1800,1.2500],[2.4484,0.1800,1.2500],[2.4484,0.3800,1.2500],[0.5943,0.3800,1.2500]],[[0.5943,0.5600,1.2500],[2.4484,0.5600,1.2500],[2.4484,0.7400,1.2500],[0.5943,0.7400,1.2500]]],[[[0.0000,0.3800,0.0000],[1.8541,0.3800,0.0000],[1.8541,0.1800,0.0000],[0.0000,0.1800,0.0000]],[[0.0000,0.7400,0.0000],[1.8541,0.7400,0.0000],[1.8541,0.5600,0.0000],[0.0000,0.5600,0.0000]]],[[[0.0000,0.3800,0.0000],[0.0000,0.1800,0.0000],[0.5943,0.1800,1.2500],[0.5943,0.3800,1.2500]],[[0.0000,0.7400,0.0000],[0.0000,0.5600,0.0000],[0.5943,0.5600,1.2500],[0.5943,0.7400,1.2500]]],[[[1.8541,0.1800,0.0000],[1.8541,0.3800,0.0000],[2.4484,0.3800,1.2500],[2.4484,0.1800,1.2500]],[[1.8541,0.5600,0.0000],[1.8541,0.7400,0.0000],[2.4484,0.7400,1.2500],[2.4484,0.5600,1.2500]]]]},{id:"paper3",p:"3",y0:0.0000,centre:[2.2957,0.9400,0.7265],faces:[[[1.6402,0.0000,0.0000],[2.2820,0.0000,0.0000],[2.5672,0.0000,0.5605],[2.5672,0.0000,1.5361],[2.4220,0.0000,1.5361]],[[2.2820,1.8800,0.0000],[1.6402,1.8800,0.0000],[2.4220,1.8800,1.5361],[2.5672,1.8800,1.5361],[2.5672,1.8800,0.5605]],[[2.4220,0.0000,1.5361],[2.5672,0.0000,1.5361],[2.5672,1.8800,1.5361],[2.4220,1.8800,1.5361]],[[1.6402,1.8800,0.0000],[2.2820,1.8800,0.0000],[2.2820,0.0000,0.0000],[1.6402,0.0000,0.0000]],[[1.6402,1.8800,0.0000],[1.6402,0.0000,0.0000],[2.4220,0.0000,1.5361],[2.4220,1.8800,1.5361]],[[2.2820,0.0000,0.0000],[2.2820,1.8800,0.0000],[2.5672,1.8800,0.5605],[2.5672,0.0000,0.5605]],[[2.5672,0.0000,0.5605],[2.5672,1.8800,0.5605],[2.5672,1.8800,1.5361],[2.5672,0.0000,1.5361]]],tk:[1,2,3,4,5,6,6],men:[[],[],[],[],[],[],[]]}],
+tint:{"1":["#AAC0D8","#AAC0D8","#C6D5E5","#C6D5E5","#85A4C7","#85A4C7"],"2":["#C7DFD5","#C7DFD5","#DAE9E3","#DAE9E3","#AFD0C2","#AFD0C2"],"3":["#F1D4B0","#F1D4B0","#F5E2CA","#F5E2CA","#EAC18D","#EAC18D"]},
+edge:{"1":"#396290","2":"#709C89","3":"#BE8844"},
+cohorts:[[[2.3773,1.7100,0.6255],[2.4191,1.7100,0.7135],[2.4403,1.7100,0.7580],[2.4548,1.7100,0.7885]],[[2.3302,0.3800,0.3015],[2.3547,0.3800,0.3530],[2.3775,0.3800,0.4010],[2.4239,0.3800,0.4985],[2.4705,0.3800,0.5965],[2.4750,0.3800,0.6060]],[[2.3243,0.3800,0.5890],[2.3492,0.3800,0.6415],[2.3728,0.3800,0.6910],[2.4194,0.3800,0.7890],[2.4669,0.3800,0.8890],[2.4731,0.3800,0.9020]],[[2.3214,0.3800,0.8830],[2.3450,0.3800,0.9325],[2.3699,0.3800,0.9850],[2.4186,0.3800,1.0875],[2.4662,0.3800,1.1875],[2.4726,0.3800,1.2010]],[[2.3202,0.3800,1.1805],[2.3435,0.3800,1.2295],[2.3671,0.3800,1.2790],[2.4141,0.3800,1.3780],[2.4638,0.3800,1.4825],[2.4695,0.3800,1.4945]],[[2.0561,0.9500,0.0000],[2.1156,0.9500,0.1250],[2.1988,0.9500,0.3000],[2.2939,0.9500,0.5000],[2.3414,0.9500,0.6000],[2.3889,0.9500,0.7000]],[[2.1512,1.7100,0.4500],[2.2701,1.7100,0.7000],[2.2939,1.7100,0.7500],[2.4602,1.7100,1.1000]]],cohortcol:"#916834",
+bubbles:[{v:"edu",c:[1.3515,1.6498,0.8986],r:0.1600,off:[-12.0000,78.0000],lab:"PGI-Education GWAS"},{v:"cog",c:[2.1523,1.2214,1.8000],r:0.0704,off:[-20.0000,36.0000],lab:"PGI-Cognition GWAS"},{v:"epi",c:[2.1605,1.5033,1.7499],r:0.0231,off:[18.0000,30.0000],lab:"Epigenetic-<tspan font-style='italic'>g</tspan> EWAS"}],
+arrows:[{a:[1.3515,1.6498,0.8986],b:[1.2242,0.3700,0.6250],r:0.1600,col:"#34445C"},{a:[1.3515,1.6498,0.8986],b:[2.3057,0.9400,0.9000],r:0.1600,col:"#34445C"},{a:[2.1523,1.2214,1.8000],b:[1.0816,0.3700,0.6250],r:0.0704,col:"#8FA3BF"},{a:[2.1523,1.2214,1.8000],b:[2.4246,0.9500,1.0000],r:0.0704,col:"#8FA3BF"},{a:[2.1605,1.5033,1.7499],b:[2.4246,1.3300,1.0000],r:0.0231,col:"#7E62AE"}],
+badges:[{p:"1",at:[1.2836,0.0000,0.5000],col:"#4474AA",txt:"white"},{p:"2",at:[0.5230,0.0000,0.7500],col:"#84B8A2",txt:"black"},{p:"3",at:[1.9967,0.0000,0.3000],col:"#E0A050",txt:"black"}],
+head:14,width:2.4};
+// Figure 1, interactive: the overview that print_figures.R draws, in the same geometry
+// (OV, written above this code), turned by dragging. Boxes as in Figure 1: a tint of the
+// paper's colour per face, only the faces turned towards the reader, men hatched in
+// Paper 2; Paper 3's cohorts followed over time; the discovery samples as bubbles and
+// an arrow from each to the papers that applied its index.
+const NS = "http://www.w3.org/2000/svg";
+const svg = document.getElementById("fig");
+const scene = document.getElementById("scene");
+const K = 172, F = 7; // pixels per scene unit at zoom 1; viewer distance, as in interactive.js
+let az = OV.az, el = OV.el, drag = null;
+
+function view(p) {
+  const a = az * Math.PI / 180, e = el * Math.PI / 180, C = OV.dims;
+  const x = p[0] - C[0] / 2, y = p[1] - C[1] / 2, z = p[2] - C[2] / 2;
+  const x1 = x * Math.cos(a) - y * Math.sin(a), y1 = x * Math.sin(a) + y * Math.cos(a);
+  const v = z * Math.cos(e) + y1 * Math.sin(e), d = y1 * Math.cos(e) - z * Math.sin(e);
+  const k = F / (F + d) * K;
+  return [x1 * k, -v * k, d, k];
+}
+function camera() { // the viewer's position in the scene
+  const a = az * Math.PI / 180, e = el * Math.PI / 180, C = OV.dims, y1 = -F * Math.cos(e);
+  return [C[0] / 2 + y1 * Math.sin(a), C[1] / 2 + y1 * Math.cos(a), C[2] / 2 + F * Math.sin(e)];
+}
+const sub = (p, q) => [p[0] - q[0], p[1] - q[1], p[2] - q[2]];
+const dot = (p, q) => p[0] * q[0] + p[1] * q[1] + p[2] * q[2];
+function facing(f, centre) { // is the face turned towards the viewer? (its normal, pointing out of the box)
+  const u = sub(f[1], f[0]), w = sub(f[2], f[1]);
+  let n = [u[1] * w[2] - u[2] * w[1], u[2] * w[0] - u[0] * w[2], u[0] * w[1] - u[1] * w[0]];
+  const m = [0, 1, 2].map(i => f.reduce((s, p) => s + p[i], 0) / f.length);
+  if (dot(n, sub(m, centre)) < 0) n = n.map(c => -c);
+  return dot(n, sub(camera(), m)) > 1e-9;
+}
+function add(tag, attrs, parent) {
+  const n = document.createElementNS(NS, tag);
+  for (const k in attrs) n.setAttribute(k, attrs[k]);
+  (parent || scene).appendChild(n);
+  return n;
+}
+const pts = ps => ps.map(view).map(q => q[0].toFixed(1) + "," + q[1].toFixed(1)).join(" ");
+const UNITS = (() => { // the drawing order cut into groups of papers that lie inside one another
+  const ps = OV.order.map(i => i.replace("f", "")), out = [];
+  for (let i = 0; i < ps.length;) {
+    let j = ps.lastIndexOf(ps[i]);
+    for (let k = i; k <= j; k++) j = Math.max(j, ps.lastIndexOf(ps[k]));
+    out.push(OV.order.slice(i, j + 1));
+    i = j + 1;
+  }
+  return out;
+})();
+
+function bubble(b) {
+  const q = view(b.c);
+  add("circle", { cx: q[0], cy: q[1], r: b.r * q[3], fill: "url(#g" + b.v + ")" });
+}
+function draw() {
+  scene.textContent = "";
+  const C = OV.dims;
+  // the floor plate ends where the historical axis does (xe), as in the print figure, not at the space's full depth
+  add("polygon", { points: pts([[0, 0, 0], [OV.xe, 0, 0], [OV.xe, C[1], 0], [0, C[1], 0]]), fill: "#F7F7F7", stroke: "#BFBFBF", "stroke-width": 0.7 });
+  for (const l of OV.lines) {
+    const a = view(l.a), b = view(l.b);
+    const sty = l.k === "grid" ? { stroke: "#C7C7C7", "stroke-width": 0.8, "stroke-dasharray": "4 4" }
+      : l.k === "axis" ? { stroke: "#555", "stroke-width": 1.3, "marker-end": "url(#axtip)" } : { stroke: "#8C8C8C", "stroke-width": 1 };
+    add("line", Object.assign({ x1: a[0], y1: a[1], x2: b[0], y2: b[1] }, sty));
+  }
+  let first = null; // the first birth year's label: the birth-cohort title ends left of it and starts below it
+  for (const t of OV.texts) {
+    const q = view(t.at);
+    const n = add("text", { x: q[0], y: q[1] + (t.c === "subtitle" ? 23 : 5), class: t.c });
+    n.textContent = t.t;
+    if (t.c.includes("title") && !t.c.includes("below") && t.t.includes(" (")) { // the name bold, the bracket smaller below it; the pair raised by a line
+      const [l1, l2] = t.t.split(" (");
+      n.textContent = l1;
+      n.setAttribute("y", q[1] + 5 - 17);
+      const sp = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+      sp.setAttribute("x", q[0]); sp.setAttribute("dy", 17); sp.setAttribute("class", "l2"); sp.textContent = "(" + l2;
+      n.appendChild(sp);
+    }
+    if (t.c === "tick" && !first) first = n.getBBox();
+    if (t.c.includes("below") && first) {
+      n.setAttribute("x", first.x - 4);
+      n.setAttribute("y", first.y + first.height + (t.c.includes("subtitle") ? 31 : 14));
+    }
+  }
+  // Figure 1's order within nested papers (Paper 1 inside Paper 2, its front face again
+  // on top: "1f"); the groups far ones first, and the bubbles behind all of them first.
+  const dep = ps => { const bs = OV.boxes.filter(b => ps.includes(b.p)); return bs.reduce((s, b) => s + view(b.centre)[2], 0) / bs.length; };
+  const groups = UNITS.map(u => ({ u: u, d: dep(u.map(i => i.replace("f", ""))) })).sort((a, b) => b.d - a.d);
+  const behind = b => view(b.c)[2] > groups[0].d;
+  OV.bubbles.filter(behind).forEach(bubble);
+  for (const g of groups) for (const item of g.u) {
+    const p = item.replace("f", ""), front = item.endsWith("f");
+    const own = OV.boxes.filter(b => b.p === p).sort((a, b) => b.y0 - a.y0);
+    for (const b of own) b.faces.forEach((f, k) => { // tk: which of Figure 1's six faces (front, back, top, bottom, left, right) this one is
+      if ((front && b.tk[k] !== 1) || !facing(f, b.centre)) return;
+      add("polygon", { points: pts(f), fill: OV.tint[p][b.tk[k] - 1], "fill-opacity": OV.op, stroke: OV.edge[p], "stroke-opacity": 0.8, "stroke-width": 1 });
+      if (!front) b.men[k].forEach(h => add("polygon", { points: pts(h), fill: "url(#hatch" + p + ")", stroke: "none" }));
+    });
+  }
+  for (const c of OV.cohorts) {
+    add("polyline", { points: pts([c[0], c[c.length - 1]]), fill: "none", stroke: OV.cohortcol, "stroke-width": 1.2, "stroke-linecap": "round" });
+    c.forEach(p => { const q = view(p); add("circle", { cx: q[0], cy: q[1], r: 2.2, fill: OV.cohortcol }); });
+  }
+  const arrows = OV.arrows.map(a => Object.assign({ d: view(a.a.map((c, i) => (c + a.b[i]) / 2))[2] }, a)).sort((x, y) => y.d - x.d);
+  for (const a of arrows) { // far ones first, from the bubble's edge
+    const s = view(a.a), e = view(a.b), len = Math.hypot(e[0] - s[0], e[1] - s[1]) || 1;
+    const u = [(e[0] - s[0]) / len, (e[1] - s[1]) / len], n = [-u[1], u[0]], h = OV.head, r = a.r * s[3];
+    add("line", { x1: s[0] + u[0] * r, y1: s[1] + u[1] * r, x2: e[0] - u[0] * h * 0.6, y2: e[1] - u[1] * h * 0.6, stroke: a.col, "stroke-width": OV.width, "stroke-opacity": 0.9 });
+    const head = [[e[0], e[1]], [e[0] - u[0] * h + n[0] * h * 0.45, e[1] - u[1] * h + n[1] * h * 0.45], [e[0] - u[0] * h - n[0] * h * 0.45, e[1] - u[1] * h - n[1] * h * 0.45]];
+    add("polygon", { points: head.map(p => p[0].toFixed(1) + "," + p[1].toFixed(1)).join(" "), fill: a.col });
+  }
+  OV.bubbles.filter(b => !behind(b)).forEach(bubble);
+  for (const b of OV.bubbles) { // the names, with a line to the bubble where they stand off
+    const q = view(b.c), x = q[0] + b.off[0], y = q[1] - b.off[1], left = b.off[0] < 0;
+    if (Math.hypot(b.off[0], b.off[1]) > 2.5 * b.r * q[3]) add("line", { x1: q[0], y1: q[1], x2: x + (left ? 3 : -3), y2: y, stroke: "#777", "stroke-width": 1 });
+    add("text", { x: x, y: y + 5, class: "bub", "text-anchor": left ? "end" : "start" }).innerHTML = b.lab;
+  }
+  for (const g of OV.badges) { // the papers' numbers on the front faces, as in Figure 1
+    const q = view(g.at);
+    add("circle", { cx: q[0], cy: q[1], r: 11, fill: g.col });
+    add("text", { x: q[0], y: q[1] + 4.5, class: "badge", style: "fill:" + g.txt }).textContent = g.p;
+  }
+}
+function fit() { // the drawing area: the starting view with a margin, kept while turning
+  const b = scene.getBBox(), m = 30;
+  svg.setAttribute("viewBox", [b.x - m, b.y - m, b.width + 2 * m, b.height + 2 * m].map(v => v.toFixed(0)).join(" "));
+}
+svg.addEventListener("pointerdown", e => { drag = [e.clientX, e.clientY, az, el]; svg.setPointerCapture(e.pointerId); });
+svg.addEventListener("pointermove", e => {
+  if (!drag) return;
+  az = drag[2] + (e.clientX - drag[0]) * 0.4;
+  el = Math.max(-5, Math.min(85, drag[3] + (e.clientY - drag[1]) * 0.3));
+  draw();
+});
+svg.addEventListener("pointerup", () => { drag = null; });
+document.getElementById("reset").addEventListener("click", () => { az = OV.az; el = OV.el; draw(); });
+draw();
+fit();
+</script></body></html>
